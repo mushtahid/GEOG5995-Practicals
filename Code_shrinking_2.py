@@ -12,6 +12,8 @@ import matplotlib.pyplot # To plot a scatter graph of the agents
 
 # Set the number of agents
 num_of_agents = 10
+# Set number of iterations (no. of coordination changes) for agents
+num_of_iterations = 100
 
 
 # Create agent list
@@ -24,29 +26,23 @@ for i in range(num_of_agents):
     agents.append([random.randint(0,99), random.randint(0,99)])
 print("Initial coordinates (y,x) of agents:", agents)
 
-
-# For-loop to move all agents twice based on random value being < or >=0.5 
-for i in range(num_of_agents):
-# Move 1st step
-    if random.random() < 0.5:
-        agents[i][0] += 1
-    else:
-        agents[i][0] -= 1
-
-    if random.random() < 0.5:
-       agents[i][1] += 1
-    else:
-       agents[i][1] -= 1
-# Move 2nd step
-    if random.random() < 0.5:
-        agents[i][0] += 1
-    else:
-        agents[i][0] -= 1
+'''Nested for-loops. num_of_agents is within num_of_iterations because all 
+agents will move 1 step at a time and then the next (with a total step set by
+num_of_iterations)''' 
+# 1st for-loop for total number of steps
+for j in range(num_of_iterations):
+    # 2nd For-loop to move all agents 1 step on random value being < or >=0.5 
+    for i in range(num_of_agents):
+    # Move 1st step
+        if random.random() < 0.5:
+            agents[i][0] += 1
+        else:
+            agents[i][0] -= 1
     
-    if random.random() < 0.5:
-        agents[i][1] += 1
-    else:
-        agents[i][1] -= 1
+        if random.random() < 0.5:
+           agents[i][1] += 1
+        else:
+           agents[i][1] -= 1
 # Print new coordinates of all agents 
 print("New coordinates (y,x) of agents:", agents)
     
