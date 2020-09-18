@@ -31,18 +31,27 @@ agents will move 1 step at a time and then the next (with a total step set by
 num_of_iterations)''' 
 # 1st for-loop for total number of steps
 for j in range(num_of_iterations):
-    # 2nd For-loop to move all agents 1 step on random value being < or >=0.5 
+    ## 2nd For-loop to move all agents 1 step on random value being < or >=0.5 
     for i in range(num_of_agents):
-    # Move 1st step
+        ### Move Y coordinate
         if random.random() < 0.5:
             agents[i][0] += 1
         else:
             agents[i][0] -= 1
-    
+        ### Move X coordinate
         if random.random() < 0.5:
            agents[i][1] += 1
         else:
            agents[i][1] -= 1
+        ### Check if off edge and adjust.
+        if agents[i][0] < 0:
+            agents[i][0] = 99
+        if agents[i][1] < 0:
+            agents[i][1] = 99
+        if agents[i][0] > 99:
+            agents[i][0] = 0
+        if agents[i][1] > 99:
+            agents[i][1] = 0
 # Print new coordinates of all agents 
 print("New coordinates (y,x) of agents:", agents)
     
@@ -54,7 +63,6 @@ print("New coordinates (y,x) of agents:", agents)
 
 #The agent at the furthest east(largest x)
 print("Furthest east agent:", max(agents, key=operator.itemgetter(1)))
-
 
 # Plot agents in a scatter graph
 matplotlib.pyplot.ylim(0, 99)
