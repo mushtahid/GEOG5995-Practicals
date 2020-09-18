@@ -17,15 +17,15 @@ num_of_iterations = 100
 # Create agent list
 agents = []
 
-# Append the agent list to add the set number of agents using for-loop.
+# Make agents using for-loop.
 # y and x replaced by random integers to make it more efficient and cleaner
 for i in range(num_of_agents):
     agents.append([random.randint(0,99), random.randint(0,99)])
 print("Initial coordinates (y,x) of agents:", agents)
 
-'''Nested for-loops. num_of_agents is within num_of_iterations because all 
-agents will move 1 step at a time and then the next until the total
-number of steps are completed)''' 
+'''Nested for-loops to move the agents. num_of_agents is within 
+num_of_iterations because all agents will move 1 step at a time and then the 
+next until the total number of steps are completed)''' 
 # 1st for-loop for total number of steps
 for j in range(num_of_iterations):
     ## 2nd for-loop to move all agents 1 step on random value being < or >=0.5 
