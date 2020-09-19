@@ -64,36 +64,38 @@ print("New coordinates (y,x) of agents:", agents)
 
 # Timing the distance calculation
 start = time.process_time() # Start timing
-    
-# # Calculate distance between every agent
-# for a in agents:
-#     for b in agents:
-#         distance = distance_between(a, b)
-#         print(distance)
 
+# Distance calculation
+distance = distance_between(agents[0], agents[1])
+maxd = distance # Maximum distance between the agents
+mind = distance # Minimum distance between the agents    
 # Calculate distance between agents
 print("a b distance")
 for a in range(len(agents)): 
     for b in range(a+1, len(agents)): # a+1 to prevent repeting the same agent
         distance = distance_between(agents[a], agents[b])
-        print(a, b, distance)
-        
+        print(a, b, distance)  
+        maxd=max(maxd, distance)
+        mind=min(mind, distance)
 
-# End timing
+print("Maximum distance:", maxd)
+print("Minimum distance:", mind)
+
+# End timing calculation
 end = time.process_time() 
-# Time to calculate the distances
-print("Time: " + str(end - start)) 
+# Print the time to calculate the distances
+print("Time to calculate the distances: " + str(end - start)) 
 
-# #The agent at the furthest east(largest x)
-# print("Furthest east agent:", max(agents, key=operator.itemgetter(1)))
+#The agent at the furthest east(largest x)
+print("Furthest east agent:", max(agents, key=operator.itemgetter(1)))
 
-# # Plot agents in a scatter graph
-# matplotlib.pyplot.ylim(0, 99)
-# matplotlib.pyplot.xlim(0, 99)
-# ## For-loop to plot all agents
-# for i in range(num_of_agents):
-#     matplotlib.pyplot.scatter(agents[i][1],agents[i][0])
-# ##Color the furthest east agent red
-# matplotlib.pyplot.scatter(max(agents, key=operator.itemgetter(1))[1], max(agents, key=operator.itemgetter(1))[0], color='red')
-# matplotlib.pyplot.show()
+# Plot agents in a scatter graph
+matplotlib.pyplot.ylim(0, 99)
+matplotlib.pyplot.xlim(0, 99)
+## For-loop to plot all agents
+for i in range(num_of_agents):
+    matplotlib.pyplot.scatter(agents[i][1],agents[i][0])
+##Color the furthest east agent red
+matplotlib.pyplot.scatter(max(agents, key=operator.itemgetter(1))[1], max(agents, key=operator.itemgetter(1))[0], color='red')
+matplotlib.pyplot.show()
 
