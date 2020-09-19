@@ -8,7 +8,8 @@ Created on Tue Sep 15 22:13:42 2020
 import random # To generate a random number to decide how to move agents
 import operator # To get the larger x value of the agents
 import matplotlib.pyplot # To plot a scatter graph of the agents
-
+import time # To calculate the time taken to sections of codes
+random.seed(10)
 # Create function to calculate distance between two agents in agent list
 def distance_between(a, b):
     """
@@ -49,38 +50,50 @@ for j in range(num_of_iterations):
     ## 2nd for-loop to move all agents 1 step on random value being < or >=0.5 
     for i in range(num_of_agents):
         ### Move and adjust Y coordinate
-        if random.random() < 0.5:
+        if (random.random() < 0.5):
             agents[i][0] = (agents[i][0] + 1) % 100
         else:
             agents[i][0] = (agents[i][0] - 1) % 100
         ### Move and adjust X coordinate    
-        if random.random() < 0.5:
+        if (random.random() < 0.5):
             agents[i][1] = (agents[i][1] + 1) % 100
         else:
             agents[i][1] = (agents[i][1] - 1) % 100
 # Print new coordinates of all agents 
 print("New coordinates (y,x) of agents:", agents)
 
-# Calculate the distance between agents  
-distance = distance_between(agents[0], agents[1])
-print(distance)
+# Timing the distance calculation
+start = time.process_time() # Start timing
     
+# # Calculate distance between every agent
+# for a in agents:
+#     for b in agents:
+#         distance = distance_between(a, b)
+#         print(distance)
 
-# distance = (((agents[0][0]-agents[1][0])**2) + ((agents[0][1]-agents[1][1])**2))**0.5
-# print("Distance between agents 0 & 1:", distance)
+# Calculate distance between agents
+print("a b distance")
+for a in range(len(agents)): 
+    for b in range(a+1, len(agents)): # a+1 to prevent repeting the same agent
+        distance = distance_between(agents[a], agents[b])
+        print(a, b, distance)
+        
 
+# End timing
+end = time.process_time() 
+# Time to calculate the distances
+print("Time: " + str(end - start)) 
 
-#The agent at the furthest east(largest x)
-print("Furthest east agent:", max(agents, key=operator.itemgetter(1)))
+# #The agent at the furthest east(largest x)
+# print("Furthest east agent:", max(agents, key=operator.itemgetter(1)))
 
-# Plot agents in a scatter graph
-matplotlib.pyplot.ylim(0, 99)
-matplotlib.pyplot.xlim(0, 99)
-## For-loop to plot all agents
-for i in range(num_of_agents):
-    matplotlib.pyplot.scatter(agents[i][1],agents[i][0])
-##Color the furthest east agent red
-matplotlib.pyplot.scatter(max(agents, key=operator.itemgetter(1))[1], max(agents, key=operator.itemgetter(1))[0], color='red')
-matplotlib.pyplot.show()
-
+# # Plot agents in a scatter graph
+# matplotlib.pyplot.ylim(0, 99)
+# matplotlib.pyplot.xlim(0, 99)
+# ## For-loop to plot all agents
+# for i in range(num_of_agents):
+#     matplotlib.pyplot.scatter(agents[i][1],agents[i][0])
+# ##Color the furthest east agent red
+# matplotlib.pyplot.scatter(max(agents, key=operator.itemgetter(1))[1], max(agents, key=operator.itemgetter(1))[0], color='red')
+# matplotlib.pyplot.show()
 
