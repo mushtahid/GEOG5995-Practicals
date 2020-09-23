@@ -52,10 +52,14 @@ for row in reader:
     print(reader)
 f.close()
 
-# Move agents 
+# Move agents and make them eat?
 for j in range(num_of_iterations):
     for i in range(num_of_agents):
         agents[i].move()
+        agents[i].eat()
+
+
+        
    
 # Time to process ditance calculation
 start = time.process_time() # Start timing
@@ -84,10 +88,11 @@ print("Time to calculate the distances: " + str(end - start))
 # Plot agents in a scatter graph with environment
 matplotlib.pyplot.ylim(0, 99)
 matplotlib.pyplot.xlim(0, 99)
+## Show the environment
+matplotlib.pyplot.imshow(environment)
 ## For-loop to plot all agents
 for i in range(num_of_agents):
     matplotlib.pyplot.scatter(agents[i].x, agents[i].y)
 ##Color the furthest east agent red
 #matplotlib.pyplot.scatter(max(agents, key=operator.itemgetter(1))[1], max(agents, key=operator.itemgetter(1))[0], color='red')
-matplotlib.pyplot.imshow(environment)
 matplotlib.pyplot.show()
