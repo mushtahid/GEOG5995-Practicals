@@ -8,10 +8,11 @@ Created on Mon Sep 21 08:37:16 2020
 import random
 
 class Agent:
-    def __init__(self, environment):
+    def __init__(self, environment, agents):
         self.x = random.randint(0,99)
         self.y = random.randint(0,99)
         self.environment = environment
+        self.agents = agents
         self.store = 0 # We'll come to this in a second.
         
     def move(self):
