@@ -12,6 +12,7 @@ import agentframework # Contains agent class
 import csv # To read csv files
 
 # Set random seed to help with checking calculations and getting
+
 # same results
 
 # Function to calculate distance between agents
@@ -31,15 +32,23 @@ def distance_between(a, b):
     return (((a.x-b.x)**2) + ((a.y-b.y)**2))**0.5
 
 
+
 environment =[] # Environment list
 agents = [] # Agents list
 num_of_agents = 10 # No. of agents
 num_of_iterations = 100 # No. of steps for agents
+neighbourhood = 20 # Agents search for close neighbours to share resources
 
 # Make agents
 for i in range(num_of_agents):
-    agents.append(agentframework.Agent(environment))
+    agents.append(agentframework.Agent(environment, agents))
 #print("Initial coordinates (y,x) of agents:", agents)
+
+
+# Get this into your agent, and print another agent's y or x to prove it
+# Trying to prove agent list inside agent but failed.  
+# for a in range(len(agents)): 
+#     print(a)  
 
 # Create environment
 f = open('in.txt', newline='')
@@ -56,6 +65,8 @@ for j in range(num_of_iterations):
     for i in range(num_of_agents):
         agents[i].move()
         agents[i].eat()
+        agents[i].share_with_neighbours(neighbourhood)
+
    
 # Time to process ditance calculation
 start = time.process_time() # Start timing

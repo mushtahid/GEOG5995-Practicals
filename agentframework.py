@@ -6,13 +6,13 @@ Created on Mon Sep 21 08:37:16 2020
 """
 
 import random
-
+random.seed(10)
 class Agent:
     def __init__(self, environment, agents):
         self.x = random.randint(0,99)
         self.y = random.randint(0,99)
         self.environment = environment
-        self.agents = agents
+        self.agents = agents # Include list of agents inside agents
         self.store = 0 # We'll come to this in a second.
         
     def move(self):
@@ -30,5 +30,9 @@ class Agent:
         if self.environment[self.y][self.x] > 10:
             self.environment[self.y][self.x] -= 10
             self.store += 10
-        
+    
+    def share_with_neighbours(self, neighbourhood):
+        self.neighbourhood = neighbourhood
+        print("passed")
+
     
