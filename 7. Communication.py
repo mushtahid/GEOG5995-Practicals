@@ -5,33 +5,12 @@ Created on Tue Sep 15 22:13:42 2020
 @author: Mushtahid
 """
 # Import modules
-import operator # To get the larger x value of the agents
+import random
+#import operator # To get the larger x value of the agents
 import matplotlib.pyplot # To plot a scatter graph of the agents
-import time # To calculate the time taken to process sections of codes
+# import time # To calculate the time taken to process sections of codes
 import agentframework # Contains agent class
 import csv # To read csv files
-
-# Set random seed to help with checking calculations and getting
-
-# same results
-
-# Function to calculate distance between agents
-def distance_between(a, b):
-    """
-    Calculate and returns the distance between agents a and b.
-    ----------
-    a : TYPE
-        DESCRIPTION.
-    b : TYPE
-        DESCRIPTION.
-
-    Returns
-    -------
-    Distance between agents a and b.
-    """
-    return (((a.x-b.x)**2) + ((a.y-b.y)**2))**0.5
-
-
 
 environment =[] # Environment list
 agents = [] # Agents list
@@ -62,32 +41,19 @@ f.close()
 
 # Move agents 
 for j in range(num_of_iterations):
+    random.shuffle(agents)
     for i in range(num_of_agents):
         agents[i].move()
         agents[i].eat()
         agents[i].share_with_neighbours(neighbourhood)
 
    
-# Time to process ditance calculation
-start = time.process_time() # Start timing
+# # Time to process ditance calculation
+# start = time.process_time() # Start timing
 
-# Distance calculation
-distance = distance_between(agents[0], agents[1])
-maxd = distance # Maximum distance between the agents
-mind = distance # Minimum distance between the agents    
-print("a b distance")
-for a in range(len(agents)): 
-    for b in range(a+1, len(agents)): # a+1 to prevent repeting the same agent
-        distance = distance_between(agents[a], agents[b])
-        print(a, b, distance)  
-        maxd=max(maxd, distance)
-        mind=min(mind, distance)
-print("Maximum distance:", maxd)
-print("Minimum distance:", mind)
-
-# End timing calculation
-end = time.process_time() 
-print("Time to calculate the distances: " + str(end - start)) 
+# # End timing calculation
+# end = time.process_time() 
+# print("Time to calculate the distances: " + str(end - start)) 
 
 #The agent at the furthest east(largest x)
 #print("Furthest east agent:", max(agents, key=operator.itemgetter(1)))
