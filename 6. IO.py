@@ -49,7 +49,6 @@ for row in reader:
     for value in row:
         rowlist.append(value)
     environment.append(rowlist)
-    print(reader)
 f.close()
 
 # Move agents 
@@ -91,5 +90,4 @@ for i in range(num_of_agents):
     matplotlib.pyplot.scatter(agents[i].x, agents[i].y)
 ##Color the furthest east agent red
 #matplotlib.pyplot.scatter(max(agents, key=operator.itemgetter(1))[1], max(agents, key=operator.itemgetter(1))[0], color='red')
-
 matplotlib.pyplot.show()
