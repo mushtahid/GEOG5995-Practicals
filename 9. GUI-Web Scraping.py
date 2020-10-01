@@ -5,13 +5,29 @@ Created on Thu Oct  1 10:40:23 2020
 @author: Mushtahid
 """
 # Import modules
+import tkinter
 import random
 import operator
+
+import matplotlib 
+matplotlib.use('TkAgg')
+
 import matplotlib.pyplot
 import matplotlib.animation
 #import time
 import agentframework
 import csv
+
+import requests
+import bs4
+
+r = requests.get('http://www.geog.leeds.ac.uk/courses/computing/practicals/python/agent-framework/part9/data.html')
+content = r.text
+soup = bs4.BeautifulSoup(content, 'html.parser')
+td_ys = soup.find_all(attrs={"class" : "y"})
+td_xs = soup.find_all(attrs={"class" : "x"})
+print(td_ys)
+print(td_xs)
 
 environment =[]
 agents = []
@@ -43,6 +59,7 @@ f.close()
 #
 carry_on = True
 
+
 def update(frame_number):
     
     fig.clear()
@@ -61,7 +78,7 @@ def update(frame_number):
     'so this has to change to some store value?'
     'do we need a for loop?'
     for i in range(num_of_agents):
-        if agents[i].store > 1000: #trying to make each agent eat some!
+        if agents[i].store > 500: #trying to make each agent eat some!
             carry_on = False 
             print("stopping condition")  
         
@@ -84,9 +101,39 @@ def gen_function(b = [0]): # what is this b?
     while (num_of_iterations < 100) & (carry_on):
         yield num_of_iterations # Returns control and waits next call???
         num_of_iterations = num_of_iterations + 1
-#animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
-animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False)
-matplotlib.pyplot.show()
+
+def run():
+    animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False)
+    canvas.draw()
+
+# Build GUI
+root = tkinter.Tk()
+root.wm_title("Model")
+canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
+canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+menu_bar = tkinter.Menu(root)
+root.config(menu=menu_bar)
+model_menu = tkinter.Menu(menu_bar)
+menu_bar.add_cascade(label="Model", menu=model_menu)
+model_menu.add_command(label="Run model", command=run)
+
+tkinter.mainloop() # Wait for interactions.
+
+
+
+# import tkinter
+# def run():
+#     pass
+
+# # Just showing menu elements
+# root = tkinter.Tk()
+# menu_bar = tkinter.Menu(root)
+# root.config(menu=menu_bar)
+# model_menu = tkinter.Menu(menu_bar)
+# menu_bar.add_cascade(label="Model", menu=model_menu)
+# model_menu.add_command(label="Run model", command=run)
+
+# tkinter.mainloop() # Wait for interactions.
 
    
 # # Time to process ditance calculation
