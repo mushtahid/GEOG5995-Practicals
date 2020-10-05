@@ -96,13 +96,14 @@ def update(frame_number):
         ##Color the furthest east agent red
         #matplotlib.pyplot.scatter(max(agents, key=operator.itemgetter(1))[1], max(agents, key=operator.itemgetter(1))[0], color='red')
 
-def gen_function(b = [0]): # what is this b?
+def gen_function(): # what is this b?
     'This is the no. of iteration?'
-    # num_of_iterations = 0 #This is the iteration no.?
+    num_of_iterations = 0 #This is the iteration no.?
     global carry_on # Not actually needed as we're not assigning, but clearer
     while (num_of_iterations < 100) & (carry_on):
-        yield num_of_iterations # Returns control and waits next call???
+        yield num_of_iterations # Returns control and waits next call
         num_of_iterations = num_of_iterations + 1
+
 
 def run():
     animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False)

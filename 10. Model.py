@@ -33,8 +33,7 @@ print(td_xs)
 environment =[]
 agents = []
 num_of_agents = 10 
-' No. of steps for agents. changed to a local variable inside gen_function'
-num_of_iterations = 100
+num_of_iterations = 100 # No of iterations
 neighbourhood = 20 # Agents search for close neighbours to share resources
 
 #??
@@ -59,14 +58,14 @@ for row in reader:
     environment.append(rowlist)
 f.close()
 
-#
+# Set Carry on true (for store value)
 carry_on = True
 
-
+# Set animation
 def update(frame_number):
     
     fig.clear()
-    global carry_on
+    global carry_on # Why is this necessary here?
     
     # Move agents 
     # for j in range(num_of_iterations):
@@ -83,7 +82,7 @@ def update(frame_number):
     for i in range(num_of_agents):
         if agents[i].store > 500: #trying to make each agent eat some!
             carry_on = False 
-            print("stopping condition")  
+            print("Stopping condition")  
         
     # Plot agents in a scatter graph with environment
     ## For-loop to plot all agents
@@ -97,12 +96,12 @@ def update(frame_number):
         ##Color the furthest east agent red
         #matplotlib.pyplot.scatter(max(agents, key=operator.itemgetter(1))[1], max(agents, key=operator.itemgetter(1))[0], color='red')
 
-def gen_function(b = [0]): # what is this b?
+def gen_function(): # what is this b?
     'This is the no. of iteration?'
-    # num_of_iterations = 0 #This is the iteration no.?
+    num_of_iterations = 0 #This is the iteration no.?
     global carry_on # Not actually needed as we're not assigning, but clearer
     while (num_of_iterations < 100) & (carry_on):
-        yield num_of_iterations # Returns control and waits next call???
+        yield num_of_iterations # Returns control and waits next call
         num_of_iterations = num_of_iterations + 1
 
 def run():
