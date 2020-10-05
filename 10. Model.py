@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Oct  1 10:40:23 2020
+Created on Mon Oct  5 07:32:46 2020
 
 @author: Mushtahid
 """
+
 # Import modules
 import tkinter
 import random

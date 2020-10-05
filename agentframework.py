@@ -8,9 +8,15 @@ Created on Mon Sep 21 08:37:16 2020
 import random
 
 class Agent:
-    def __init__(self, environment, agents):
-        self.x = random.randint(0,99)
-        self.y = random.randint(0,99)
+    def __init__(self, environment, agents, x, y):
+        if (x == None):
+            self.x = random.randint(0,99)
+        else:
+            self.x = x
+        if (y == None):
+            self.y = random.randint(0,99)
+        else:
+            self.y = y
         self.environment = environment
         self.agents = agents # Include list of agents inside agents
         self.store = 0 
