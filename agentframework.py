@@ -9,8 +9,8 @@ import random
 # random.seed(10)
 
 class Agent:
-     # Put none in x and y (https://bit.ly/3d7tqY9)?
-    def __init__(self, environment, agents, y=None, x=None):
+     # Shoul put none in x and y (https://bit.ly/3d7tqY9)?
+    def __init__(self, environment, agents, y = None, x = None):
         if (y == None):
             self.y = random.randint(0,len(environment))
         else:
@@ -24,6 +24,7 @@ class Agent:
         self.store = 0 
         
     def move(self):
+        """ Move agents based on random value """
         if random.random() < 0.5:
             self.y = (self.y + 1) % 100
         else:
@@ -35,6 +36,7 @@ class Agent:
             self.x = (self.x - 1) % 100
 
     def eat(self): # can you make it eat what is left?
+        """ Make agents eat environment """
         if self.environment[self.y][self.x] > 10:
             self.environment[self.y][self.x] -= 10
             self.store += 10
@@ -42,7 +44,13 @@ class Agent:
         else:
             self.environment[self.y][self.x] -= self.environment[self.y][self.x]
             self.store += self.environment[self.y][self.x]
-
+    
+    def sickup(self):
+        """ Make agents vomit 50 stores if they have eaten more than 100 """
+        if self.store > 100:
+            self.store -= 50
+            self.environment[self.y][self.x] += 50
+            
     def distance_between(self, agent):
         """ Calculate and return distance between agents """
         return (((self.y - agent.y)**2) + ((self.x - agent.x)**2))**0.5           

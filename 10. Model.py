@@ -90,6 +90,7 @@ def update(frame_number):
         agents[i].move()
         agents[i].eat()
         agents[i].share_with_neighbours(neighbourhood)
+        # agents[i].sickup()
                
     #if random.random() < 0.1: 
     for i in range(num_of_agents):
