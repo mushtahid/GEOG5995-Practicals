@@ -61,7 +61,11 @@ class Agent:
     
     def distance_between(self, agent):
         """ Calculate and return distance between agents """
-        return (((self.y - agent.y)**2) + ((self.x - agent.x)**2))**0.5    
+        return (((self.y - agent.y)**2) + ((self.x - agent.x)**2))**0.5 
+    
+    #Overriding standard methods (https://bit.ly/34Ih3hC, https://bit.ly/3iMH5VW)
+    def __str__(self):
+        return f"Agent location: {self.y},{self.x} and Store value {self.store}"
 
 
 

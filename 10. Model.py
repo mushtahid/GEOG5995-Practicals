@@ -150,8 +150,10 @@ with open('total_store_amount.txt', 'a', newline='') as f3:
     store_writer = csv.writer(f3, delimiter=' ')     
     store_writer.writerow(totalscorelist)
 
-
-
+# Overrided __str(self) in agentframework to show agent location and store value
+for i in range(num_of_agents):
+    print(agents[i])
+    
 # import tkinter
 # def run():
 #     pass
