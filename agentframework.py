@@ -62,9 +62,17 @@ class Agent:
             distance = self.distance_between(agent)
             if distance <= neighbourhood:
                 average = ((self.store + agent.store)/2)
-                self.store = average
-                agent.store = average
-                # print (f"Sharing Dist: {distance}. Store Avg: {average}")
+                if agent.store != 0:
+                    store_div = self.store/agent.store
+                    # If self.store is less than 80% of agent.store
+                    # Steal that % from agent.store. eg. if 50% then steal 50%
+                    if store_div < 0.95:
+                        self.store += (store_div*agent.store)
+                        agent.store -= (store_div*agent.store)
+                    else:
+                        self.store = average
+                        agent.store = average
+                    # print (f"Sharing Dist: {distance}. Store Avg: {average}")
                    
     #Overriding standard methods (https://bit.ly/34Ih3hC, https://bit.ly/3iMH5VW)
     def __str__(self):

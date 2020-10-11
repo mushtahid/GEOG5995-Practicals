@@ -31,9 +31,11 @@ td_xs = soup.find_all(attrs={"class" : "x"})
 #a = agentframework.Agent() (https://bit.ly/3noK3Dn)
 
 # Set up lists in the begining
-num_of_agents = 10 
+n_ag = input("Enter number of sheep:")
+if len(n_ag) < 1 : n_ag = "10"
+num_of_agents = int(n_ag)
 num_of_iterations = 100
-neighbourhood = 20 # Agents search for close neighbours to share resources.
+neighbourhood = 40# Agents search for close neighbours to share resources.
 min_str = 900 # Each agent must have a min store val of 900 to reach stopping cond.
 totalscorelist = [] # For use in writing the total store in a csv file
 totalstore = 0 # For storing the toal amount as float
@@ -87,7 +89,7 @@ def update(frame_number):
         str_list.append(agents[i].store) # Adds store value to str_list
         # print(str_list)     
     print(str_list)
-    print(min(str_list))
+    # print(min(str_list))
     # Make sure each agent eats a minimum > min_str (https://bit.ly/2SI7pWD)  
     if min(str_list) > min_str:
         carry_on = False
