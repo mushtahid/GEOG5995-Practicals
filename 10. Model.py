@@ -72,47 +72,31 @@ def update(frame_number):
     fig.clear()
     global carry_on
     str_list = [] # List of Store value of agents. Used to meet carry_on conditions
-    # Move agents 
-    # for j in range(num_of_iterations): # (https://bit.ly/2SXJFOt)
-    ## If I keep the num_of_iterations then it doesn't work!
     # Shuffle agents list before each iteration (https://bit.ly/3k1ydgg)
     random.shuffle(agents)
+    # Move agents
     for i in range(num_of_agents):
         print(i)
         agents[i].move()
         agents[i].eat()
         agents[i].share_with_neighbours(neighbourhood)
-        # agents[i].sickup() # Enable to make agents vomit out 50 if eats > 100
+        agents[i].sickup() # Uncomment to make agents vomit out 50 if eats > 100
         # print(i, agents[i].store)
-        str_list.append(agents[i].store)
+        str_list.append(agents[i].store) # Adds store value to str_list
         # print(str_list)     
     # print(str_list)
     # print(min(str_list))
     # Make sure each agent eats a minimum of 500 (https://bit.ly/2SI7pWD)  
-    if min(str_list) > 500:
+    if min(str_list) > 900:
         carry_on = False
-        print('Stopping condition')
-          
-    # for i in range(num_of_agents):
-    #     # print(i, agents[i].store)
-    #     str_list.append(agents[i].store)
-    #     # print(str_list)
-    # # print(str_list)
-    # # print(min(str_list))
-    # if min(str_list) > 500:
-    #     carry_on = False
-    #     print('Stopping condition')
-        
-        
-        
-        
+        print('Stopping condition')      
+              
     # Plot agents in a scatter graph with environment
-    ## For-loop to plot all agents
     for i in range(num_of_agents):
-        # matplotlib.pyplot.ylim(0, len(environment))
-        # matplotlib.pyplot.xlim(0, len(environment[0]))
-        matplotlib.pyplot.ylim(0, 99)
-        matplotlib.pyplot.xlim(0, 99)
+        matplotlib.pyplot.ylim(0, len(environment))
+        matplotlib.pyplot.xlim(0, len(environment[0]))
+        # matplotlib.pyplot.ylim(0, 99)
+        # matplotlib.pyplot.xlim(0, 99)
         matplotlib.pyplot.imshow(environment)
         " I am calling x and y first. but in animatedmodel2.py it's y and x"
         matplotlib.pyplot.scatter(agents[i].x, agents[i].y)

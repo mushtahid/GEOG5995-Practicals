@@ -6,7 +6,7 @@ Created on Mon Sep 21 08:37:16 2020
 """
 
 import random
-random.seed(10)
+# random.seed(10)
 
 class Agent:
      # Shoul put none in x and y (https://bit.ly/3d7tqY9)?
@@ -26,14 +26,14 @@ class Agent:
     def move(self):
         """ Move agents based on random value """
         if random.random() < 0.5:
-            self.y = (self.y + 1) % 100
+            self.y = (self.y + 1) % (len(self.environment))
         else:
-            self.y = (self.y - 1) % 100
+            self.y = (self.y - 1) % (len(self.environment))
 
         if random.random() < 0.5:
-            self.x = (self.x + 1) % 100
+            self.x = (self.x + 1) % (len(self.environment[0]))
         else:
-            self.x = (self.x - 1) % 100
+            self.x = (self.x - 1) % (len(self.environment[0]))
 
     def eat(self): # can you make it eat what is left?
         """ Make agents eat environment """
@@ -56,7 +56,7 @@ class Agent:
         return (((self.y - agent.y)**2) + ((self.x - agent.x)**2))**0.5           
              
     def share_with_neighbours(self, neighbourhood):
-        """ If other agents within 20 distance, share resrouces to become average """
+        """ If agents within 20 distance, share store to become average """
         # self.neighbourhood = neighbourhood
         for agent in self.agents:
             distance = self.distance_between(agent)
