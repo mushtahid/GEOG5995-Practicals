@@ -38,7 +38,7 @@ td_xs = soup.find_all(attrs={"class" : "x"})
 num_of_agents = 10 
 num_of_iterations = 100
 neighbourhood = 20 # Agents search for close neighbours to share resources
-environment =[]
+environment =[] # Create environment list first before agent list
 agents = []
 
 
@@ -52,23 +52,12 @@ ax = fig.add_axes([0, 0, 1, 1])
 for i in range(num_of_agents):
     y = int(td_ys[i].text)
     x = int(td_xs[i].text)    
-    agents.append(agentframework.Agent(environment, agents, x, y))
+    agents.append(agentframework.Agent(environment, agents, y, x))
     # If I remove x and y why does it still seem to be working?
-    # Removing environment and agent the code breaks down
+    # But removing environment and agent, the code breaks down
 
     
-# Create environment
-
-# f = open('in.txt', newline='')
-# reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
-# for row in reader:
-#     rowlist = []
-#     for value in row:
-#         rowlist.append(value)
-#     environment.append(rowlist)
-# f.close()
-
-# Change the reader to while loop as it eliminates f.close()
+# Create Environment (before movign the agents https://bit.ly/3jPX3Qq)
 with open('in.txt', newline='') as f:
     reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
     for row in reader:
