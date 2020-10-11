@@ -83,10 +83,12 @@ def update(frame_number):
     global carry_on # Why is this necessary here?
     
     # Move agents 
-    #for j in range(num_of_iterations):
+    # for j in range(num_of_iterations): # (https://bit.ly/2SXJFOt)
     ## If I keep the num_of_iterations then it doesn't work!
-    ## random.shuffle(agents) # Need to get this back!
+    # Shuffle agents list before each iteration (https://bit.ly/3k1ydgg)
+    random.shuffle(agents)
     for i in range(num_of_agents):
+        print(i)
         agents[i].move()
         agents[i].eat()
         agents[i].share_with_neighbours(neighbourhood)
@@ -94,18 +96,20 @@ def update(frame_number):
                
     #if random.random() < 0.1: 
     for i in range(num_of_agents):
-        if agents[i].store > 5000: #trying to make each agent eat some!
+        if agents[i].store > 500: #trying to make each agent eat some!
             carry_on = False 
             print("Stopping condition") #Why does it print multiple times?
         
     # Plot agents in a scatter graph with environment
     ## For-loop to plot all agents
     for i in range(num_of_agents):
-        matplotlib.pyplot.ylim(0, len(environment))
-        matplotlib.pyplot.xlim(0, len(environment[0]))
+        # matplotlib.pyplot.ylim(0, len(environment))
+        # matplotlib.pyplot.xlim(0, len(environment[0]))
+        matplotlib.pyplot.ylim(0, 99)
+        matplotlib.pyplot.xlim(0, 99)
         matplotlib.pyplot.imshow(environment)
         " I am calling x and y first. but in animatedmodel2.py it's y and x"
-        matplotlib.pyplot.scatter(agents[i].y, agents[i].x)
+        matplotlib.pyplot.scatter(agents[i].x, agents[i].y)
         #print(agents[i].x, agents[i].y)
         ##Color the furthest east agent red
         #matplotlib.pyplot.scatter(max(agents, key=operator.itemgetter(1))[1], max(agents, key=operator.itemgetter(1))[0], color='red')
@@ -117,6 +121,7 @@ def gen_function():
     while (a < num_of_iterations) & (carry_on):
         yield a # Returns control and waits next call
         a = a + 1
+        print(f"Iteration no {a}")
 
 def run():
     animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False)
@@ -151,7 +156,7 @@ with open('total_store_amount.txt', 'a', newline='') as f3:
     store_writer = csv.writer(f3, delimiter=' ')     
     store_writer.writerow(totalscorelist)
 
-# Overrided __str__(self) in agentframework to show agent location and store value
+# Override __str__(self) in agentframework to show agent location and store value
 for i in range(num_of_agents):
     print(agents[i])
     

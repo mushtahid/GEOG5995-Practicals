@@ -6,7 +6,7 @@ Created on Mon Sep 21 08:37:16 2020
 """
 
 import random
-# random.seed(10)
+random.seed(10)
 
 class Agent:
      # Shoul put none in x and y (https://bit.ly/3d7tqY9)?
@@ -20,7 +20,7 @@ class Agent:
         else:
             self.x = x
         self.environment = environment
-        self.agents = agents # Include list of agents inside agents
+        self.agents = agents # Include list of agents inside agents (https://bit.ly/2SKy6Ke)
         self.store = 0 
         
     def move(self):
@@ -56,18 +56,16 @@ class Agent:
         return (((self.y - agent.y)**2) + ((self.x - agent.x)**2))**0.5           
              
     def share_with_neighbours(self, neighbourhood):
-        """ If other agents within 20, share resrouces """
-        #self.neighbourhood = neighbourhood # Do I need this?
+        """ If other agents within 20 distance, share resrouces to become average """
+        # self.neighbourhood = neighbourhood
         for agent in self.agents:
             distance = self.distance_between(agent)
             if distance <= neighbourhood:
                 average = ((self.store + agent.store)/2)
                 self.store = average
                 agent.store = average
-                print("sharing " + str(distance) + " " + str(average))
-    
-
-    
+                print (f"Sharing Dist: {distance}. Store Avg: {average}")
+                   
     #Overriding standard methods (https://bit.ly/34Ih3hC, https://bit.ly/3iMH5VW)
     def __str__(self):
         return f"Agent location: (y={self.y},x={self.x}). Store value: {self.store}"
