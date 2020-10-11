@@ -44,7 +44,7 @@ except:
     num_of_iterations = 100
     print('Invalid characters/No number entered! Model will run with default of 100 iterations') 
 neighbourhood = 40# Agents search for close neighbours to share resources.
-min_str = 900 # Each agent must have a min store val of 900 to reach stopping cond.
+min_store = 900 # Each agent must have a min store val of 900 to reach stopping cond.
 totalscorelist = [] # For use in writing the total store in a csv file
 totalstore = 0 # For storing the toal amount as float
 environment =[] # Create environment list first before agent list.
@@ -64,13 +64,7 @@ with open('in.txt', newline='') as f:
         for value in row:
             rowlist.append(value)
         environment.append(rowlist)
-        
-# Write environment in a file.
-with open('environmentout.txt', 'w', newline='') as f2:     
-   env_writer = csv.writer(f2)     
-   for row in environment:         
-        env_writer.writerow(row)
-        
+
 # Make the agents.
 for i in range(num_of_agents):
     y = int(td_ys[i].text)
@@ -79,30 +73,44 @@ for i in range(num_of_agents):
     # If I remove x and y why does it still seem to be working?
     # But removing environment and agent, the code breaks down
 
+# Write environment in a file.
+with open('environmentout.txt', 'w', newline='') as f2:     
+   env_writer = csv.writer(f2)     
+   for row in environment:         
+        env_writer.writerow(row)
+        
 # Set animation
 def update(frame_number):
     
     fig.clear()
     global carry_on
-    str_list = [] # List of Store value of agents. Used to meet carry_on conditions
-    # Shuffle agents list before each iteration (https://bit.ly/3k1ydgg)
-    random.shuffle(agents)
-    # Move agents
+    store_list = [] # List of Store value of agents. Used to meet carry_on conditions.
+    random.shuffle(agents) # Shuffle agents before each iteration (https://bit.ly/3k1ydgg).
+    # for i in range(num_of_agents):
+    #     print(i, 'Before' 'Store: ', agents[i].store)
+    # Move agents       
     for i in range(num_of_agents):
         agents[i].move()
         agents[i].eat()
         agents[i].share_with_neighbours(neighbourhood)
         # agents[i].sickup() # Uncomment to make agents vomit out 50 if eats > 100
-        # print(i, agents[i].store)
-        str_list.append(agents[i].store) # Adds store value to str_list
-        # print(str_list)     
-    print(str_list)
-    # print(min(str_list))
-    # Make sure each agent eats a minimum > min_str (https://bit.ly/2SI7pWD)  
-    if min(str_list) > min_str:
+    
+    # Get list of store values
+    for i in range(num_of_agents):    
+        # print(i, 'After', 'Store: ', agents[i].store)
+        store_list.append(agents[i].store) # Adds store value to store_list
+        # print(store_list)     
+    print(store_list)
+    # print(min(store_list))
+    
+    # Ensure each agent eats > min_store (https://bit.ly/2SI7pWD)  
+    if min(store_list) > min_store:
         carry_on = False
-        print(f"Stopping condition. Each agent has min store value of {min_str}.")      
-              
+        print(f"Stopping condition. Each agent has min store value > {min_store}.")      
+    
+    for i in range(num_of_agents):
+        print(i, agents[i])
+          
     # Plot agents in a scatter graph with environment
     for i in range(num_of_agents):
         matplotlib.pyplot.ylim(0, len(environment))
@@ -117,12 +125,12 @@ def update(frame_number):
 
 # Utilise num_of_iterations and carry on conditions
 def gen_function(): 
-    a = 0 # To match with num_of_iterations
+    a = 1 # To compare with num_of_iterations
     global carry_on # Not actually needed as we're not assigning, but clearer.
     while (a < num_of_iterations) & (carry_on):
         yield a # Returns control and waits next call
         a = a + 1
-        print(f"Iteration no {a}") # Uncomment to show iteration number
+        print(f"***Iteration no {a} \u2191 ***") # Uncomment to show iteration number
     
 
 def run():
@@ -153,11 +161,6 @@ totalscorelist.append(totalstore)
 with open('total_store_amount.txt', 'a', newline='') as f3:     
     store_writer = csv.writer(f3, delimiter=' ')     
     store_writer.writerow(totalscorelist)
-
-# Print each agent's location and store value
-for i in range(num_of_agents):
-    print(i, agents[i])
-    
 
   
 # # Time to process ditance calculation
