@@ -103,7 +103,7 @@ def update(frame_number):
         agents[i].move()
         agents[i].eat()
         agents[i].share_with_neighbours(neighbourhood)
-        # agents[i].sickup() # Uncomment to make agents vomit out 50 if eats > 100
+        agents[i].sickup() # Uncomment to make agents vomit out 50 if eats > 100
     
     # Get list of store values
     for i in range(num_of_agents):    

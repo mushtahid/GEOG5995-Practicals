@@ -25,22 +25,29 @@ class Agent:
         
     def move(self):
         """ Move agents based on random value """
-        if self.store > 350:
+        if self.store > 250 and self.store < 500:
             if random.random() < 0.5:
                 self.y = (self.y + 5) % (len(self.environment))
             else:
                 self.y = (self.y - 5) % (len(self.environment))
-    
             if random.random() < 0.5:
                 self.x = (self.x + 5) % (len(self.environment[0]))
             else:
                 self.x = (self.x - 5) % (len(self.environment[0]))
+        elif self.store > 500:
+            if random.random() < 0.5:
+                self.y = (self.y + 10) % (len(self.environment))
+            else:
+                self.y = (self.y - 10) % (len(self.environment))
+            if random.random() < 0.5:
+                self.x = (self.x + 10) % (len(self.environment[0]))
+            else:
+                self.x = (self.x - 10) % (len(self.environment[0]))
         else:
             if random.random() < 0.5:
                 self.y = (self.y + 1) % (len(self.environment))
             else:
                 self.y = (self.y - 1) % (len(self.environment))
-    
             if random.random() < 0.5:
                 self.x = (self.x + 1) % (len(self.environment[0]))
             else:
@@ -58,9 +65,9 @@ class Agent:
     
     def sickup(self):
         """ Make agents vomit 50 stores if they have eaten more than 100 """
-        if self.store > 100:
-            self.store -= 50
-            self.environment[self.y][self.x] += 50
+        if self.store > 600:
+            self.store -= 400
+            self.environment[self.y][self.x] += 400
             
     def distance_between(self, agent):
         """ Calculate and return distance between agents """
