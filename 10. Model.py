@@ -68,7 +68,7 @@ with open('in.txt', newline='') as f:
         
 # Write environment in a file. Need verification
 with open('environmentout.txt', 'w', newline='') as f2:     
-   env_writer = csv.writer(f2, delimiter=' ')     
+   env_writer = csv.writer(f2)     
    for row in environment:         
         env_writer.writerow(row)
 
@@ -93,7 +93,7 @@ def update(frame_number):
                
     #if random.random() < 0.1: 
     for i in range(num_of_agents):
-        if agents[i].store > 1000: #trying to make each agent eat some!
+        if agents[i].store > 5000: #trying to make each agent eat some!
             carry_on = False 
             print("Stopping condition") #Why does it print multiple times?
         
@@ -104,7 +104,7 @@ def update(frame_number):
         matplotlib.pyplot.xlim(0, len(environment[0]))
         matplotlib.pyplot.imshow(environment)
         " I am calling x and y first. but in animatedmodel2.py it's y and x"
-        matplotlib.pyplot.scatter(agents[i].x, agents[i].y)
+        matplotlib.pyplot.scatter(agents[i].y, agents[i].x)
         #print(agents[i].x, agents[i].y)
         ##Color the furthest east agent red
         #matplotlib.pyplot.scatter(max(agents, key=operator.itemgetter(1))[1], max(agents, key=operator.itemgetter(1))[0], color='red')
@@ -113,7 +113,7 @@ def gen_function():
     'This is the no. of iteration?'
     a = 0
     global carry_on # Not actually needed as we're not assigning, but clearer
-    while (a < 100) & (carry_on):
+    while (a < num_of_iterations) & (carry_on):
         yield a # Returns control and waits next call
         a = a + 1
 
