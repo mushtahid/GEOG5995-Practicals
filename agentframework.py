@@ -72,6 +72,19 @@ class Agent:
                     self.store = average
                     agent.store = average
                 # print (f"Sharing Dist: {distance}. Store Avg: {average}")
+
+    def move_quick(self):
+        if self.store > 500:
+            if random.random() < 0.5:
+                self.y = (self.y + 5) % (len(self.environment))
+            else:
+                self.y = (self.y - 5) % (len(self.environment))
+    
+            if random.random() < 0.5:
+                self.x = (self.x + 5) % (len(self.environment[0]))
+            else:
+                self.x = (self.x - 5) % (len(self.environment[0]))
+            
                   
     # Overriding standard methods (https://bit.ly/34Ih3hC, https://bit.ly/3iMH5VW)
     def __str__(self):

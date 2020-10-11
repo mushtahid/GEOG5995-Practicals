@@ -95,7 +95,7 @@ def update(frame_number):
     fig.clear()
     global carry_on
     store_list = [] # List of Store value of agents. Used to meet carry_on conditions.
-    random.shuffle(agents) # Shuffle agents before each iteration (https://bit.ly/3k1ydgg).
+    # random.shuffle(agents) # Shuffle agents before each iteration (https://bit.ly/3k1ydgg).
     # for i in range(num_of_agents):
     #     print(i, 'Before' 'Store: ', agents[i].store)
     # Move agents       
@@ -104,7 +104,7 @@ def update(frame_number):
         agents[i].eat()
         agents[i].share_with_neighbours(neighbourhood)
         # agents[i].sickup() # Uncomment to make agents vomit out 50 if eats > 100
-    
+        agents[i].move_quick()
     # Get list of store values
     for i in range(num_of_agents):    
         # print(i, 'After', 'Store: ', agents[i].store)
