@@ -31,20 +31,30 @@ td_xs = soup.find_all(attrs={"class" : "x"})
 #a = agentframework.Agent() (https://bit.ly/3noK3Dn)
 
 # Set up lists in the begining
-n_ag = input('Enter number of sheep: ')
+n_ag = input('Enter number of sheep (Or press enter to use default value 10): ')
 try:
     num_of_agents = int(n_ag)
 except:
     num_of_agents = 10
-    print('Invalid characters/No number entered! Model will run with default of 10 sheep')
-n_it = input('Enter number of iterations: ')
+    print('Invalid characters/No number entered! Model will run with 10 sheep')
+n_it = input('Enter number of iterations (Or press enter to use default value 100): ')
 try:
     num_of_iterations = int(n_it)
 except:
     num_of_iterations = 100
     print('Invalid characters/No number entered! Model will run with default of 100 iterations') 
-neighbourhood = 40# Agents search for close neighbours to share resources.
-min_store = 900 # Each agent must have a min store val of 900 to reach stopping cond.
+ngbr = input('Enter neighbourhood proximity (Or press enter to use default value 30): ')
+try:
+    neighbourhood = int(ngbr) # Agents search for close neighbours to share resources.
+except:
+    neighbourhood = 30
+    print('Invalid characters/No number entered! Model will run with default of neighbourhood proximity of 30') 
+minstore = input('How much should each sheep eat (Or press enter to use default value 900): ')
+try:
+    min_store = int(minstore) # Agents search for close neighbours to share resources.
+except:
+    min_store = 900 # Each agent must have a min store val of 900 to reach stopping cond.
+    print('Invalid characters/No number entered! Model will run with default minimum eat(store) value of 900')
 totalscorelist = [] # For use in writing the total store in a csv file
 totalstore = 0 # For storing the toal amount as float
 environment =[] # Create environment list first before agent list.
@@ -100,7 +110,7 @@ def update(frame_number):
         # print(i, 'After', 'Store: ', agents[i].store)
         store_list.append(agents[i].store) # Adds store value to store_list
         # print(store_list)     
-    print(store_list)
+    # print(store_list)
     # print(min(store_list))
     
     # Ensure each agent eats > min_store (https://bit.ly/2SI7pWD)  

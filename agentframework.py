@@ -75,7 +75,7 @@ class Agent:
                   
     # Overriding standard methods (https://bit.ly/34Ih3hC, https://bit.ly/3iMH5VW)
     def __str__(self):
-        return (f"Agent location: (y={self.y},x={self.x}). Store: {self.store}")
+        return (f"Agent location: (y={self.y},x={self.x}), Store: {self.store}")
 
 
 
