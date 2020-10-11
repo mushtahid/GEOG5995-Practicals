@@ -6,9 +6,11 @@ Created on Mon Sep 21 08:37:16 2020
 """
 
 import random
+random.seed(10)
 
 class Agent:
-    def __init__(self, environment, agents, x, y):
+     # Put none in x and y (https://bit.ly/3d7tqY9)?
+    def __init__(self, environment, agents, x = None, y = None):
         if (x == None):
             self.x = random.randint(0,99)
         else:
@@ -39,7 +41,7 @@ class Agent:
              
     def share_with_neighbours(self, neighbourhood):
         'if agents nearby, share resrouces'
-        self.neighbourhood = neighbourhood
+        #self.neighbourhood = neighbourhood # Do I need this?
         for agent in self.agents:
             distance = self.distance_between(agent)
             if distance <= neighbourhood:
