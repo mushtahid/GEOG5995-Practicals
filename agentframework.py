@@ -6,7 +6,7 @@ Created on Mon Sep 21 08:37:16 2020
 """
 
 import random
-random.seed(10)
+# random.seed(10)
 
 class Agent:
      # Put none in x and y (https://bit.ly/3d7tqY9)?

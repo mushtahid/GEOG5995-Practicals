@@ -146,7 +146,7 @@ for i in range(num_of_agents):
 totalscorelist.append(totalstore)
 # print(totalscorelist)
 # Writing the total stored amount in another file
-with open('total_store_amount.txt', 'w', newline='') as f3:     
+with open('total_store_amount.txt', 'a', newline='') as f3:     
     store_writer = csv.writer(f3, delimiter=' ')     
     store_writer.writerow(totalscorelist)
 
