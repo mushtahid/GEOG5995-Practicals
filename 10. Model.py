@@ -66,7 +66,10 @@ with open('in.txt', newline='') as f:
             rowlist.append(value)
         environment.append(rowlist)
 
-
+with open('environmentout.txt', 'w', newline='') as f2:     
+    writer = csv.writer(f2, delimiter=' ')     
+    for row in environment:         
+        writer.writerow(row) # List of values.
 
 
 # Set Carry on true (for store value)
