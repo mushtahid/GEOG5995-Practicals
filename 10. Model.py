@@ -31,10 +31,18 @@ td_xs = soup.find_all(attrs={"class" : "x"})
 #a = agentframework.Agent() (https://bit.ly/3noK3Dn)
 
 # Set up lists in the begining
-n_ag = input("Enter number of sheep:")
-if len(n_ag) < 1 : n_ag = "10"
-num_of_agents = int(n_ag)
-num_of_iterations = 100
+n_ag = input('Enter number of sheep: ')
+try:
+    num_of_agents = int(n_ag)
+except:
+    num_of_agents = 10
+    print('Invalid characters/No number entered! Model will run with default of 10 sheep')
+n_it = input('Enter number of iterations: ')
+try:
+    num_of_iterations = int(n_it)
+except:
+    num_of_iterations = 100
+    print('Invalid characters/No number entered! Model will run with default of 100 iterations') 
 neighbourhood = 40# Agents search for close neighbours to share resources.
 min_str = 900 # Each agent must have a min store val of 900 to reach stopping cond.
 totalscorelist = [] # For use in writing the total store in a csv file
@@ -46,7 +54,7 @@ carry_on = True # Carry on True for store value
 #??
 fig = matplotlib.pyplot.figure(figsize=(7, 7))
 ax = fig.add_axes([0, 0, 1, 1])
-ax.set_autoscale_on(False) 
+# ax.set_autoscale_on(False) 
  
 # Create Environment (before moving the agents https://bit.ly/3jPX3Qq)
 with open('in.txt', newline='') as f:
@@ -99,6 +107,8 @@ def update(frame_number):
     for i in range(num_of_agents):
         matplotlib.pyplot.ylim(0, len(environment))
         matplotlib.pyplot.xlim(0, len(environment[0]))
+        # matplotlib.pyplot.ylim(0, 99)
+        # matplotlib.pyplot.xlim(0, 99)
         matplotlib.pyplot.imshow(environment)
         matplotlib.pyplot.scatter(agents[i].x, agents[i].y)
         #print(agents[i].x, agents[i].y)
@@ -112,7 +122,8 @@ def gen_function():
     while (a < num_of_iterations) & (carry_on):
         yield a # Returns control and waits next call
         a = a + 1
-    print(f"Iteration no {a}") # Uncomment to show iteration number
+        print(f"Iteration no {a}") # Uncomment to show iteration number
+    
 
 def run():
     animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False)
@@ -143,26 +154,12 @@ with open('total_store_amount.txt', 'a', newline='') as f3:
     store_writer = csv.writer(f3, delimiter=' ')     
     store_writer.writerow(totalscorelist)
 
-# Show each agent's location and store value
+# Print each agent's location and store value
 for i in range(num_of_agents):
     print(i, agents[i])
     
 
-# import tkinter
-# def run():
-#     pass
-
-# # Just showing menu elements
-# root = tkinter.Tk()
-# menu_bar = tkinter.Menu(root)
-# root.config(menu=menu_bar)
-# model_menu = tkinter.Menu(menu_bar)
-# menu_bar.add_cascade(label="Model", menu=model_menu)
-# model_menu.add_command(label="Run model", command=run)
-
-# tkinter.mainloop() # Wait for interactions.
-
-   
+  
 # # Time to process ditance calculation
 # start = time.process_time() # Start timing
 

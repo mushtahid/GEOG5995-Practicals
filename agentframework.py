@@ -6,7 +6,7 @@ Created on Mon Sep 21 08:37:16 2020
 """
 
 import random
-# random.seed(10)
+random.seed(10)
 
 class Agent:
      # Shoul put none in x and y (https://bit.ly/3d7tqY9)?
@@ -54,29 +54,28 @@ class Agent:
     def distance_between(self, agent):
         """ Calculate and return distance between agents """
         return (((self.y - agent.y)**2) + ((self.x - agent.x)**2))**0.5           
-             
+
     def share_with_neighbours(self, neighbourhood):
         """ If agents within 20 distance, share store to become average """
         # self.neighbourhood = neighbourhood
         for agent in self.agents:
             distance = self.distance_between(agent)
             if distance <= neighbourhood:
-                average = ((self.store + agent.store)/2)
-                if agent.store != 0:
+                average = ((self.store + agent.store)/2)       
+                # If self.store is less than 95% of agent.store
+                # Steal that % from agent.store. eg. if 50% then steal 50%
+                if self.store < 0.95*agent.store:
                     store_div = self.store/agent.store
-                    # If self.store is less than 80% of agent.store
-                    # Steal that % from agent.store. eg. if 50% then steal 50%
-                    if store_div < 0.95:
-                        self.store += (store_div*agent.store)
-                        agent.store -= (store_div*agent.store)
-                    else:
-                        self.store = average
-                        agent.store = average
-                    # print (f"Sharing Dist: {distance}. Store Avg: {average}")
-                   
-    #Overriding standard methods (https://bit.ly/34Ih3hC, https://bit.ly/3iMH5VW)
+                    self.store += (store_div*agent.store)
+                    agent.store -= (store_div*agent.store)
+                else:
+                    self.store = average
+                    agent.store = average
+                # print (f"Sharing Dist: {distance}. Store Avg: {average}")
+                  
+    # Overriding standard methods (https://bit.ly/34Ih3hC, https://bit.ly/3iMH5VW)
     def __str__(self):
-        return f"Agent location: (y={self.y},x={self.x}). Store value: {self.store}"
+        return (f"Agent location: (y={self.y},x={self.x}). Store value: {self.store}")
 
 
 
