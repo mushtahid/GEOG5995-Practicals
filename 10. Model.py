@@ -33,15 +33,18 @@ td_xs = soup.find_all(attrs={"class" : "x"})
 # Set up lists in the begining
 num_of_agents = 10 
 num_of_iterations = 100
-neighbourhood = 20 # Agents search for close neighbours to share resources
-environment =[] # Create environment list first before agent list
+neighbourhood = 20 # Agents search for close neighbours to share resources.
+min_str = 900 # Each agent must have a min store val of 900 to reach stopping cond.
+totalscorelist = [] # For use in writing the total store in a csv file
+totalstore = 0 # For storing the toal amount as float
+environment =[] # Create environment list first before agent list.
 agents = []
 carry_on = True # Carry on True for store value
 
 #??
 fig = matplotlib.pyplot.figure(figsize=(7, 7))
 ax = fig.add_axes([0, 0, 1, 1])
-#ax.set_autoscale_on(False) 
+ax.set_autoscale_on(False) 
  
 # Create Environment (before moving the agents https://bit.ly/3jPX3Qq)
 with open('in.txt', newline='') as f:
@@ -76,29 +79,25 @@ def update(frame_number):
     random.shuffle(agents)
     # Move agents
     for i in range(num_of_agents):
-        print(i)
         agents[i].move()
         agents[i].eat()
         agents[i].share_with_neighbours(neighbourhood)
-        agents[i].sickup() # Uncomment to make agents vomit out 50 if eats > 100
+        # agents[i].sickup() # Uncomment to make agents vomit out 50 if eats > 100
         # print(i, agents[i].store)
         str_list.append(agents[i].store) # Adds store value to str_list
         # print(str_list)     
-    # print(str_list)
-    # print(min(str_list))
-    # Make sure each agent eats a minimum of 500 (https://bit.ly/2SI7pWD)  
-    if min(str_list) > 900:
+    print(str_list)
+    print(min(str_list))
+    # Make sure each agent eats a minimum > min_str (https://bit.ly/2SI7pWD)  
+    if min(str_list) > min_str:
         carry_on = False
-        print('Stopping condition')      
+        print(f"Stopping condition. Each agent has min store value of {min_str}.")      
               
     # Plot agents in a scatter graph with environment
     for i in range(num_of_agents):
         matplotlib.pyplot.ylim(0, len(environment))
         matplotlib.pyplot.xlim(0, len(environment[0]))
-        # matplotlib.pyplot.ylim(0, 99)
-        # matplotlib.pyplot.xlim(0, 99)
         matplotlib.pyplot.imshow(environment)
-        " I am calling x and y first. but in animatedmodel2.py it's y and x"
         matplotlib.pyplot.scatter(agents[i].x, agents[i].y)
         #print(agents[i].x, agents[i].y)
         ##Color the furthest east agent red
@@ -111,7 +110,7 @@ def gen_function():
     while (a < num_of_iterations) & (carry_on):
         yield a # Returns control and waits next call
         a = a + 1
-        print(f"Iteration no {a}")
+    print(f"Iteration no {a}") # Uncomment to show iteration number
 
 def run():
     animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False)
@@ -130,26 +129,23 @@ model_menu.add_command(label="Run model", command=run)
 
 tkinter.mainloop() # Wait for interactions.
 
-
-
-# Total amount stored by all agents on a line (https://bit.ly/30VLAXX)
-totalscorelist = [] # For use in writing the total output
-totalstore = 0 # For storing the toal value as float
-# Calculate the total store value
+# Find total amount stored by all agents (https://bit.ly/30VLAXX)
+## Calculate the total store value
 for i in range(num_of_agents):
         totalstore += agents[i].store
         # print(totalstore)
 totalscorelist.append(totalstore)
 # print(totalscorelist)
-# Writing the total stored amount in another file
+## Write the total stored amount in another file
 with open('total_store_amount.txt', 'a', newline='') as f3:     
     store_writer = csv.writer(f3, delimiter=' ')     
     store_writer.writerow(totalscorelist)
 
-# Override __str__(self) in agentframework to show agent location and store value
+# Show each agent's location and store value
 for i in range(num_of_agents):
-    print(agents[i])
+    print(i, agents[i])
     
+
 # import tkinter
 # def run():
 #     pass

@@ -64,7 +64,7 @@ class Agent:
                 average = ((self.store + agent.store)/2)
                 self.store = average
                 agent.store = average
-                print (f"Sharing Dist: {distance}. Store Avg: {average}")
+                # print (f"Sharing Dist: {distance}. Store Avg: {average}")
                    
     #Overriding standard methods (https://bit.ly/34Ih3hC, https://bit.ly/3iMH5VW)
     def __str__(self):
