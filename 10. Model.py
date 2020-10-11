@@ -65,11 +65,12 @@ with open('in.txt', newline='') as f:
         for value in row:
             rowlist.append(value)
         environment.append(rowlist)
-
+        
+# Write environment in a file. Need verification
 with open('environmentout.txt', 'w', newline='') as f2:     
-    writer = csv.writer(f2, delimiter=' ')     
-    for row in environment:         
-        writer.writerow(row) # List of values.
+   env_writer = csv.writer(f2, delimiter=' ')     
+   for row in environment:         
+        env_writer.writerow(row)
 
 
 # Set Carry on true (for store value)
@@ -132,6 +133,22 @@ menu_bar.add_cascade(label="Model", menu=model_menu)
 model_menu.add_command(label="Run model", command=run)
 
 tkinter.mainloop() # Wait for interactions.
+
+
+
+# Total amount stored by all agents on a line (https://bit.ly/30VLAXX)
+totalscorelist = [] # For use in writing the total output
+totalstore = 0 # For storing the toal value as float
+# Calculate the total store value
+for i in range(num_of_agents):
+        totalstore += agents[i].store
+        # print(totalstore)
+totalscorelist.append(totalstore)
+# print(totalscorelist)
+# Writing the total stored amount in another file
+with open('total_store_amount.txt', 'w', newline='') as f3:     
+    store_writer = csv.writer(f3, delimiter=' ')     
+    store_writer.writerow(totalscorelist)
 
 
 
