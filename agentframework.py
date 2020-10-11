@@ -10,13 +10,13 @@ import random
 
 class Agent:
      # Put none in x and y (https://bit.ly/3d7tqY9)?
-    def __init__(self, environment, agents, y = None, x = None):
+    def __init__(self, environment, agents, y=None, x=None):
         if (y == None):
-            self.y = random.randint(0,99)
+            self.y = random.randint(0,len(environment))
         else:
             self.y = y
         if (x == None):
-            self.x = random.randint(0,99)
+            self.x = random.randint(0,len(environment[0]))
         else:
             self.x = x
         self.environment = environment
@@ -25,27 +25,24 @@ class Agent:
         
     def move(self):
         if random.random() < 0.5:
-            self.y = (self.y + 1) % 100
+            self.y = (self.y + 1) % 1000
         else:
-            self.y = (self.y - 1) % 100
+            self.y = (self.y - 1) % 1000
 
         if random.random() < 0.5:
-            self.x = (self.x + 1) % 100
+            self.x = (self.x + 1) % 1000
         else:
-            self.x = (self.x - 1) % 100
+            self.x = (self.x - 1) % 1000
 
     def eat(self): # can you make it eat what is left?
         if self.environment[self.y][self.x] > 10:
             self.environment[self.y][self.x] -= 10
             self.store += 10
         # Eating what is left
-        # elif self.environment[self.y][self.x] <= 10:
-        #     self.environment[self.y][self.x] -= self.environment[self.y][self.x]
-        #     self.store += self.environment[self.y][self.x]
-        ## Another version.
-        # elif self.environment[self.y][self.x] <= 10:
-        #     self.environment[self.y][self.x] -= 10
-        #     self.store += 10
+        elif self.environment[self.y][self.x] <= 10:
+            self.environment[self.y][self.x] -= self.environment[self.y][self.x]
+            self.store += self.environment[self.y][self.x]
+
             
              
     def share_with_neighbours(self, neighbourhood):
@@ -65,7 +62,7 @@ class Agent:
     
     #Overriding standard methods (https://bit.ly/34Ih3hC, https://bit.ly/3iMH5VW)
     def __str__(self):
-        return f"Agent location: {self.y},{self.x} and Store value {self.store}"
+        return f"Agent location: (y={self.y},x={self.x}). Store value: {self.store}"
 
 
 

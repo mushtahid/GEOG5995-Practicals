@@ -57,10 +57,10 @@ for i in range(num_of_agents):
     # But removing environment and agent, the code breaks down
 
     
-# Create Environment (before movign the agents https://bit.ly/3jPX3Qq)
+# Create Environment (before moving the agents https://bit.ly/3jPX3Qq)
 with open('in.txt', newline='') as f:
-    reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
-    for row in reader:
+    env_reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
+    for row in env_reader:
         rowlist = []
         for value in row:
             rowlist.append(value)
@@ -93,15 +93,15 @@ def update(frame_number):
                
     #if random.random() < 0.1: 
     for i in range(num_of_agents):
-        if agents[i].store > 500: #trying to make each agent eat some!
+        if agents[i].store > 1000: #trying to make each agent eat some!
             carry_on = False 
             print("Stopping condition") #Why does it print multiple times?
         
     # Plot agents in a scatter graph with environment
     ## For-loop to plot all agents
     for i in range(num_of_agents):
-        matplotlib.pyplot.ylim(0, 99)
-        matplotlib.pyplot.xlim(0, 99)
+        matplotlib.pyplot.ylim(0, len(environment))
+        matplotlib.pyplot.xlim(0, len(environment[0]))
         matplotlib.pyplot.imshow(environment)
         " I am calling x and y first. but in animatedmodel2.py it's y and x"
         matplotlib.pyplot.scatter(agents[i].x, agents[i].y)
@@ -150,7 +150,7 @@ with open('total_store_amount.txt', 'a', newline='') as f3:
     store_writer = csv.writer(f3, delimiter=' ')     
     store_writer.writerow(totalscorelist)
 
-# Overrided __str(self) in agentframework to show agent location and store value
+# Overrided __str__(self) in agentframework to show agent location and store value
 for i in range(num_of_agents):
     print(agents[i])
     
