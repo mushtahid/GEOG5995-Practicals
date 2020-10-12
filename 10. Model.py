@@ -7,8 +7,8 @@ Created on Mon Oct  5 07:32:46 2020
 
 # Import modules
 import tkinter
-import random
-import operator
+# import random
+# import operator
 import matplotlib 
 matplotlib.use('TkAgg')
 import matplotlib.pyplot

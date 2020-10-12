@@ -25,7 +25,7 @@ class Agent:
         
     def move(self):
         """ Move agents based on random value """
-        if self.store > 250 and self.store < 500:
+        if 250 < self.store <500:
             if random.random() < 0.5:
                 self.y = (self.y + 5) % (len(self.environment))
             else:
@@ -74,7 +74,7 @@ class Agent:
         return (((self.y - agent.y)**2) + ((self.x - agent.x)**2))**0.5           
 
     def share_with_neighbours(self, neighbourhood):
-        """ If agents within 20 distance, share store to become average """
+        """ If agents within 20 distance, either steal or share average store """
         # self.neighbourhood = neighbourhood
         for agent in self.agents:
             distance = self.distance_between(agent)
@@ -82,7 +82,8 @@ class Agent:
                 average = ((self.store + agent.store)/2)       
                 # If self.store is less than 95% of agent.store
                 # Steal that % from agent.store. eg. if 50% then steal 50%
-                if self.store < 0.95*agent.store:
+                # Else just share the average
+                if self.store < (0.95*agent.store):
                     store_div = self.store/agent.store
                     self.store += (store_div*agent.store)
                     agent.store -= (store_div*agent.store)
@@ -95,7 +96,19 @@ class Agent:
     def __str__(self):
         return (f"Agent location: (y={self.y},x={self.x}), Store: {self.store}")
 
-
-
+# class Wolf:
+    
+#     def __init__(self, environment, agents, y = None, x = None):
+#             if (y == None):
+#                 self.y = random.randint(0,len(environment))
+#             else:
+#                 self.y = y
+#             if (x == None):
+#                 self.x = random.randint(0,len(environment[0]))
+#             else:
+#                 self.x = x
+#             self.environment = environment
+#             self.agents = agents # Include list of agents inside agents (https://bit.ly/2SKy6Ke)
+#             self.store = 0 
 
 
