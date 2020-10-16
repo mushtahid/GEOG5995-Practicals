@@ -18,9 +18,9 @@ class Animal:
         self.x = random.randint(0, len(environment[0]))
         self.store = 0
 
-    def dist_animals(self, a):
-        return (((self.y - a.y)**2) + ((self.x - a.x)**2))**0.5
-    
+    def dist_animals(self, animal):
+        return (((self.y - animal.y)**2) + ((self.x - animal.x)**2))**0.5
+   
     def move(self):
         if random.random() < 0.5:
             self.y = (self.y + 1) % (len(self.environment))
@@ -45,4 +45,17 @@ class Sheep(Animal):
             self.store += self.environment[self.y][self.x]
             
 class Wolf(Animal):
-    pass
+    
+    def eat(self, proximity, i):
+        sheep_count = -1
+        for j in self.sheep[:]:
+            sheep_count += 1
+            distance = self.dist_animals(j)
+            # print(f"wolf{i}: {wolves[i].y},{wolves[i].x}, sheep{j}: {sheep[j].y},{sheep[j].x}, d={distance}")
+            print(f"Wolf {i} {self.y},{self.x}, sheep: {sheep_count} {j.y},{j.x}, d={distance}")
+            if distance < proximity:
+                self.store += j.store
+                print('Sheep', sheep_count, (j), 'eaten by Wolf', i)
+                j.store = 0
+                self.sheep.remove(j)
+                break

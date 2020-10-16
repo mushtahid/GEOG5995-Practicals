@@ -13,6 +13,9 @@ import matplotlib.animation
 import random
 import csv
 
+y = None
+x = None
+
 environment = []
 animals = []
 sheep = []
@@ -66,30 +69,23 @@ def update(frame_number):
         sheep[i].move()
         sheep[i].eat()
         print(i, 'Sheep', sheep[i])
+    
+    for i in range(len(wolves)):
+        wolves[i].eat(proximity, i)
         
     # for i in range(len(wolves)):
-    #     for j in range(len(sheep)):
-    #         distance = aaf.Animal.dist_animals(wolves[i], sheep[j])
-    #         print(f"wolf{i}: {wolves[i].y},{wolves[i].x}, sheep{j}: {sheep[j].y},{sheep[j].x}, d={distance}")
+    #     sheep_count = -1
+    #     for j in sheep[:]:
+    #         sheep_count += 1
+    #         distance = aaf.Animal.dist_animals(wolves[i], j)
+    #         # print(f"wolf{i}: {wolves[i].y},{wolves[i].x}, sheep{j}: {sheep[j].y},{sheep[j].x}, d={distance}")
+    #         print(f"wolf {i}: {wolves[i].y},{wolves[i].x}, sheep: {sheep_count} {j.y},{j.x}, d={distance}")
     #         if distance < proximity:
-    #             wolves[i].store += sheep[j].store
-    #             sheep[j].store = 0
-    #             sheep.remove(sheep[j])
-    #             continue
-            
-    for i in range(len(wolves)):
-        sheep_count = -1
-        for j in sheep[:]:
-            sheep_count += 1
-            distance = aaf.Animal.dist_animals(wolves[i], j)
-            # print(f"wolf{i}: {wolves[i].y},{wolves[i].x}, sheep{j}: {sheep[j].y},{sheep[j].x}, d={distance}")
-            print(f"wolf {i}: {wolves[i].y},{wolves[i].x}, sheep: {sheep_count} {j.y},{j.x}, d={distance}")
-            if distance < proximity:
-                wolves[i].store += j.store
-                j.store = 0
-                print('Sheep eaten', sheep_count, j, 'by Wolf', i)
-                sheep.remove(j)
-                break
+    #             wolves[i].store += j.store
+    #             j.store = 0
+    #             print('Sheep eaten', sheep_count, j, 'by Wolf', i)
+    #             sheep.remove(j)
+    #             break
     
     plt.ylim(0, len(environment))
     plt.xlim(0, len(environment[0])) 
