@@ -23,7 +23,7 @@ sheep = []
 wolves = []
 no_sheep = 10
 no_wolves = 5
-no_iterations = 100
+no_iterations = 20
 proximity = 50
 eat_dist = 5
 no_animals = no_sheep + no_wolves
@@ -67,36 +67,57 @@ def update(frame_number):
     #     wolves[i].move()
     #     print(i, 'Wolves', wolves[i])
         
-    # for i in range(len(sheep)):
-    #     sheep[i].move()
-    #     sheep[i].eat()
-    #     print(i, 'Sheep', sheep[i])
+    for i in range(len(sheep)):
+        print(i, 'Sheep-before moving+eating', sheep[i])
+        sheep[i].move()
+        sheep[i].eat()
+        print(i, 'Sheep-after moving+eating', sheep[i])
+        print('S.........................................')
+    print('Sheep_________________________________________')
     
     for i in range(len(wolves)):
+        print(i, 'Wolf - before moving/eating', wolves[i])
         sheep_count = -1
         # print(f"min_dist a = {min_dist}")
         closest_sheep = None
         min_dist = proximity
+        eaten = False
         for j in sheep[:]:
             # print(f"min_dist b = {min_dist}")
             sheep_count += 1
             distance = af.Animal.dist_animals(wolves[i], j)
             # if eat_dist < distance < min_dist:
-            if eat_dist < distance < min_dist:
+            if distance <= eat_dist:
+                print('>>> Sheep going to be eaten', sheep_count, j, 'by Wolf', i, wolves[i])
+                wolves[i].store += j.store
+                j.store = 0
+                print('>>> Sheep eaten', sheep_count, j, 'by Wolf', i, wolves[i])
+                sheep.remove(j)
+                print('Eaten_________________________________________')
+                # break # activates else after eating.
+                # continue # no good. targets immediately another sheep. and activates else.
+                eaten = True # works? still target. what's getting activated?
+            continue
+            elif eat_dist < distance < min_dist:
                 min_dist = distance
                 closest_sheep = j
-                print(f"min_dist a = {min_dist}, sheep {sheep_count}, wolf {i}")
-            elif distance <= eat_dist:
-                wolves[i].store += j.store
-                print('Sheep eaten', sheep_count, j, 'by Wolf', i)
-                j.store = 0
-                sheep.remove(j)
-                break
-        if closest_sheep != None:
+                print('>>> min_dist =', min_dist, 'Sheep', sheep_count, j, 'by Wolf', i, wolves[i])
+                print('M.........................................')
+        if eaten == True:
+            #break
+            continue # This works! it still targets but that's fine as long is it does not move!
+        elif closest_sheep != None:
+            print('CL+ before', closest_sheep, 'Wolf', i, wolves[i])
             wolves[i].y = (wolves[i].y + closest_sheep.y)/2
             wolves[i].x = (wolves[i].x + closest_sheep.x)/2
+            print('CL+ after', closest_sheep, 'Wolf', i, wolves[i])
+            print('Y.........................................')           
         else:
-            wolves[i].move
+            print('Else activate before', 'by Wolf', i, wolves[i])
+            wolves[i].move()
+            print('Else activate after', 'by Wolf', i, wolves[i])
+            print('E.........................................')
+    print('Ends_________________________________________')
             # if random.random() < 0.5:
             #     wolves[i].y = (wolves[i].y + 1) % (len(environment))
             # else:
@@ -106,10 +127,10 @@ def update(frame_number):
             # else:
             #     wolves[i].x = (wolves[i].x - 1) % (len(environment[0]))
         
-    for i in range(len(sheep)):
-        sheep[i].move()
-        sheep[i].eat()
-        print(i, 'Sheep', sheep[i])
+    # for i in range(len(sheep)):
+    #     sheep[i].move()
+    #     sheep[i].eat()
+    #     print(i, 'Sheep', sheep[i])
         
             
     # for i in range(len(wolves)):
@@ -143,7 +164,7 @@ def gen_function():
     a = 0 
     # print(f"***Iteration no {a} ***")
     while (a < no_iterations):
-        print(f"***Iteration no {a}***")
+        print('***************Iteration no', a, '***************')
         yield a
         # print(f"***Iteration no {a} \u2191 ***")
         a = a + 1
