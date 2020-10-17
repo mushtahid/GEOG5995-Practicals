@@ -2,7 +2,7 @@
 """
 Created on Thu Oct 15 11:20:41 2020
 
-@author: User
+@author: Mushtahid
 """
 import random
 random.seed(10)
@@ -55,7 +55,7 @@ class Wolf(Animal):
             print(f"Wolf {i} {self.y},{self.x}, sheep: {sheep_count} {j.y},{j.x}, d={distance}")
             if distance < proximity:
                 self.store += j.store
-                print('Sheep', sheep_count, (j), 'eaten by Wolf', i)
+                print(f"Sheep {sheep_count} {j} eaten by Wolf {i}")
                 j.store = 0
                 self.sheep.remove(j)
                 break
