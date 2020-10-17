@@ -89,8 +89,8 @@ def update(frame_number):
                 print(f"...........Sheep {i} noticed closest wolf {j}...........")
         if closest_wolf != None:
                 print('CW+ before', 'Wolf:', closest_wolf, 'Sheep:', i, sheep[i])
-                sheep[i].y = sheep[i].y + (closest_wolf.y/2)
-                sheep[i].x = sheep[i].x + (closest_wolf.x/2)
+                sheep[i].y += (sheep[i].y - int((sheep[i].y + closest_wolf.y)/2)) 
+                sheep[i].x += (sheep[i].x - int((sheep[i].x + closest_wolf.x)/2))
                 print('CW+ after', 'Wolf:', closest_wolf, 'Sheep:', i, sheep[i])
                 print('...........Sheep tried to move away...........')  
         else:
@@ -132,8 +132,8 @@ def update(frame_number):
             continue # This works! it still targets but that's fine as long is it does not move!
         elif closest_sheep != None:
             print('CS+ before', closest_sheep, 'Wolf', i, wolves[i])
-            wolves[i].y = (wolves[i].y + closest_sheep.y)/2
-            wolves[i].x = (wolves[i].x + closest_sheep.x)/2
+            wolves[i].y = int((wolves[i].y + closest_sheep.y)/2)
+            wolves[i].x = int((wolves[i].x + closest_sheep.x)/2)
             print('CS+ after', closest_sheep, 'Wolf', i, wolves[i])
             print('Y.........................................')           
         else:
