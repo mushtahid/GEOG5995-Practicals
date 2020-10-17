@@ -23,7 +23,7 @@ sheep = []
 wolves = []
 no_sheep = 10
 no_wolves = 5
-no_iterations = 50
+no_iterations = 100
 proximity = 50
 eat_dist = 5
 no_animals = no_sheep + no_wolves
@@ -67,10 +67,10 @@ def update(frame_number):
     #     wolves[i].move()
     #     print(i, 'Wolves', wolves[i])
         
-    for i in range(len(sheep)):
-        sheep[i].move()
-        sheep[i].eat()
-        print(i, 'Sheep', sheep[i])
+    # for i in range(len(sheep)):
+    #     sheep[i].move()
+    #     sheep[i].eat()
+    #     print(i, 'Sheep', sheep[i])
     
     for i in range(len(wolves)):
         sheep_count = -1
@@ -81,29 +81,36 @@ def update(frame_number):
             # print(f"min_dist b = {min_dist}")
             sheep_count += 1
             distance = af.Animal.dist_animals(wolves[i], j)
+            # if eat_dist < distance < min_dist:
             if eat_dist < distance < min_dist:
                 min_dist = distance
                 closest_sheep = j
                 print(f"min_dist a = {min_dist}, sheep {sheep_count}, wolf {i}")
             elif distance <= eat_dist:
                 wolves[i].store += j.store
-                j.store = 0
                 print('Sheep eaten', sheep_count, j, 'by Wolf', i)
+                j.store = 0
                 sheep.remove(j)
                 break
         if closest_sheep != None:
-            wolves[i].y = closest_sheep.y - 10
-            wolves[i].x = closest_sheep.x - 10
+            wolves[i].y = (wolves[i].y + closest_sheep.y)/2
+            wolves[i].x = (wolves[i].x + closest_sheep.x)/2
         else:
-            if random.random() < 0.5:
-                wolves[i].y = (wolves[i].y + 1) % (len(environment))
-            else:
-                wolves[i].y = (wolves[i].y - 1) % (len(environment))
-            if random.random() < 0.5:
-                wolves[i].x = (wolves[i].x + 1) % (len(environment[0]))
-            else:
-                wolves[i].x = (wolves[i].x - 1) % (len(environment[0]))
-            
+            wolves[i].move
+            # if random.random() < 0.5:
+            #     wolves[i].y = (wolves[i].y + 1) % (len(environment))
+            # else:
+            #     wolves[i].y = (wolves[i].y - 1) % (len(environment))
+            # if random.random() < 0.5:
+            #     wolves[i].x = (wolves[i].x + 1) % (len(environment[0]))
+            # else:
+            #     wolves[i].x = (wolves[i].x - 1) % (len(environment[0]))
+        
+    for i in range(len(sheep)):
+        sheep[i].move()
+        sheep[i].eat()
+        print(i, 'Sheep', sheep[i])
+        
             
     # for i in range(len(wolves)):
     #     wolves[i].eat(proximity, i)
