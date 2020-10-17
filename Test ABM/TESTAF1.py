@@ -37,7 +37,7 @@ class Animal:
 class Sheep(Animal):
 
     def eat(self):
-        if self.environment[self.y][self.x] > 10:
+        if self.environment[self.y][self.x] > 10.0:
             self.environment[self.y][self.x] -= 10
             self.store += 10
         else:

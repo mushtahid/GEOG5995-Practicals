@@ -67,16 +67,41 @@ def update(frame_number):
     #     wolves[i].move()
     #     print(i, 'Wolves', wolves[i])
         
+    # for i in range(len(sheep)):
+    #     print(i, 'Sheep-before moving+eating', sheep[i])
+    #     sheep[i].move()
+    #     sheep[i].eat()
+    #     print(i, 'Sheep-after moving+eating', sheep[i])
+    #     print('S.........................................')
+    # print('Sheep_________________________________________')
+### NEED TO ADJUST THE PRINT TAGS LATER   
     for i in range(len(sheep)):
-        print(i, 'Sheep-before moving+eating', sheep[i])
-        sheep[i].move()
-        sheep[i].eat()
-        print(i, 'Sheep-after moving+eating', sheep[i])
-        print('S.........................................')
-    print('Sheep_________________________________________')
+        print(i, 'Sheep - before moving+eating -', sheep[i])
+        # sheep[i].move()
+        min_dist = 0.5*proximity # coz sheep is a prey! wolves should have higer perimeter
+        closest_wolf = None 
+        for j in range(len(wolves)):                      
+            distance = af.Animal.dist_animals(sheep[i], wolves[j])
+            if distance < min_dist:
+                min_dist = distance
+                closest_wolf = wolves[j]
+                print(f"Sheep {i} {sheep[i]} detected Wolf {j} {wolves[j]}, c{closest_wolf} within distance {min_dist}")
+                print(f"...........Sheep {i} noticed closest wolf {j}...........")
+        if closest_wolf != None:
+                print('CW+ before', 'Wolf:', closest_wolf, 'Sheep:', i, sheep[i])
+                sheep[i].y = sheep[i].y + (closest_wolf.y/2)
+                sheep[i].x = sheep[i].x + (closest_wolf.x/2)
+                print('CW+ after', 'Wolf:', closest_wolf, 'Sheep:', i, sheep[i])
+                print('...........Sheep tried to move away...........')  
+        else:
+            sheep[i].move()
+            sheep[i].eat()
+            print(i, 'Sheep-after moving+eating', sheep[i])
+            print('...........Sheep moved normally and ate...........')
+    print('Sheep Cycle Ends________________________________________')
     
     for i in range(len(wolves)):
-        print(i, 'Wolf - before moving/eating', wolves[i])
+        print(i, 'Wolf - before moving/eating -', wolves[i])
         sheep_count = -1
         # print(f"min_dist a = {min_dist}")
         closest_sheep = None
@@ -96,8 +121,7 @@ def update(frame_number):
                 print('Eaten_________________________________________')
                 # break # activates else after eating.
                 # continue # no good. targets immediately another sheep. and activates else.
-                eaten = True # works? still target. what's getting activated?
-            continue
+                eaten = True # works. still targets. but does not move. so fine!
             elif eat_dist < distance < min_dist:
                 min_dist = distance
                 closest_sheep = j
@@ -107,17 +131,17 @@ def update(frame_number):
             #break
             continue # This works! it still targets but that's fine as long is it does not move!
         elif closest_sheep != None:
-            print('CL+ before', closest_sheep, 'Wolf', i, wolves[i])
+            print('CS+ before', closest_sheep, 'Wolf', i, wolves[i])
             wolves[i].y = (wolves[i].y + closest_sheep.y)/2
             wolves[i].x = (wolves[i].x + closest_sheep.x)/2
-            print('CL+ after', closest_sheep, 'Wolf', i, wolves[i])
+            print('CS+ after', closest_sheep, 'Wolf', i, wolves[i])
             print('Y.........................................')           
         else:
             print('Else activate before', 'by Wolf', i, wolves[i])
             wolves[i].move()
             print('Else activate after', 'by Wolf', i, wolves[i])
             print('E.........................................')
-    print('Ends_________________________________________')
+    print('Wolf Cycle Ends___________________________________')
             # if random.random() < 0.5:
             #     wolves[i].y = (wolves[i].y + 1) % (len(environment))
             # else:
@@ -164,6 +188,7 @@ def gen_function():
     a = 0 
     # print(f"***Iteration no {a} ***")
     while (a < no_iterations):
+        print('')
         print('***************Iteration no', a, '***************')
         yield a
         # print(f"***Iteration no {a} \u2191 ***")
