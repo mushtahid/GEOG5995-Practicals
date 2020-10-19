@@ -14,9 +14,6 @@ import random
 random.seed(10)
 import csv
 
-y = None
-x = None
-
 environment = []
 animals = []
 sheep = []
@@ -25,7 +22,7 @@ no_sheep = 10
 no_wolves = 5
 no_iterations = 200
 proximity = 50
-eat_dist = 5
+action_dist = 5 # action refers to breeding/eating sheep...
 no_animals = no_sheep + no_wolves
 
 fig = plt.figure(figsize=(7, 7))
@@ -76,80 +73,179 @@ def update(frame_number):
     # print('Sheep_________________________________________')
 ### NEED TO ADJUST THE PRINT TAGS LATER   
     for i in range(len(sheep)):
-        print(i, 'Sheep - before moving+eating -', sheep[i])
-        # sheep[i].move()
-        min_dist = 0.5*proximity # coz sheep is a prey! wolves should have higer perimeter
-        closest_wolf = None 
-        for j in range(len(wolves)):                      
+        print('')
+        print(f"-> ----------- {i} Sheep initialised -----------")
+        min_dist = 0.5*proximity # coz sheep is a prey! wolves have higer perimeter
+        closest_wolf = None
+        # print(min_dist) #
+        # print(closest_wolf) #
+        for j in range(len(wolves)): 
+            # print(f"--> {i}-Sheep looping with {j}-Wolf")                
             distance = af.Animal.dist_animals(sheep[i], wolves[j])
+            # print(f"--> d={distance} for {i}-Sheep ({sheep[i]}) with {j}-Wolf ({wolves[j]})") #
             if distance < min_dist:
+                print(f"---> d<md+")
                 min_dist = distance
                 closest_wolf = wolves[j]
-                print(f"Sheep {i} {sheep[i]} detected Wolf {j} {wolves[j]}, c{closest_wolf} within distance {min_dist}")
-                print(f"...........Sheep {i} noticed closest wolf {j}...........")
+                print(f"...{i}-Sheep noticed closest Wolf {j}...")
+                print(f"---> {i}-Sheep ({sheep[i]}) detected {j}-Wolf ({wolves[j]}) within d={min_dist}")                
         if closest_wolf != None:
-                print('CW+ before', 'Wolf:', closest_wolf, 'Sheep:', i, sheep[i])
-                sheep[i].y = (sheep[i].y + (sheep[i].y - int((sheep[i].y + closest_wolf.y)/2))) % (len(environment))
-                sheep[i].x = (sheep[i].x +(sheep[i].x - int((sheep[i].x + closest_wolf.x)/2))) % (len(environment[0]))
-                print('CW+ after', 'Wolf:', closest_wolf, 'Sheep:', i, sheep[i])
-                print('...........Sheep tried to move away...........')  
+            print("--> CW FOUND")
+            print(f"--> Before {i}-Sheep ({sheep[i]}) tries to run away from CW: ({closest_wolf})")
+            sheep[i].y = (sheep[i].y + (sheep[i].y - int((sheep[i].y + closest_wolf.y)/2))) % (len(environment))
+            sheep[i].x = (sheep[i].x + (sheep[i].x - int((sheep[i].x + closest_wolf.x)/2))) % (len(environment[0]))
+            print(f"--> After {i}-Sheep ({sheep[i]}) tried to run away from CW ({closest_wolf})")
+            print(f".......... {i} Sheep tried to run away from CW ..........")  
         else:
+            print(f"--> No CW")
+            print(f"--> {i}-Sheep ({sheep[i]}) will now move normally and eat")
             sheep[i].move()
             sheep[i].eat()
-            print(i, 'Sheep-after moving+eating', sheep[i])
-            print('...........Sheep moved normally and ate...........')
-    print('Sheep Cycle Ends________________________________________')
+            print(f"--> {i}-Sheep ({sheep[i]}) after normally moving and eating")
+            print(f".......... {i}-Sheep moved normally and ate.......... ")
+    print('_________Sheep Cycle Ends___________')
     
+    # for i in range(len(wolves)):
+    #     print(i, 'Wolf - before moving/eating -', wolves[i])
+    #     sheep_count = -1
+    #     # print(f"min_dist a = {min_dist}")
+    #     closest_sheep = None
+    #     min_dist = proximity
+    #     eaten = False
+    #     for j in sheep[:]:
+    #         # print(f"min_dist b = {min_dist}")
+    #         sheep_count += 1
+    #         distance = af.Animal.dist_animals(wolves[i], j)
+    #         # if eat_dist < distance < min_dist:
+    #         if distance <= eat_dist:
+    #             print('>>> Sheep going to be eaten', sheep_count, j, 'by Wolf', i, wolves[i])
+    #             wolves[i].store += j.store
+    #             j.store = 0
+    #             print('>>> Sheep eaten', sheep_count, j, 'by Wolf', i, wolves[i])
+    #             sheep.remove(j)
+    #             print('Eaten_________________________________________')
+    #             # break # activates else after eating.
+    #             # continue # no good. targets immediately another sheep. and activates else.
+    #             eaten = True # works. still targets. but does not move. so fine!
+    #         elif eat_dist < distance < min_dist:
+    #             min_dist = distance
+    #             closest_sheep = j
+    #             print('>>> min_dist =', min_dist, 'Sheep', sheep_count, j, 'by Wolf', i, wolves[i])
+    #             print('M.........................................')
+    #     if eaten == True:
+    #         #break
+    #         continue # This works! it still targets but that's fine as long is it does not move!
+    #     elif closest_sheep != None:
+    #         print('CS+ before', closest_sheep, 'Wolf', i, wolves[i])
+    #         wolves[i].y = (int((wolves[i].y + closest_sheep.y)/2)) % (len(environment))
+    #         wolves[i].x = (int((wolves[i].x + closest_sheep.x)/2)) % (len(environment[0]))
+    #         print('CS+ after', closest_sheep, 'Wolf', i, wolves[i])
+    #         print('Y.........................................')           
+    #     else:
+    #         print('Else activate before', 'by Wolf', i, wolves[i])
+    #         wolves[i].move()
+    #         print('Else activate after', 'by Wolf', i, wolves[i])
+    #         print('E.........................................')
+    # print('Wolf Cycle Ends___________________________________')
+
     for i in range(len(wolves)):
-        print(i, 'Wolf - before moving/eating -', wolves[i])
-        sheep_count = -1
-        # print(f"min_dist a = {min_dist}")
-        closest_sheep = None
-        min_dist = proximity
-        eaten = False
-        for j in sheep[:]:
-            # print(f"min_dist b = {min_dist}")
-            sheep_count += 1
-            distance = af.Animal.dist_animals(wolves[i], j)
-            # if eat_dist < distance < min_dist:
-            if distance <= eat_dist:
-                print('>>> Sheep going to be eaten', sheep_count, j, 'by Wolf', i, wolves[i])
-                wolves[i].store += j.store
-                j.store = 0
-                print('>>> Sheep eaten', sheep_count, j, 'by Wolf', i, wolves[i])
-                sheep.remove(j)
-                print('Eaten_________________________________________')
-                # break # activates else after eating.
-                # continue # no good. targets immediately another sheep. and activates else.
-                eaten = True # works. still targets. but does not move. so fine!
-            elif eat_dist < distance < min_dist:
-                min_dist = distance
-                closest_sheep = j
-                print('>>> min_dist =', min_dist, 'Sheep', sheep_count, j, 'by Wolf', i, wolves[i])
-                print('M.........................................')
-        if eaten == True:
-            #break
-            continue # This works! it still targets but that's fine as long is it does not move!
-        elif closest_sheep != None:
-            print('CS+ before', closest_sheep, 'Wolf', i, wolves[i])
-            wolves[i].y = (int((wolves[i].y + closest_sheep.y)/2)) % (len(environment))
-            wolves[i].x = (int((wolves[i].x + closest_sheep.x)/2)) % (len(environment[0]))
-            print('CS+ after', closest_sheep, 'Wolf', i, wolves[i])
-            print('Y.........................................')           
-        else:
-            print('Else activate before', 'by Wolf', i, wolves[i])
-            wolves[i].move()
-            print('Else activate after', 'by Wolf', i, wolves[i])
-            print('E.........................................')
-    print('Wolf Cycle Ends___________________________________')
-            # if random.random() < 0.5:
-            #     wolves[i].y = (wolves[i].y + 1) % (len(environment))
-            # else:
-            #     wolves[i].y = (wolves[i].y - 1) % (len(environment))
-            # if random.random() < 0.5:
-            #     wolves[i].x = (wolves[i].x + 1) % (len(environment[0]))
-            # else:
-            #     wolves[i].x = (wolves[i].x - 1) % (len(environment[0]))
+        print('')
+        print(f"-> -----------{i}-Wolf initialised with ({wolves[i]}) -----------")
+        #print(i, 'Wolf - before eating/moving or breeding -', wolves[i])
+        if wolves[i].store <= 500:
+            print(f"--> {i}-Wolf has <=500 store ({wolves[i]})")
+            sheep_count = -1
+            closest_sheep = None
+            min_dist = proximity
+            eaten = False
+            for j in sheep[:]:
+                sheep_count += 1
+                print(f"---> {i}-Wolf looping with {sheep_count}-Sheep")              
+                distance = af.Animal.dist_animals(wolves[i], j)
+                # print(f"distance={distance} between {i}-Wolf ({wolves[i]}) and {sheep_count}-Sheep ({j})")
+                # if eat_dist < distance < min_dist:
+                if distance <= action_dist:
+                    print(f"----> d<=action_dist found")
+                    print(f"----> {i}-Wolf ({wolves[i]}) before eating {sheep_count}-Sheep ({j})")
+                    wolves[i].store += j.store
+                    j.store = 0
+                    print(f"----> {i}-Wolf ({wolves[i]}) after eating {sheep_count}-Sheep ({j})")
+                    sheep.remove(j)
+                    eaten = True # works. still targets. but does not move. so fine!
+                    # break # activates else after eating.
+                    # continue # no good. targets immediately another sheep. and activates else.
+                elif action_dist < distance < min_dist:
+                    print(f"----> action_dist < distance < min_dist")
+                    min_dist = distance
+                    closest_sheep = j
+                    print(f"----> min_dist = {min_dist} for {i}-Wolf ({wolves[i]}) with {sheep_count}-Sheep ({j})")
+                    print('....elif adm ends. CS+...')
+            if eaten == True:
+                #break
+                print("---> ..........eaten==True {i}-Wolf..........")
+                continue # This works! it still targets but that's fine as long is it does not move!
+            elif closest_sheep != None:
+                print(f"---> {i}-Wolf ({wolves[i]}) before moving closer to  CS-Sheep ({closest_sheep })")
+                wolves[i].y = (int((wolves[i].y + closest_sheep.y)/2)) % (len(environment))
+                wolves[i].x = (int((wolves[i].x + closest_sheep.x)/2)) % (len(environment[0]))
+                print(f"---> {i}-Wolf ({wolves[i]}) after moving closer to Sheep ({closest_sheep })")
+                print(f"..........{i}-Wolf moved closer to CS+..........")           
+            else: #no sheep store <500
+                print(f"--->else1 begins: {i}-Wolf ({wolves[i]}) before normal moving")
+                wolves[i].move()
+                print(f"--->else1 ends: {i}-Wolf ({wolves[i]}) after normal moving")
+                print(f"....el1......{i}-Wolf moved normally..........")
+        elif wolves[i].store > 500:
+            print(f"--> {i}-Wolf has >500 store ({wolves[i]})")
+            min_breed_dist = proximity
+            bred = False
+            closest_wolf = None
+            for j in range(i+1, len(wolves)):
+                print(f"---> {i}-Wolf looping with {j}-Wolf")
+                # Why i+1: to prevent comparison? but what about second wolf?
+                distance =  af.Animal.dist_animals(wolves[i], wolves[j])
+                if action_dist < distance < min_breed_dist:
+                    print('----> CW+ (ad<d<md)')
+                    min_breed_dist = distance
+                    closest_wolf = wolves[j]
+                    print(f"----> min_breed_dist={min_breed_dist} for {i}-Wolf ({wolves[i]}) with CW {j}-Wolf ({wolves[j]})")
+                    # print('>>> min_breed_dist=', min_breed_dist, 'Wolf', j, wolves[j], 'by Wolf', i, wolves[i])
+                elif distance <= action_dist:
+                    print(f"----> d<=ad. breeding/fight distance entered for {i}-Wolf ({wolves[i]}) with CW {j}-Wolf ({wolves[j]}")
+                    if random.random() < 0.5:
+                        print(f"-----> Random <0.5")
+                        print(f"-----> {i}-Wolf ({wolves[i]}) before mating with {j}-Wolf ({wolves[j]})")
+                        # print('>>> Wolf', j, wolves[j], 'will be mated by Wolf', i, wolves[i])
+                        print('------> Breed code goes here')
+                        print(f"-----> {i}-Wolf ({wolves[i]}) after mating with {j}-Wolf ({wolves[j]})")
+                        print('_____________{i}-Wolf Mated____________')
+                        # break # activates else after eating.
+                        # continue # no good. targets immediately another sheep. and activates else.
+                        bred = True # works. still targets. but does not move. so fine!
+                    else:
+                        print(f"-----> Random >0.5")
+                        print(f"----->Wolf {i} {wolves[i]} does something else with Wolf {j} {wolves[j]}")
+                        print('----->..........Something else, maybe steal food based on probability..........')
+                        # Need to add a boolean condition
+            if bred == True:
+                #break
+                print("---> bred==True {i}-Wolf")
+                continue #( This works! it still targets but that's fine as long is it does not move!)
+            elif closest_wolf != None:
+                print(f"---> {i}Wolf ({wolves[i]}) before moving closer to CW-Wolf ({closest_wolf })")
+                # print('CW+ detected (before)', closest_wolf, 'by Wolf', i, wolves[i])
+                wolves[i].y = (int((wolves[i].y + closest_wolf.y)/2)) % (len(environment))
+                wolves[i].x = (int((wolves[i].x + closest_wolf.x)/2)) % (len(environment[0]))
+                print(f"---> {i}Wolf ({wolves[i]}) after moving closer to CW-Wolf ({closest_wolf })")
+                # print('CW+ (after)', closest_wolf, 'being approached by Wolf', i, wolves[i])
+                print('..........{i}-Wolf moved closer CW+..........')   
+            else: # No wolf. store >700
+                print(f"--->else2 begins: {i}-Wolf ({wolves[i]}) before normal moving")
+                # print('Else 2 activate by Wolf', i, wolves[i])
+                wolves[i].move()
+                print(f"--->else2 begins: {i}-Wolf ({wolves[i]}) after normal moving")
+                print(f"....el2...... {i}-Wolf moved normally")
+    print('__________Wolf Cycle Ends___________')
         
     # for i in range(len(sheep)):
     #     sheep[i].move()
