@@ -285,7 +285,7 @@ def update(frame_number):
         print(f"-> -----------{wolf_count}-Wolf initialised with ({i}) -----------")
         
         if i.store <= 500:
-            print(f"--> {wolf_count}-Wolf has <=500 store ({i})")
+            print(f"--> {wolf_count}-Wolf has <=500 store ({i}). Tries to find food (sheep).")
             sheep_count = -1
             closest_sheep = None
             min_dist = proximity
@@ -300,12 +300,13 @@ def update(frame_number):
                     # eats the first sheep at action distance. so should not loop through the other ones.
                     print(f"----> d<=action_dist found")
                     print(f"----> {wolf_count}-Wolf ({i}) before eating {sheep_count}-Sheep ({j})")
-                    i.store += j.store
+                    i.store += (j.store*(2/3)) # 2/3 eaten! 1/3 returned to env as can't eat everything!
+                    i.environment[i.y][i.x] += (j.store*(1/3)) # env receives 1/3 store!
                     j.store = 0
-                    print(f"----> {wolf_count}-Wolf ({i}) after eating {sheep_count}-Sheep ({j})")
+                    print(f"----> {wolf_count}-Wolf ({i}) after eating {sheep_count}-Sheep ({j}). Env receives ({i.environment[i.y][i.x]})")
                     sheep.remove(j)
                     eaten = True # works. still targets. but does not move. so fine!
-                    break # ?activates else after eating.
+                    break # works! goes to eaten true!
                     # continue # no good. targets immediately another sheep. and activates else.
                 elif action_dist < distance < min_dist:
                     print(f"----> action_dist < distance < min_dist")
@@ -315,8 +316,8 @@ def update(frame_number):
                     print('....elif adm ends. CS+...')
             if eaten == True:
                 #break
-                print(f"---> ..........Eaten={eaten}. {wolf_count}-Wolf one ate CS {sheep_count}-Sheep ({j})..........")
-                continue # This works! it still targets but that's fine as long is it does not move!?
+                print(f"---> ___________Eaten={eaten}. {wolf_count}-Wolf one ate CS {sheep_count}__________")
+                continue # This works!
                 
             elif closest_sheep != None:
                 print(f"--> {wolf_count}-Wolf ({i}) before moving closer to  CS-Sheep ({closest_sheep })")
@@ -332,7 +333,7 @@ def update(frame_number):
         elif i.store > 500: # Wolf tries to breed / fight
             print(f"--> {wolf_count}-Wolf has >500 store ({i})")
             min_dist = proximity
-            action = False
+            # action = False
             fight = False
             breed = False
             closest_wolf = None
@@ -347,21 +348,23 @@ def update(frame_number):
                     closest_wolf = j
                     print(f"----> Min distance={min_dist} for {wolf_count}-Wolf ({i}) with CW {wolf2_count}-Wolf ({j})")  
                 elif distance <= action_dist:
-                    print(f"----> d<=ad. breeding/fight proximity of {distance}<={action_dist} entered by {wolf_count}-Wolf ({i}) with CW {wolf2_count}-Wolf ({j}")
+                    print(f"----> d<=ad. breeding/fight proximity of {distance}(<={action_dist}) entered by {wolf_count}-Wolf ({i}) with CW {wolf2_count}-Wolf ({j}).")
                     if j.store > 500:
-                        print(f"----->The opposition: {wolf2_count}-Wolf ({j} has MORE than 500 store")
+                        print(f"----->{wolf2_count}-Wolf ({j} has MORE than 500 store. So they will either breed or fight. 50% probability each.")
                         if random.random() < 0.5: #50% chance of meeting a female!
-                            print(f"------> Random <0.5. So the wolves will mate.")
+                            print(f"------>1. Random <0.5. So the wolves will mate.")
                             print(f"------> {wolf_count}-Wolf ({i}) before mating with {wolf2_count}-Wolf ({j})")
-                            average = ((i.store + j.store)/2)
-                            i.store = average - 200 # 200 is energy for mating.
-                            j.store = average - 200 # They will share average energy - 200 energy for mating.
+                            breeding_cost = ((i.store + j.store)/2)/2 # half of average.
+                            # i.store = average - 200 # 200 is energy for mating.
+                            # j.store = average - 200 # They will share average energy - 200 energy for mating.
+                            i.store = breeding_cost
+                            j.store = breeding_cost
                             print(f"------> {wolf_count}-Wolf ({i}) after mating with {wolf2_count}-Wolf ({j})")
-                            wolves.append(i) # Added new wolf to the list.
-                            print('_____________{wolf_count}-Wolf Mated____________')
+                            # wolves.append(j) # Added new wolf to the list.
+                            wolves.append(af.Wolf(animals, wolves, sheep, environment)) # need to add x and y to set the value!
                             breed = True
                             print(f"Breed = {breed}")
-                            print('_____________{wolf_count}-Wolf Mated with {wolf2_count}-Wolf____________')
+                            print(f"_____________{wolf_count}-Wolf Mated with {wolf2_count}-Wolf____________")
                             # action = True # works. still targets. but does not move. so fine!
                             break # ?activates else after eating.
                             #continue # no good. targets immediately another sheep. and activates else.
@@ -369,21 +372,27 @@ def update(frame_number):
                             print(f"----->1. Random >0.5. So they will fight. 50% probability of winning for both")
                             print(f"----->Stat: {wolf_count}-Wolf ({i}) before fighting with {wolf2_count}-Wolf ({j})")
                             if random.random() > 0.5:
-                                print(f"------> Random > 0.5. So {wolf_count}-Wolf will win!")
+                                print(f"------>1.a. Random > 0.5. So {wolf_count}-Wolf will win!")
                                 gain = 0.5*j.store
+                                print('gain', gain)
                                 i.store += gain
+                                print('i.store', i.store)
                                 j.store -= gain
-                                print(f"------> {wolf_count}-Wolf ({i}) won after fighting with {wolf2_count}-Wolf ({j})")
+                                print('j.store', j.store)
+                                print(f"------> {wolf_count}-Wolf {i.store} ({i}) won after fighting with {wolf2_count}-Wolf {j.store} ({j})")
                             else:
-                                print(f"------> Random < 0.5. So {wolf_count}-Wolf ({i}) will loose.")
+                                print(f"------>1.a. Random < 0.5. So {wolf_count}-Wolf ({i}) will loose.")
                                 lose = 0.5*i.store
+                                print('lose', lose)
                                 i.store -= lose
+                                print('i.store', i.store)
                                 j.store += lose
-                                print(f"------> {wolf_count}-Wolf ({i}) lost after fighting with {wolf2_count}-Wolf ({j})")
+                                print('j.store', j.store)
+                                print(f"------> {wolf_count}-Wolf {i.store} ({i}) lost after fighting with {wolf2_count}-Wolf {j.store} ({j})")
                                 # action = True
                             fight = True
                             print(f"Fight = {fight}")
-                            print('_____________{wolf_count}-Wolf Fought with {wolf2_count}-Wolf____________')
+                            print(f"_____________{wolf_count}-Wolf Fought with {wolf2_count}-Wolf____________")
                             break
                     else:
                         print(f"----->2. {wolf2_count}-Wolf has LESS than 500 store")
@@ -395,22 +404,26 @@ def update(frame_number):
                             j.store -= gain
                             print(f"------> {wolf_count}-Wolf ({i}) won after fighting with {wolf2_count}-Wolf ({j})")
                         else:
-                            print(f"------> Random < 0.25. So {wolf_count}-Wolf will loose 50% store to {wolf2_count}-Wolf")
-                            lose = 0.50*i.store #50% because i is the stronger wolf! so j will gain less.
+                            print(f"------>2. Random < 0.25. So {wolf_count}-Wolf will loose 50% store to {wolf2_count}-Wolf")
+                            lose = 0.50*i.store # 50% because i is the stronger wolf! so j will gain less.
                             i.store -= lose
                             j.store += lose
                             print(f"------> {wolf_count}-Wolf ({i}) lost after fighting with {wolf2_count}-Wolf ({j})")
                             # action = True
                         fight = True
                         print(f"Fight 2 = {fight}")
-                        print('_____________{wolf_count}-Wolf Fought (2) with {wolf2_count}-Wolf____________')
+                        print(f"_____________{wolf_count}-Wolf Fought (2) with {wolf2_count}-Wolf____________")
                         break
-                        # Need to add a boolean condition
-                action = True # Need to check this!!!
-            if action == True:
-                #break
-                print(f"---> action={action}, mated={breed}, fough={fight} for {wolf_count}-Wolf............")
-                continue #( This works! it still targets but that's fine as long is it does not move!)
+                        
+            if breed or fight == True:   
+                # action = True
+                print(f"--->_______Mated={breed}, Fought={fight} for {wolf_count}-Wolf__________")
+                continue
+            
+            # if action == True:
+            #     #break
+            #     print(f"---> action={action}, mated={breed}, fough={fight} for {wolf_count}-Wolf............")
+            #     continue #( This works! it still targets but that's fine as long is it does not move!)
             elif closest_wolf != None:
                 print(f"---> {wolf_count}-Wolf ({i}) before moving closer to CW-Wolf: ({closest_wolf })")
                 i.y = (int((i.y + closest_wolf.y)/2)) % (len(environment))
@@ -457,7 +470,7 @@ def update(frame_number):
         plt.scatter(sheep[i].x, sheep[i].y, marker="p", color='white')
     for j in range(len(wolves)):
         plt.scatter(wolves[j].x, wolves[j].y, marker="v", color='black')
-
+    
 
 def run():
     animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False)
