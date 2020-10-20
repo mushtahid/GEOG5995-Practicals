@@ -9,13 +9,21 @@ random.seed(10)
 
 class Animal:
     
-    def __init__(self, animals, wolves, sheep, environment):
+    def __init__(self, animals, wolves, sheep, environment, y=None, x=None):
         self.animals = animals # need to delete later
         self.wolves = wolves
         self.sheep = sheep
         self.environment = environment
-        self.y = random.randint(0, len(environment))
-        self.x = random.randint(0, len(environment[0]))
+        if (y == None):
+            self.y = random.randint(0, len(environment))
+        else:
+            self.y = y
+        if (x == None):
+            self.x = random.randint(0, len(environment[0]))
+        else:
+            self.x = x           
+        # self.y = random.randint(0, len(environment))
+        # self.x = random.randint(0, len(environment[0]))
         # Set initial store value based on probability
         if random.random() < 0.25:
             self.store = 100
