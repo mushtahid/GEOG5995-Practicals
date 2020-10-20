@@ -13,6 +13,17 @@ import matplotlib.animation
 import random
 random.seed(10)
 import csv
+import requests
+import bs4
+
+# Scrape web data to initialise model
+r = requests.get('http://www.geog.leeds.ac.uk/courses/computing/practicals/python/agent-framework/part9/data.html')
+content = r.text
+soup = bs4.BeautifulSoup(content, 'html.parser')
+td_ys = soup.find_all(attrs={"class" : "y"})
+td_xs = soup.find_all(attrs={"class" : "x"})
+# print(td_ys)
+# print(td_xs)
 
 environment = []
 animals = []
@@ -38,11 +49,13 @@ with open('in.txt', newline='') as f:
         environment.append(rowlist)
 
 for i in range(no_sheep):
-    sheep.append(af.Sheep(animals, wolves, sheep, environment)) 
+    y = int(td_ys[i].text) * 3
+    x = int(td_xs[i].text) * 3  
+    sheep.append(af.Sheep(animals, wolves, sheep, environment, y, x)) 
 print('No sheep', len(sheep))
 
 for i in range(no_wolves):
-    wolves.append(af.Wolf(animals, wolves, sheep, environment)) 
+    wolves.append(af.Wolf(animals, wolves, sheep, environment, y, x)) 
 print('No wolves', len(wolves))
 
 'The problem with animals is that it is spawning different set of animals'
@@ -84,24 +97,8 @@ def update(frame_number):
     
     # random.shuffle(wolves)
     # random.shuffle(sheep) 
-    # for i in range(no_wolves):
-    #     for j in range(no_sheep):
-    #         distance = af.Animal.dist_animals(wolves[i], sheep[j])
-    #         print(f"wolf{i}: {wolves[i].y},{wolves[i].x}, sheep{j}: {sheep[j].y},{sheep[j].x}, d={distance}")
-       
-    # for i in range(len(wolves)):
-    #     wolves[i].move()
-    #     print(i, 'Wolves', wolves[i])
-        
-    # for i in range(len(sheep)):
-    #     print(i, 'Sheep-before moving+eating', sheep[i])
-    #     sheep[i].move()
-    #     sheep[i].eat()
-    #     print(i, 'Sheep-after moving+eating', sheep[i])
-    #     print('S.........................................')
-    # print('Sheep_________________________________________')
+
 ### NEED TO ADJUST THE PRINT TAGS LATER   
-    # for i in range(len(sheep)):
     sheep_count = -1
     sheep_index = 0 # To prevent breeding between same sheep or same pair!
     for i in sheep[:]:
@@ -130,13 +127,21 @@ def update(frame_number):
             # Need to adjust here based on store count and probability!
             print("-> CW FOUND.")
             print(f"-> Before {sheep_count}-Sheep ({i}) tries to run away from CW: ({closest_wolf}).")
-            i.y = (i.y + (i.y - int((i.y + closest_wolf.y)/2))) % (len(environment))
-            i.x = (i.x + (i.x - int((i.x + closest_wolf.x)/2))) % (len(environment[0]))
+            i.y = i.y + (i.y - int((i.y + closest_wolf.y)/2))
+            i.x = i.x + (i.x - int((i.x + closest_wolf.x)/2))
+            if i.y > len(i.environment):
+                i.y = len(i.environment)-1
+            elif i.y < 0:
+                i.y = 0
+            if i.x > len(i.environment[0]):
+                i.x = len(i.environment[0]-1)
+            elif i.x < 0:
+                i.x = 0
             print(f"-> After {sheep_count}-Sheep ({i}) tried to run away from CW ({closest_wolf}).")
             print(f"___________ {sheep_count} Sheep tried to run away from CW ___________ ")  
                 
         elif closest_wolf == None:
-            print(f"--> NO CW FOUND. No CS FOUND.")
+            print(f"--> NO CW FOUND.")
             min_dist = proximity*0.5 # most prob not needed. will see later.
             # action = False
             breed = False
@@ -148,13 +153,13 @@ def update(frame_number):
                 print(f"--> {sheep_count}-Sheep looping with {sheep2_count}-Sheep.") # To test if looping with all wolves!             
                 # Calculate the distance between itself and other sheep.
                 distance = af.Animal.dist_animals(i, j)
-                if (action_dist*2) < distance < min_dist: #for sheep, action_dist is twice that of wolves.
-                    print('----> ---- (AD*2 < D < MD).')
+                if action_dist < distance < min_dist:
+                    print('----> ---- (AD < D < MD).')
                     min_dist = distance
                     closest_sheep = j
                     print(f"----> Min distance={min_dist} for {sheep_count}-Sheep ({i}) with {sheep2_count}-Sheep ({j}).")  
-                elif distance <= (action_dist*2):
-                    print(f"----> D <=AD. Sheep Breeding/Sharing proximity of {distance}(<={action_dist*2}) entered by {sheep_count}-Sheep ({i}) with CS {sheep2_count}-Sheep ({j}).")
+                elif distance <= action_dist:
+                    print(f"----> D <=AD. Sheep Breeding/Sharing proximity of {distance}(<={action_dist}) entered by {sheep_count}-Sheep ({i}) with CS {sheep2_count}-Sheep ({j}).")
                     min_energy = 500
                     if i.store and j.store > min_energy:
                         print(f"----->{sheep_count}-Sheep ({i}) and {sheep2_count}-Sheep ({j} has MORE than {min_energy} store. So they will breed if p>0.25")
@@ -189,14 +194,23 @@ def update(frame_number):
                 # Should add eat and move here?
                 continue
             elif closest_sheep != None:
+                # Sheep like to stay in a herd. So 
                 print(f"->CS Found!")
                 print(f"-> {sheep_count}-Sheep ({i}) before moving closer to CS-Sheep: ({closest_sheep}).")
-                i.y = (int((i.y + closest_sheep.y)/2)) % (len(environment))
-                i.x = (int((i.x + closest_sheep.x)/2)) % (len(environment[0]))
+                i.y = (int((i.y + closest_sheep.y)/2))
+                i.x = (int((i.x + closest_sheep.x)/2))
+                if i.y > len(i.environment):
+                    i.y = len(i.environment)-1
+                elif i.y < 0:
+                    i.y = 0
+                if i.x > len(i.environment[0]):
+                    i.x = len(i.environment[0]-1)
+                elif i.x < 0:
+                    i.x = 0
                 print(f"-> {sheep_count}-Wolf ({i}) after moving closer to CS-Sheep: ({closest_sheep}).")
                 print(f"___________ {sheep_count}-Sheep moved closer CS___________" )                   
             else:
-                print(f"-> NO CW FOUND. No CS FOUND.")
+                print(f"-> NO CW FOUND. No CS Found or Share={share}.")
                 print(f"-> {sheep_count}-Sheep ({i}) before normally moving and eating.")
                 i.move()
                 i.eat()
@@ -254,8 +268,16 @@ def update(frame_number):
             elif closest_sheep != None:
                 print(f"-> CS Found!")
                 print(f"--> {wolf_count}-Wolf ({i}) before moving closer to  CS-Sheep ({closest_sheep })")
-                i.y = (int((i.y + closest_sheep.y)/2)) % (len(environment))
-                i.x = (int((i.x + closest_sheep.x)/2)) % (len(environment[0]))
+                i.y = (int((i.y + closest_sheep.y)/2))
+                i.x = (int((i.x + closest_sheep.x)/2))
+                if i.y > len(i.environment):
+                    i.y = len(i.environment)-1
+                elif i.y < 0:
+                    i.y = 0
+                if i.x > len(i.environment[0]):
+                    i.x = len(i.environment[0]-1)
+                elif i.x < 0:
+                    i.x = 0
                 print(f"--> {wolf_count}-Wolf ({i}) after moving closer to Sheep ({closest_sheep })")
                 print(f"..........{wolf_count}-Wolf moved closer to CS+..........")           
             else: #no sheep and store <500
@@ -365,8 +387,16 @@ def update(frame_number):
             elif closest_wolf != None:
                 print(f"->CW Found!")
                 print(f"-> {wolf_count}-Wolf ({i}) before moving closer to CW-Wolf: ({closest_wolf}).")
-                i.y = (int((i.y + closest_wolf.y)/2)) % (len(environment))
-                i.x = (int((i.x + closest_wolf.x)/2)) % (len(environment[0]))
+                i.y = (int((i.y + closest_wolf.y)/2))
+                i.x = (int((i.x + closest_wolf.x)/2))
+                if i.y > len(i.environment):
+                    i.y = len(i.environment)-1
+                elif i.y < 0:
+                    i.y = 0
+                if i.x > len(i.environment[0]):
+                    i.x = len(i.environment[0]-1)
+                elif i.x < 0:
+                    i.x = 0
                 print(f"-> {wolf_count}-Wolf ({i}) after moving closer to CW-Wolf: ({closest_wolf}).")
                 print(f"..........{wolf_count}-Wolf moved closer CW+..........")   
             else: # No wolf. store >700

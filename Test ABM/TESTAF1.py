@@ -15,11 +15,11 @@ class Animal:
         self.sheep = sheep
         self.environment = environment
         if (y == None):
-            self.y = random.randint(0, len(environment))
+            self.y = random.randint(0, len(environment)-1)
         else:
             self.y = y
         if (x == None):
-            self.x = random.randint(0, len(environment[0]))
+            self.x = random.randint(0, len(environment[0])-1)
         else:
             self.x = x           
         # self.y = random.randint(0, len(environment))
@@ -39,13 +39,21 @@ class Animal:
    
     def move(self):
         if random.random() < 0.5:
-            self.y = (self.y + 1) % (len(self.environment))
+            self.y += 1
+            if self.y > len(self.environment):
+                self.y = len(self.environment)-1
         else:
-            self.y = (self.y - 1) % (len(self.environment))
+            self.y -= 1
+            if self.y < 0:
+                self.y = 0
         if random.random() < 0.5:
-            self.x = (self.x + 1) % (len(self.environment[0]))
+            self.x += 1
+            if self.x > len(self.environment[0]):
+                self.x = len(self.environment[0])-1
         else:
-            self.x = (self.x - 1) % (len(self.environment[0]))
+            self.x -= 1
+            if self.x < 0:
+                self.x = 0
     
     def __str__(self):
         return f"y={self.y}, x={self.x}, store={self.store}"
