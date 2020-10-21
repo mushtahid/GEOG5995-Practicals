@@ -15,11 +15,11 @@ class Animal:
         self.sheep = sheep
         self.environment = environment
         if (y == None):
-            self.y = random.randint(0, len(environment)-1)
+            self.y = random.randint(0, len(environment)-2)
         else:
             self.y = y
         if (x == None):
-            self.x = random.randint(0, len(environment[0])-1)
+            self.x = random.randint(0, len(environment[0])-2)
         else:
             self.x = x  
         # self.y = random.randint(0, len(environment))
@@ -27,9 +27,9 @@ class Animal:
         # Set initial store value based on probability
         if random.random() < 0.25:
             self.store = 100
-        elif 0.25 < random.random() < 0.50:
+        elif 0.25 <= random.random() < 0.50:
             self.store = 200
-        elif 0.50 < random.random() < 0.75:
+        elif 0.50 <= random.random() < 0.75:
             self.store = 300
         else:
             self.store = 400
@@ -39,13 +39,13 @@ class Animal:
 
     def boundary_conditons(self):
         if self.y >= len(self.environment):
-            self.y = len(self.environment)-1
-        elif self.y < 0:
-            self.y = 0
+            self.y = len(self.environment)-2
+        elif self.y <= 0:
+            self.y = 2
         if self.x >= len(self.environment[0]):
-            self.x = len(self.environment[0])-1
-        elif self.x < 0:
-            self.x = 0
+            self.x = len(self.environment[0])-2
+        elif self.x <= 0:
+            self.x = 2
 
     def move(self):
         if random.random() < 0.5:

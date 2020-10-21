@@ -104,8 +104,9 @@ def update(frame_number):
     print('')
     print(f"*************** ITERATION NUMBER {it_no} ************")
     
-    # random.shuffle(wolves)
-    # random.shuffle(sheep) 
+    random.shuffle(sheep)
+    random.shuffle(wolves)
+     
 
 ### NEED TO ADJUST THE PRINT TAGS LATER   
     sheep_count = -1
@@ -269,12 +270,12 @@ def update(frame_number):
                 if distance <= action_dist:
                     # eats the first sheep at action distance. so should not loop through the other ones.
                     print(f"----> d<=action_dist found")
-                    print(f"----> {wolf_count}-Wolf ({i}) before eating {sheep_count}-Sheep ({j})")
+                    print(f"----> {wolf_count}-Wolf ({i}) before eating CS {sheep_count}-Sheep ({j})")
                     i.store += (j.store*(4/5)) # 4/5 eaten! 1/5 returned to env as can't eat everything!
                     env_rcv = (j.store*(1/5)) # env receives 1/5 store!
                     i.environment[i.y][i.x] += env_rcv 
                     j.store = 0
-                    print(f"----> {wolf_count}-Wolf ({i}) after eating {sheep_count}-Sheep ({j}). Env received ({env_rcv})")
+                    print(f"----> {wolf_count}-Wolf ({i}) after eating CS {sheep_count}-Sheep ({j}). Env received ({env_rcv})")
                     sheep.remove(j)
                     eaten = True 
                     break
@@ -284,18 +285,18 @@ def update(frame_number):
                     closest_sheep = j
                     print(f"----> Min Distance = {min_dist} for {wolf_count}-Wolf ({i}) with {sheep_count}-Sheep ({j})")
             if eaten == True:
-                print(f"___________ Eaten={eaten}. {wolf_count}-Wolf one ate {sheep_count}-Sheep__________")
+                print(f"___________ Eaten={eaten}. {wolf_count}-Wolf one ate CS {sheep_count}-Sheep__________")
                 continue # This works!    
             elif closest_sheep != None:
                 print(f"-> CS Found!")
-                print(f"--> {wolf_count}-Wolf ({i}) before moving closer to  Closest-Sheep ({closest_sheep })")
+                print(f"--> {wolf_count}-Wolf ({i}) before moving closer to  CS ({closest_sheep })")
                 i.y = (int((i.y + closest_sheep.y)/2))
                 i.x = (int((i.x + closest_sheep.x)/2))
                 i.boundary_conditons()
-                print(f"--> {wolf_count}-Wolf ({i}) after moving closer to Closest-Sheep ({closest_sheep })")
+                print(f"--> {wolf_count}-Wolf ({i}) after moving closer to CS ({closest_sheep })")
                 print(f"___________ {wolf_count}-Wolf moved closer to CS___________")           
-            else: #no sheep and store <min_energy. need to adjust move speed.
-                print(f"-> No CS found and store <min_energy({min_energy})!")
+            else: #no sheep
+                print(f"-> No CS found!")
                 print(f"-->else1 begins: {wolf_count}-Wolf ({i}) before normal moving")
                 i.move()
                 print(f"-->else1 ends: {wolf_count}-Wolf ({i}) after normal moving")
@@ -365,7 +366,7 @@ def update(frame_number):
                             print(f"------> {wolf_count}-Wolf ({i}) lost+moved after fighting with CW {wolf2_count}-Wolf ({j})")
                             # action = True
                         fight = True
-                        print(f"Fight 2 = {fight}")
+                        print(f"------> Fight = {fight}")
                         print(f"_____________ {wolf_count}-Wolf Fought-(2) with CW {wolf2_count}-Wolf ____________")
                         break
             if breed or fail_breed or fight == True:   
