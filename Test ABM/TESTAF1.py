@@ -5,7 +5,7 @@ Created on Thu Oct 15 11:20:41 2020
 @author: Mushtahid
 """
 import random
-random.seed(10)
+# random.seed(10)
 
 class Animal:
     
@@ -21,7 +21,8 @@ class Animal:
         if (x == None):
             self.x = random.randint(0, len(environment[0])-1)
         else:
-            self.x = x           
+            self.x = x  
+        self.boundary_conditons()
         # self.y = random.randint(0, len(environment))
         # self.x = random.randint(0, len(environment[0]))
         # Set initial store value based on probability
