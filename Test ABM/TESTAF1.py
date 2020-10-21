@@ -36,24 +36,28 @@ class Animal:
 
     def dist_animals(self, animal):
         return (((self.y - animal.y)**2) + ((self.x - animal.x)**2))**0.5
-   
+
+    def boundary_conditons(self):
+        if self.y >= len(self.environment):
+            self.y = len(self.environment)-1
+        elif self.y < 0:
+            self.y = 0
+        if self.x >= len(self.environment[0]):
+            self.x = len(self.environment[0])-1
+        elif self.x < 0:
+            self.x = 0
+
     def move(self):
         if random.random() < 0.5:
             self.y += 1
-            if self.y > len(self.environment):
-                self.y = len(self.environment)-1
         else:
             self.y -= 1
-            if self.y < 0:
-                self.y = 0
         if random.random() < 0.5:
             self.x += 1
-            if self.x > len(self.environment[0]):
-                self.x = len(self.environment[0])-1
         else:
             self.x -= 1
-            if self.x < 0:
-                self.x = 0
+                
+        self.boundary_conditons()
     
     def __str__(self):
         return f"y={self.y}, x={self.x}, store={self.store}"

@@ -31,6 +31,7 @@ sheep = []
 wolves = []
 no_sheep = 10
 no_wolves = 5
+
 no_iterations = 200
 it_no = -1 # No of iterations
 proximity = 50
@@ -49,13 +50,15 @@ with open('in.txt', newline='') as f:
         environment.append(rowlist)
 
 for i in range(no_sheep):
-    y = int(td_ys[i].text) * 3
-    x = int(td_xs[i].text) * 3  
+    y = int(td_ys[i].text)
+    x = int(td_xs[i].text)
     sheep.append(af.Sheep(animals, wolves, sheep, environment, y, x)) 
 print('No sheep', len(sheep))
 
 for i in range(no_wolves):
-    wolves.append(af.Wolf(animals, wolves, sheep, environment, y, x)) 
+    y = int(td_ys[-i].text) #interesting!
+    x = int(td_xs[-i].text)
+    wolves.append(af.Wolf(animals, wolves, sheep, environment, y, x))
 print('No wolves', len(wolves))
 
 'The problem with animals is that it is spawning different set of animals'
@@ -100,7 +103,7 @@ def update(frame_number):
 
 ### NEED TO ADJUST THE PRINT TAGS LATER   
     sheep_count = -1
-    sheep_index = 0 # To prevent breeding between same sheep or same pair!
+    sheep_index = 0 # Prevent breeding between same sheep/same pair.
     for i in sheep[:]:
         sheep_count += 1
         sheep_index += 1
@@ -129,14 +132,7 @@ def update(frame_number):
             print(f"-> Before {sheep_count}-Sheep ({i}) tries to run away from CW: ({closest_wolf}).")
             i.y = i.y + (i.y - int((i.y + closest_wolf.y)/2))
             i.x = i.x + (i.x - int((i.x + closest_wolf.x)/2))
-            if i.y > len(i.environment):
-                i.y = len(i.environment)-1
-            elif i.y < 0:
-                i.y = 0
-            if i.x > len(i.environment[0]):
-                i.x = len(i.environment[0]-1)
-            elif i.x < 0:
-                i.x = 0
+            i.boundary_conditons()
             print(f"-> After {sheep_count}-Sheep ({i}) tried to run away from CW ({closest_wolf}).")
             print(f"___________ {sheep_count} Sheep tried to run away from CW ___________ ")  
                 
@@ -145,78 +141,94 @@ def update(frame_number):
             min_dist = proximity*0.5 # most prob not needed. will see later.
             # action = False
             breed = False
+            fail_breed = False
             share = False
             closest_sheep = None
             sheep2_count = -1
-            for j in sheep[sheep_index:]:
-                sheep2_count += 1
-                print(f"--> {sheep_count}-Sheep looping with {sheep2_count}-Sheep.") # To test if looping with all wolves!             
-                # Calculate the distance between itself and other sheep.
-                distance = af.Animal.dist_animals(i, j)
-                if action_dist < distance < min_dist:
-                    print('----> ---- (AD < D < MD).')
-                    min_dist = distance
-                    closest_sheep = j
-                    print(f"----> Min distance={min_dist} for {sheep_count}-Sheep ({i}) with {sheep2_count}-Sheep ({j}).")  
-                elif distance <= action_dist:
-                    print(f"----> D <=AD. Sheep Breeding/Sharing proximity of {distance}(<={action_dist}) entered by {sheep_count}-Sheep ({i}) with CS {sheep2_count}-Sheep ({j}).")
-                    min_energy = 500
-                    if i.store and j.store > min_energy:
-                        print(f"----->{sheep_count}-Sheep ({i}) and {sheep2_count}-Sheep ({j} has MORE than {min_energy} store. So they will breed if p>0.25")
-                        if random.random() > 0.25: #75% chance of breeding!
-                            print(f"------>1.A. Random >0.25. So the sheep will mate.")
-                            print(f"------> {sheep_count}-Sheep ({i}) before mating with {sheep2_count}-Sheep ({j}).")
+            min_energy = 600
+            # if e>600 tries to find CS
+            if i.store > min_energy:
+                print(f"->{sheep_count}-Sheep has Store > {min_energy} ({i}).")
+                for j in sheep[sheep_index:]:
+                    sheep2_count += 1
+                    print(f"--> {sheep_count}-Sheep looping with {sheep2_count}-Sheep.") # To test if looping with i+1 sheep!             
+                    # Calculate the distance between itself and other sheep.
+                    distance = af.Animal.dist_animals(i, j)
+                    if action_dist < distance < min_dist:
+                        print('----> ---- (AD < D < MD).')
+                        min_dist = distance
+                        closest_sheep = j
+                        print(f"----> Min distance={min_dist} for {sheep_count}-Sheep ({i}) with {sheep2_count}-Sheep ({j}).")  
+                    elif distance <= action_dist:
+                        print(f"----> D <=AD. Sheep Breeding/Sharing proximity of {distance}(<={action_dist}) entered by {sheep_count}-Sheep ({i}) with CS {sheep2_count}-Sheep ({j}).")
+                        if j.store > min_energy: # Sheep j also has to have store >600 to have chance of breeding
+                            print(f"----->{sheep_count}-Sheep ({i}) and {sheep2_count}-Sheep ({j} has MORE than {min_energy} store. So they will breed if p>0.25")
                             breeding_cost = ((i.store + j.store)/2)/2 # half of average.
-                            i.store = breeding_cost
-                            j.store = breeding_cost
-                            print(f"------> {sheep_count}-Sheep ({i}) after mating with {sheep2_count}-Sheep ({j}).")
-                            sheep.append(af.Sheep(animals, wolves, sheep, environment, x=(i.x+5), y=(i.y+5))) # x and y so that the new sheep appears closer!
-                            breed = True
-                            print(f"Breed = {breed}")
-                            print(f"_____________ {sheep_count}-Sheep Mated with {sheep2_count}-Sheep ____________")
-                            break
+                            breeding_chance = 0.50
+                            if random.random() > breeding_chance:
+                                print(f"------>1.A. Random >{breeding_chance}. So the sheep will mate.")
+                                print(f"------> {sheep_count}-Sheep ({i}) before mating with {sheep2_count}-Sheep ({j}).")
+                                i.store = breeding_cost
+                                j.store = breeding_cost
+                                print(f"------> {sheep_count}-Sheep ({i}) after mating with {sheep2_count}-Sheep ({j}).")
+                                sheep.append(af.Sheep(animals, wolves, sheep, environment, y=(i.y+10), x=(i.x+10))) # x and y so that the new sheep appears closer!
+                                breed = True
+                                print(f"Breed = {breed}")
+                                print(f"_____________ {sheep_count}-Sheep Mated with {sheep2_count}-Sheep ____________")
+                                break
+                            else:
+                                print(f"------>1.B Random <{breeding_chance}. So the breeding will fail.")
+                                print(f"------> {sheep_count}-Sheep ({i}) before failed breeding with {sheep2_count}-Sheep ({j})")
+                                # average = (i.store + j.store)/2
+                                i.store = breeding_cost # breeding attempted. just was not successful!
+                                j.store = breeding_cost
+                                fail_breed = True
+                                print(f"Failed breeding = {fail_breed}")
+                                print(f"------> {sheep_count}-Sheep ({i}) after failed breeding with {sheep2_count}-Sheep ({j}).")
+                                print(f"_____________ {sheep_count}-Sheep Fail Mated with {sheep2_count}-Sheep ____________")
+                                break
                         else:
-                            print(f"------>1.B Random <0.25. So the sheep will not mate. But will share store to become average.")
-                            print(f"------> {sheep_count}-Sheep ({i}) before sharing store (average) with {sheep2_count}-Sheep ({j})")
+                            # Print below to just show what is happening. Otherwise this else is not needed.
+                            print(f"-----> {sheep_count}-Sheep ({i}) and {sheep2_count}-Sheep ({j} will not mate as {sheep2_count}-Sheep store <{min_energy}. They will share resource to become average.")
+                            # print('No break here as I want it to loop through other sheep if i sheep (d<=ad) has >200 store.')
                             average = (i.store + j.store)/2
                             i.store = average
                             j.store = average
                             share = True
-                            print(f"Share = {share}")
-                            print(f"------> {sheep_count}-Sheep ({i}) after sharing store average({average}) with {sheep2_count}-Sheep ({j}).")
+                            print(f"Shared resources= {share}")
+                            print(f"------> {sheep_count}-Sheep ({i}) and {sheep2_count}-Sheep ({j}) after sharing resources!")
+                            print(f"_____________ {sheep_count}-Sheep Fail Mated with {sheep2_count}-Sheep ____________")
                             break
-                    else:
-                        # Print below to just show what is happening. Otherwise this else is not needed.
-                        print(f"-----> {sheep_count}-Sheep ({i}) and {sheep2_count}-Sheep ({j} both DO NOT have MORE than {min_energy} store. So they will not breed")
-                        print('No break here as I want it to loop through other sheep if i sheep (d<=ad) has >200 store.')
-            if breed or share == True:  
-                print(f"--->_______Mated={breed}, Shared={share} for {sheep_count}-Wolf__________")
-                # Should add eat and move here?
-                continue
-            elif closest_sheep != None:
-                # Sheep like to stay in a herd. So 
-                print(f"->CS Found!")
-                print(f"-> {sheep_count}-Sheep ({i}) before moving closer to CS-Sheep: ({closest_sheep}).")
-                i.y = (int((i.y + closest_sheep.y)/2))
-                i.x = (int((i.x + closest_sheep.x)/2))
-                if i.y > len(i.environment):
-                    i.y = len(i.environment)-1
-                elif i.y < 0:
-                    i.y = 0
-                if i.x > len(i.environment[0]):
-                    i.x = len(i.environment[0]-1)
-                elif i.x < 0:
-                    i.x = 0
-                print(f"-> {sheep_count}-Wolf ({i}) after moving closer to CS-Sheep: ({closest_sheep}).")
-                print(f"___________ {sheep_count}-Sheep moved closer CS___________" )                   
-            else:
-                print(f"-> NO CW FOUND. No CS Found or Share={share}.")
-                print(f"-> {sheep_count}-Sheep ({i}) before normally moving and eating.")
+                if breed or fail_breed or share == True:  
+                    print(f"--->_______Breeding={breed}, Failed breeding={fail_breed}, Share={share} for {sheep_count}-Wolf__________")
+                    # Should add eat and move here? No i guess because they came <ad
+                    continue
+                elif closest_sheep != None:
+                    # Sheep like to stay in a herd. So run close and eats too!
+                    print(f"->CS Found!")
+                    print(f"-> {sheep_count}-Sheep ({i}) before moving closer (while eating) to CS-Sheep: ({closest_sheep}).")
+                    i.y = (int((i.y + closest_sheep.y)/2))
+                    i.x = (int((i.x + closest_sheep.x)/2))
+                    i.boundary_conditons()
+                    i.eat() # This should produce interesting results!
+                    print(f"-> {sheep_count}-Wolf ({i}) after moving closer (while eating) to CS-Sheep: ({closest_sheep}).")
+                    print(f"___________ {sheep_count}-Sheep moved closer CS___________" )                   
+                else:
+                    print(f"-> NO CW FOUND. No CS Found or Share={share}.")
+                    print(f"-> {sheep_count}-Sheep ({i}) before normally moving and eating.")
+                    i.move()
+                    i.eat()
+                    print(f"-> {sheep_count}-Sheep ({i}) after normally moving and eating.")
+                    print(f"___el1________ {sheep_count}-Sheep moved normally and ate ___________")
+            
+            else: # if i energey < {min_energy}
+                print(f"->{sheep_count}-Sheep has Store < {min_energy} ({i}).")
                 i.move()
                 i.eat()
-                print(f"-> {sheep_count}-Sheep ({i}) after normally moving and eating.")
-                print(f"___________ {sheep_count}-Sheep moved normally and ate ___________")
-    print('')        
+                print(f"___el2________ {sheep_count}-Sheep moved normally and ate ___________")
+        
+        
+        print('')        
     print('________________Sheep Cycle Ends________________')
     print('________________Wolf Cycle Begins________________')
        
@@ -270,14 +282,7 @@ def update(frame_number):
                 print(f"--> {wolf_count}-Wolf ({i}) before moving closer to  CS-Sheep ({closest_sheep })")
                 i.y = (int((i.y + closest_sheep.y)/2))
                 i.x = (int((i.x + closest_sheep.x)/2))
-                if i.y > len(i.environment):
-                    i.y = len(i.environment)-1
-                elif i.y < 0:
-                    i.y = 0
-                if i.x > len(i.environment[0]):
-                    i.x = len(i.environment[0]-1)
-                elif i.x < 0:
-                    i.x = 0
+                i.boundary_conditons()
                 print(f"--> {wolf_count}-Wolf ({i}) after moving closer to Sheep ({closest_sheep })")
                 print(f"..........{wolf_count}-Wolf moved closer to CS+..........")           
             else: #no sheep and store <500
@@ -318,7 +323,7 @@ def update(frame_number):
                             j.store = breeding_cost
                             print(f"------> {wolf_count}-Wolf ({i}) after mating with {wolf2_count}-Wolf ({j})")
                             # wolves.append(j) # Added new wolf to the list.
-                            wolves.append(af.Wolf(animals, wolves, sheep, environment)) # need to add x and y to set the value!
+                            wolves.append(af.Wolf(animals, wolves, sheep, environment, y=(i.y+10), x=(i.x+10))) # need to add x and y to set the value!
                             breed = True
                             print(f"Breed = {breed}")
                             print(f"_____________{wolf_count}-Wolf Mated with {wolf2_count}-Wolf____________")
@@ -389,14 +394,7 @@ def update(frame_number):
                 print(f"-> {wolf_count}-Wolf ({i}) before moving closer to CW-Wolf: ({closest_wolf}).")
                 i.y = (int((i.y + closest_wolf.y)/2))
                 i.x = (int((i.x + closest_wolf.x)/2))
-                if i.y > len(i.environment):
-                    i.y = len(i.environment)-1
-                elif i.y < 0:
-                    i.y = 0
-                if i.x > len(i.environment[0]):
-                    i.x = len(i.environment[0]-1)
-                elif i.x < 0:
-                    i.x = 0
+                i.boundary_conditons()
                 print(f"-> {wolf_count}-Wolf ({i}) after moving closer to CW-Wolf: ({closest_wolf}).")
                 print(f"..........{wolf_count}-Wolf moved closer CW+..........")   
             else: # No wolf. store >700

@@ -139,7 +139,7 @@ def update(frame_number):
         print(f"Stopping condition. Each agent has min store value > {min_store}.")      
     
     # Print agent location and store for each iteration.
-        for i in range(num_of_agents):
+    for i in range(num_of_agents):
             print(i, agents[i])
           
     # Plot agents and wolves in a scatter graph with environment
