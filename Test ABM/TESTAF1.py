@@ -22,7 +22,6 @@ class Animal:
             self.x = random.randint(0, len(environment[0])-1)
         else:
             self.x = x  
-        self.boundary_conditons()
         # self.y = random.randint(0, len(environment))
         # self.x = random.randint(0, len(environment[0]))
         # Set initial store value based on probability
