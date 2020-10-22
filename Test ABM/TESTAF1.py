@@ -8,7 +8,7 @@ import random
 # random.seed(10)
 
 class Animal:
-    
+
     def __init__(self, animals, wolves, sheep, environment, y=None, x=None):
         self.animals = animals # need to delete later
         self.wolves = wolves
@@ -22,8 +22,6 @@ class Animal:
             self.x = random.randint(0, len(environment[0])-2)
         else:
             self.x = x  
-        # self.y = random.randint(0, len(environment))
-        # self.x = random.randint(0, len(environment[0]))
         # Set initial store value based on probability
         if random.random() < 0.25:
             self.store = 100
@@ -48,15 +46,47 @@ class Animal:
             self.x = 2
 
     def move(self):
-        if random.random() < 0.5:
-            self.y += 1
+        # if random.random() < 0.5:
+        #     self.y += 1
+        # else:
+        #     self.y -= 1
+        # if random.random() < 0.5:
+        #     self.x += 1
+        # else:
+        #     self.x -= 1
+        fs = 10
+        ms = 5
+        ss = 1
+        if self.store >= 600 and random.random() <0.5:
+            self.store -= fs
+            if random.random() < 0.5:
+                self.y += fs
+            else:
+                self.y -= fs
+            if random.random() < 0.5:
+                self.x += fs
+            else:
+                self.x -= fs
+        elif 100 < self.store < 600 and random.random() <0.5:
+            self.store -= ms
+            if random.random() < 0.5:
+                self.y += ms
+            else:
+                self.y -= ms
+            if random.random() < 0.5:
+                self.x += ms
+            else:
+                self.x -= ms
         else:
-            self.y -= 1
-        if random.random() < 0.5:
-            self.x += 1
-        else:
-            self.x -= 1
-                
+            if random.random() < 0.5:
+                self.y += ss
+            else:
+                self.y -= ss
+            if random.random() < 0.5:
+                self.x += ss
+            else:
+                self.x -= ss
+                    
         self.boundary_conditons()
     
     def __str__(self):
@@ -74,7 +104,44 @@ class Sheep(Animal):
             
 class Wolf(Animal):
     pass
-    
+    # def move(self):
+    #     fs = 10
+    #     ms = 5
+    #     ss = 1
+    #     if self.store >= 600 and random.random() <0.5:
+    #         self.store -= 5
+    #         if random.random() < 0.5:
+    #             self.y += fs
+    #         else:
+    #             self.y -= fs
+    #         if random.random() < 0.5:
+    #             self.x += fs
+    #         else:
+    #             self.x -= fs
+    #     elif 100 < self.store < 600 and random.random() <0.5:
+    #         self.store -= 2
+    #         if random.random() < 0.5:
+    #             self.y += ms
+    #         else:
+    #             self.y -= ms
+    #         if random.random() < 0.5:
+    #             self.x += ms
+    #         else:
+    #             self.x -= ms
+    #     else:
+    #         if random.random() < 0.5:
+    #             self.y += ss
+    #         else:
+    #             self.y -= ss
+    #         if random.random() < 0.5:
+    #             self.x += ss
+    #         else:
+    #             self.x -= ss
+                    
+    #     self.boundary_conditons()
+
+
+
     # def eat(self, proximity, i):
     #     sheep_count = -1
     #     for j in self.sheep[:]:

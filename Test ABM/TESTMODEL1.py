@@ -35,10 +35,10 @@ environment = []
 animals = []
 sheep = []
 wolves = []
-no_sheep = 10
+no_sheep = 20
 no_wolves = 5
 
-no_iterations = 200
+no_iterations = 500
 it_no = -1 # No of iterations
 proximity = 50
 action_dist = 5 # action refers to breeding/eating sheep...
@@ -62,8 +62,8 @@ for i in range(no_sheep):
 print('No sheep', len(sheep))
 
 for i in range(no_wolves):
-    y = int(td_ys[-i].text)*3 #interesting!
-    x = int(td_xs[-i].text)*3
+    y = None #int(td_ys[-i].text)*3 #interesting!
+    x = None #int(td_xs[-i].text)*3
     wolves.append(af.Wolf(animals, wolves, sheep, environment, y, x))
 print('No wolves', len(wolves))
 
@@ -247,6 +247,10 @@ def update(frame_number):
         wolf_index += 1
         min_energy = 500
         bf_e = 0.5
+        if i.store > min_energy*2:
+            min_dist = proximity*2
+        else:
+            min_dist = proximity
         print('')
         print(f"---------{wolf_count}-Wolf initialised with ({i}) --------")
         
@@ -259,7 +263,6 @@ def update(frame_number):
             # print(f"--> {wolf_count}-Wolf has <=Min_energy({min_energy}) store ({i}). Tries to find food (sheep).")
             sheep_count = -1
             closest_sheep = None
-            min_dist = proximity
             eaten = False
             for j in sheep[:]:
                 sheep_count += 1
@@ -303,8 +306,7 @@ def update(frame_number):
                 print(f"....el1___________ {wolf_count}-Wolf moved normally___________")
                 
         elif i.store > min_energy and random.random() >= bf_e: 
-            print(f"--> {wolf_count}-Wolf has > {min_energy} store ({i}) and Random >= {bf_e}. so will try to find CW to move closer or breed/fight if within AD({action_dist}).")                     
-            min_dist = proximity
+            print(f"--> {wolf_count}-Wolf has > {min_energy} store ({i}) and Random >= {bf_e}. so will try to find CW to move closer or breed/fight if within AD({action_dist}).")
             # action = False
             fight = False
             breed = False
