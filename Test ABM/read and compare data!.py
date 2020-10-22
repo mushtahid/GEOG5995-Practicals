@@ -12,7 +12,7 @@ testmodel_1 = []
 
 # Read before_oop 
 with open('log2.txt', newline='') as f:
-    r = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
+    r = csv.reader(f)
     for row in r:
         row_list = []
         for value in row:
@@ -21,7 +21,7 @@ with open('log2.txt', newline='') as f:
         
 # Read testmodel_1
 with open('log.txt', newline='') as f:
-    r = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
+    r = csv.reader(f)
     for row in r:
         row_list = []
         for value in row:
@@ -29,4 +29,4 @@ with open('log.txt', newline='') as f:
         testmodel_1.append(row_list)
         
 # Check if both have same content
-print(before_oop == testmodel_1)
+print('Same:',before_oop == testmodel_1) #If true then same

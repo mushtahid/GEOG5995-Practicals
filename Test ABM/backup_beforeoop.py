@@ -448,9 +448,10 @@ def update(frame_number):
                     env_rcv = (j.store*(1/5)) # Environment received 1/5
                     i.environment[i.y][i.x] += env_rcv 
                     j.store = 0 # CS store is 0
+                    print(f"---->Env received ({env_rcv}).")
                     print(f"----> {wolf_count}-Wolf ({i}) after eating "
-                          f"CS {sheep_count}-Sheep ({j}). "
-                          f"Env received ({env_rcv})")
+                          f"CS {sheep_count}-Sheep ({j}).")
+                          # f"Env received ({env_rcv})")
                     sheep.remove(j)
                     eaten = True # Set eat as true
                     # Eaten, so break (don't eat other CS within AD and 

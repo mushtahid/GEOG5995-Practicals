@@ -62,7 +62,7 @@ with open('in.txt', newline='') as f:
 
 # Initialise sheep
 for i in range(no_sheep):
-# Multiply x and y to make them more spread out. However, I did not
+# Multiply x and y with 3 to make them more spread out. However, I did not
 # as the sheep should stay in a herd. So makes sense for them to appear 
 # closer within a grid of 100X100 as assigned by the webdata!
     y = int(td_ys[i].text) 
@@ -145,7 +145,7 @@ def update(frame_number):
                 min_dist = distance # Assign the new min_dist
                 closest_wolf = wolves[j] # Assign the new CW
                 print(f"---> {sheep_count}-Sheep ({i}) detected {j}-Wolf "
-                      f"({wolves[j]}) within d={min_dist}.")                
+                      f"({wolves[j]}) within d={min_dist}.")            
         
         # If CW found, try to run away!
         if closest_wolf != None:
@@ -154,10 +154,13 @@ def update(frame_number):
             print("-> CW FOUND.")
             print(f"--> Before {sheep_count}-Sheep ({i}) tries to run away "
                   f"from CW: ({closest_wolf}).")
+            
             # i.y = i.y + (i.y - int((i.y + closest_wolf.y)/2))
             # i.x = i.x + (i.x - int((i.x + closest_wolf.x)/2))
             # i.boundary_conditons() # Check boundary conditions!
-            i.run_from_cw(closest_wolf)
+            
+            i.run_from_cw(closest_wolf) # Works!
+            
             print(f"--> After {sheep_count}-Sheep ({i}) tried to run away "
                   f"from CW ({closest_wolf}).")
             print(f"___________ {sheep_count}-Sheep tried to run away "
@@ -329,10 +332,15 @@ def update(frame_number):
                           f"closer (while eating) to "
                           f"CS-Sheep: ({closest_sheep}).")
                     # This moving algoright may be improved!
-                    i.y = (int((i.y + closest_sheep.y)/2))
-                    i.x = (int((i.x + closest_sheep.x)/2))
-                    i.boundary_conditons() # Check boundary conditions.
+                    
+                    # i.y = (int((i.y + closest_sheep.y)/2))
+                    # i.x = (int((i.x + closest_sheep.x)/2))
+                    # i.boundary_conditons() # Check boundary conditions.
+                    
+                    i.run_to_closest_animal(closest_sheep) # Works!
                     i.eat() # Eat while moving like in a herd!
+
+                    
                     print(f"-> {sheep_count}-Wolf ({i}) after moving closer "
                           f"(while eating) to CS-Sheep: ({closest_sheep}).")
                     print(f"___________ {sheep_count}-Sheep moved "
@@ -446,14 +454,20 @@ def update(frame_number):
                           f"CS {sheep_count}-Sheep ({j})")
                     # Wolf eats 4/5 of the sheep as can't eat everything!
                     # The rest of the 1/5 is returned to the environment.
-                    i.store += (j.store*(4/5)) # Wolf eats 4/5
-                    env_rcv = (j.store*(1/5)) # Environment received 1/5
-                    i.environment[i.y][i.x] += env_rcv 
-                    j.store = 0 # CS store is 0
+                    
+                    # i.store += (j.store*(4/5)) # Wolf eats 4/5
+                    # env_rcv = (j.store*(1/5)) # Environment received 1/5
+                    # i.environment[i.y][i.x] += env_rcv 
+                    # j.store = 0 # CS store is 0
+                    
+                    i.eat(j) # Works!
+                    
+                    # print(f"---->Env received ({env_rcv}).")
                     print(f"----> {wolf_count}-Wolf ({i}) after eating "
-                          f"CS {sheep_count}-Sheep ({j}). "
-                          f"Env received ({env_rcv})")
-                    sheep.remove(j)
+                          f"CS {sheep_count}-Sheep ({j}).")
+                          
+                    
+                    # sheep.remove(j)
                     eaten = True # Set eat as true
                     # Eaten, so break (don't eat other CS within AD and 
                     # go to if below (and continue)
@@ -488,9 +502,13 @@ def update(frame_number):
                 # The below move algorithm should be improved!
                 # Here no energy is lost while chasing. So can add some
                 # energy loss.
-                i.y = (int((i.y + closest_sheep.y)/2))
-                i.x = (int((i.x + closest_sheep.x)/2))
-                i.boundary_conditons() # Check boundary conditions.
+                
+                # i.y = (int((i.y + closest_sheep.y)/2))
+                # i.x = (int((i.x + closest_sheep.x)/2))
+                # i.boundary_conditons() # Check boundary conditions.
+                
+                i.run_to_closest_animal(closest_sheep) # Works!
+                
                 print(f"--> {wolf_count}-Wolf ({i}) after moving closer to "
                       f"CS ({closest_sheep }).")
                 print(f"___________ {wolf_count}-Wolf moved closer "
@@ -530,7 +548,7 @@ def update(frame_number):
                       f"{wolf2_count}-Wolf")
                 
                 # Check distance between wolves
-                distance =  af.Animal.dist_animals(i, j)
+                distance =  i.dist_animals(j)
                 
                 # If a wolf between min_dist but beyond action_distance
                 # assign it as the closest wolf and update minimum distance
@@ -669,9 +687,13 @@ def update(frame_number):
                 print(f"-> {wolf_count}-Wolf ({i}) before moving closer to "
                       f"CW-Wolf: ({closest_wolf}).")
                 # This move algorithm should be improved!
-                i.y = (int((i.y + closest_wolf.y)/2))
-                i.x = (int((i.x + closest_wolf.x)/2))
-                i.boundary_conditons() # Check boundary conditons.
+                
+                # i.y = (int((i.y + closest_wolf.y)/2))
+                # i.x = (int((i.x + closest_wolf.x)/2))
+                # i.boundary_conditons() # Check boundary conditons.
+                
+                i.run_to_closest_animal(closest_wolf) # Works!
+                
                 print(f"-> {wolf_count}-Wolf ({i}) after moving closer to "
                       f"CW-Wolf: ({closest_wolf}).")
                 print(f"_______ {wolf_count}-Wolf moved closer CW+_______") 

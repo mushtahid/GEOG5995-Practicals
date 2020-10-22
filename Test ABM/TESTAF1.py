@@ -85,6 +85,12 @@ class Animal:
     def __str__(self):
         return f"y={self.y}, x={self.x}, store={self.store}"
     
+    def run_to_closest_animal(self, closest_animal):
+        # Works
+        self.y = (int((self.y + closest_animal.y)/2))
+        self.x = (int((self.x + closest_animal.x)/2))
+        self.boundary_conditons() # Check boundary conditions.
+    
 class Sheep(Animal):
 
     def eat(self):
@@ -95,14 +101,22 @@ class Sheep(Animal):
             self.environment[self.y][self.x] -= self.environment[self.y][self.x]
             self.store += self.environment[self.y][self.x]
             
-    def run_from_cw(self, closest_wolf):
-        
-        self.y = self.y + (self.y - int((self.y + closest_wolf.y)/2))
-        self.x = self.x + (self.x - int((self.x + closest_wolf.x)/2))
+    def run_from_cw(self, cw):
+        # Works
+        self.y = self.y + (self.y - int((self.y + cw.y)/2))
+        self.x = self.x + (self.x - int((self.x + cw.x)/2))
         self.boundary_conditons()
             
 class Wolf(Animal):
-    pass
+    
+    def eat(self, cs):
+        self.store += (cs.store*(4/5)) # Wolf eats 4/5
+        env_rcv = (cs.store*(1/5)) # Environment received 1/5
+        self.environment[self.y][self.x] += env_rcv 
+        cs.store = 0 # CS store is 0
+        self.sheep.remove(cs)
+        print(f"---->Env received ({env_rcv}).")
+
 
     # def eat(self, proximity, i):
     #     sheep_count = -1

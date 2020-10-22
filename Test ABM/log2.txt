@@ -1928,7 +1928,8 @@ ___________ 1-Wolf moved closer to CS___________
 ---> 4-Wolf looping with 2-Sheep
 ----> CS within 5.0 which is <= action distance (5).
 ----> 4-Wolf (y=63, x=72, store=400) before eating CS 2-Sheep (y=63, x=77, store=400)
-----> 4-Wolf (y=63, x=72, store=720.0) after eating CS 2-Sheep (y=63, x=77, store=0). Env received (80.0)
+---->Env received (80.0).
+----> 4-Wolf (y=63, x=72, store=720.0) after eating CS 2-Sheep (y=63, x=77, store=0).
 ___________ Eaten=True. 4-Wolf ate CS 2-Sheep__________
 ________________Wolf Cycle Ends_________________
 
@@ -6219,7 +6220,8 @@ ___________ 2-Wolf moved closer to CS___________
 ---> 3-Wolf looping with 1-Sheep
 ----> CS within 4.123105625617661 which is <= action distance (5).
 ----> 3-Wolf (y=59, x=123, store=340) before eating CS 1-Sheep (y=63, x=122, store=400)
-----> 3-Wolf (y=59, x=123, store=660.0) after eating CS 1-Sheep (y=63, x=122, store=0). Env received (80.0)
+---->Env received (80.0).
+----> 3-Wolf (y=59, x=123, store=660.0) after eating CS 1-Sheep (y=63, x=122, store=0).
 ___________ Eaten=True. 3-Wolf ate CS 1-Sheep__________
 
 ---------4-Wolf initialised with (y=250, x=162, store=255) --------
@@ -10133,7 +10135,8 @@ ___________ 3-Wolf moved closer to CS___________
 ---> 4-Wolf looping with 0-Sheep
 ----> CS within 4.123105625617661 which is <= action distance (5).
 ----> 4-Wolf (y=2, x=75, store=385) before eating CS 0-Sheep (y=1, x=71, store=600)
-----> 4-Wolf (y=2, x=75, store=865.0) after eating CS 0-Sheep (y=1, x=71, store=0). Env received (120.0)
+---->Env received (120.0).
+----> 4-Wolf (y=2, x=75, store=865.0) after eating CS 0-Sheep (y=1, x=71, store=0).
 ___________ Eaten=True. 4-Wolf ate CS 0-Sheep__________
 ________________Wolf Cycle Ends_________________
 
@@ -12981,7 +12984,8 @@ ___________ 2-Wolf moved closer to CS___________
 ---> 3-Wolf looping with 5-Sheep
 ----> CS within 5.0 which is <= action distance (5).
 ----> 3-Wolf (y=31, x=46, store=371.25) before eating CS 5-Sheep (y=36, x=46, store=355)
-----> 3-Wolf (y=31, x=46, store=655.25) after eating CS 5-Sheep (y=36, x=46, store=0). Env received (71.0)
+---->Env received (71.0).
+----> 3-Wolf (y=31, x=46, store=655.25) after eating CS 5-Sheep (y=36, x=46, store=0).
 ___________ Eaten=True. 3-Wolf ate CS 5-Sheep__________
 
 ---------4-Wolf initialised with (y=31, x=46, store=371.25) --------
@@ -15197,7 +15201,8 @@ ________________Wolf Cycle Begins________________
 ---> 1-Wolf looping with 10-Sheep
 ----> CS within 5.0 which is <= action distance (5).
 ----> 1-Wolf (y=65, x=27, store=371.25) before eating CS 10-Sheep (y=70, x=27, store=587.5)
-----> 1-Wolf (y=65, x=27, store=841.25) after eating CS 10-Sheep (y=70, x=27, store=0). Env received (117.5)
+---->Env received (117.5).
+----> 1-Wolf (y=65, x=27, store=841.25) after eating CS 10-Sheep (y=70, x=27, store=0).
 ___________ Eaten=True. 1-Wolf ate CS 10-Sheep__________
 
 ---------2-Wolf initialised with (y=215, x=110, store=100) --------
@@ -16053,7 +16058,8 @@ ________________Wolf Cycle Begins________________
 ---> 0-Wolf looping with 2-Sheep
 ----> CS within 4.0 which is <= action distance (5).
 ----> 0-Wolf (y=64, x=5, store=322.625) before eating CS 2-Sheep (y=64, x=1, store=661.25)
-----> 0-Wolf (y=64, x=5, store=851.625) after eating CS 2-Sheep (y=64, x=1, store=0). Env received (132.25)
+---->Env received (132.25).
+----> 0-Wolf (y=64, x=5, store=851.625) after eating CS 2-Sheep (y=64, x=1, store=0).
 ___________ Eaten=True. 0-Wolf ate CS 2-Sheep__________
 
 ---------1-Wolf initialised with (y=64, x=5, store=427.625) --------
@@ -17964,7 +17970,8 @@ ________________Wolf Cycle Begins________________
 ---> 0-Wolf looping with 0-Sheep
 ----> CS within 5.0 which is <= action distance (5).
 ----> 0-Wolf (y=110, x=2, store=213.8125) before eating CS 0-Sheep (y=115, x=2, store=750)
-----> 0-Wolf (y=110, x=2, store=813.8125) after eating CS 0-Sheep (y=115, x=2, store=0). Env received (150.0)
+---->Env received (150.0).
+----> 0-Wolf (y=110, x=2, store=813.8125) after eating CS 0-Sheep (y=115, x=2, store=0).
 ___________ Eaten=True. 0-Wolf ate CS 0-Sheep__________
 
 ---------1-Wolf initialised with (y=213, x=110, store=100) --------
@@ -24242,7 +24249,8 @@ ________________Wolf Cycle Begins________________
 ---> 0-Wolf looping with 9-Sheep
 ----> CS within 4.0 which is <= action distance (5).
 ----> 0-Wolf (y=122, x=80, store=470.0) before eating CS 9-Sheep (y=122, x=76, store=695)
-----> 0-Wolf (y=122, x=80, store=1026.0) after eating CS 9-Sheep (y=122, x=76, store=0). Env received (139.0)
+---->Env received (139.0).
+----> 0-Wolf (y=122, x=80, store=1026.0) after eating CS 9-Sheep (y=122, x=76, store=0).
 ___________ Eaten=True. 0-Wolf ate CS 9-Sheep__________
 
 ---------1-Wolf initialised with (y=120, x=12, store=753.8125) --------
@@ -24319,7 +24327,8 @@ ___________ 3-Wolf moved closer to CS___________
 ---> 5-Wolf looping with 3-Sheep
 ----> CS within 4.242640687119285 which is <= action distance (5).
 ----> 5-Wolf (y=4, x=13, store=434.171875) before eating CS 3-Sheep (y=1, x=16, store=583.75)
-----> 5-Wolf (y=4, x=13, store=901.171875) after eating CS 3-Sheep (y=1, x=16, store=0). Env received (116.75)
+---->Env received (116.75).
+----> 5-Wolf (y=4, x=13, store=901.171875) after eating CS 3-Sheep (y=1, x=16, store=0).
 ___________ Eaten=True. 5-Wolf ate CS 3-Sheep__________
 ________________Wolf Cycle Ends_________________
 
@@ -26549,7 +26558,8 @@ ___________ 1-Wolf moved closer to CS___________
 ---> 2-Wolf looping with 3-Sheep
 ----> CS within 1.0 which is <= action distance (5).
 ----> 2-Wolf (y=2, x=2, store=841.171875) before eating CS 3-Sheep (y=1, x=2, store=519.0625)
-----> 2-Wolf (y=2, x=2, store=1256.421875) after eating CS 3-Sheep (y=1, x=2, store=0). Env received (103.8125)
+---->Env received (103.8125).
+----> 2-Wolf (y=2, x=2, store=1256.421875) after eating CS 3-Sheep (y=1, x=2, store=0).
 ___________ Eaten=True. 2-Wolf ate CS 3-Sheep__________
 
 ---------3-Wolf initialised with (y=167, x=97, store=996.0) --------
@@ -26731,7 +26741,8 @@ ________________Wolf Cycle Begins________________
 ---> 0-Wolf looping with 3-Sheep
 ----> CS within 4.47213595499958 which is <= action distance (5).
 ----> 0-Wolf (y=154, x=106, store=100) before eating CS 3-Sheep (y=150, x=108, store=672.5)
-----> 0-Wolf (y=154, x=106, store=638.0) after eating CS 3-Sheep (y=150, x=108, store=0). Env received (134.5)
+---->Env received (134.5).
+----> 0-Wolf (y=154, x=106, store=638.0) after eating CS 3-Sheep (y=150, x=108, store=0).
 ___________ Eaten=True. 0-Wolf ate CS 3-Sheep__________
 
 ---------1-Wolf initialised with (y=267, x=175, store=100) --------
