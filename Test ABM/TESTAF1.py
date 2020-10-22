@@ -5,7 +5,7 @@ Created on Thu Oct 15 11:20:41 2020
 @author: Mushtahid
 """
 import random
-# random.seed(10)
+random.seed(10)
 
 class Animal:
 
@@ -46,14 +46,7 @@ class Animal:
             self.x = 2
 
     def move(self):
-        # if random.random() < 0.5:
-        #     self.y += 1
-        # else:
-        #     self.y -= 1
-        # if random.random() < 0.5:
-        #     self.x += 1
-        # else:
-        #     self.x -= 1
+
         fs = 10
         ms = 5
         ss = 1
@@ -102,45 +95,14 @@ class Sheep(Animal):
             self.environment[self.y][self.x] -= self.environment[self.y][self.x]
             self.store += self.environment[self.y][self.x]
             
+    def run_from_cw(self, closest_wolf):
+        
+        self.y = self.y + (self.y - int((self.y + closest_wolf.y)/2))
+        self.x = self.x + (self.x - int((self.x + closest_wolf.x)/2))
+        self.boundary_conditons()
+            
 class Wolf(Animal):
     pass
-    # def move(self):
-    #     fs = 10
-    #     ms = 5
-    #     ss = 1
-    #     if self.store >= 600 and random.random() <0.5:
-    #         self.store -= 5
-    #         if random.random() < 0.5:
-    #             self.y += fs
-    #         else:
-    #             self.y -= fs
-    #         if random.random() < 0.5:
-    #             self.x += fs
-    #         else:
-    #             self.x -= fs
-    #     elif 100 < self.store < 600 and random.random() <0.5:
-    #         self.store -= 2
-    #         if random.random() < 0.5:
-    #             self.y += ms
-    #         else:
-    #             self.y -= ms
-    #         if random.random() < 0.5:
-    #             self.x += ms
-    #         else:
-    #             self.x -= ms
-    #     else:
-    #         if random.random() < 0.5:
-    #             self.y += ss
-    #         else:
-    #             self.y -= ss
-    #         if random.random() < 0.5:
-    #             self.x += ss
-    #         else:
-    #             self.x -= ss
-                    
-    #     self.boundary_conditons()
-
-
 
     # def eat(self, proximity, i):
     #     sheep_count = -1

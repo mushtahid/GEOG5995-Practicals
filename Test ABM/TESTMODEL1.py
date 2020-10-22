@@ -2,18 +2,20 @@
 """
 Created on Thu Oct 15 09:26:33 2020
 
-@author: Mushtahid
+@author: Md Mushtahid Salam
+email: mushtahid@gmail.com
 """
 # Import modules
 import sys # To print the output in a seperate text file
 import TESTAF1 as af # Import the agentframework
 import tkinter # To use for the GUI
-import matplotlib # For plotting and displaying environment and animals.
+# For plotting and displaying environment and animals.
+import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import matplotlib.animation
 import random # To randomize things!
-# random.seed(10) # Uncomment to debug the model
+random.seed(10) # Uncomment to debug the model
 import csv # To read and write data
 import requests # To scrape web data
 import bs4 # To scrape web data
@@ -37,10 +39,10 @@ environment = []
 animals = []
 sheep = []
 wolves = []
-no_sheep = 20
-no_wolves = 10
+no_sheep = 15
+no_wolves = 5
 
-no_iterations = 500 # Number of times the animation will run
+no_iterations = 100 # Number of times the animation will run
 it_no = -1 # No of iterations
 proximity = 50 # the range of vision of the animals
 action_dist = 5 # Proximity within which animals can interact, eg breed etc. 
@@ -74,14 +76,7 @@ for i in range(no_wolves):
     x = None #int(td_xs[-i].text)*3
     wolves.append(af.Wolf(animals, wolves, sheep, environment, y, x))
 print('Initial number of  wolves:', len(wolves))
-
-# Set up generator
-def gen_function(b = no_iterations):
-    a = 0
-    while a < b:
-        yield a
-        a += 1
-        
+       
 # Set up update/frames for animation
 def update(frame_number):
     fig.clear() # Clear the figure from previous iteration!
@@ -132,7 +127,8 @@ def update(frame_number):
         # not used while looping with sheep as the wolves will not mate with 
         # sheep to increase the number of wolves. range(no_wolves) is not used
         # as no_wolves represents inital wolf number and the wolves may breed
-        # to increase their numbers, and so would fail the model.
+        # (see further below_ to increase their numbers, and so would fail 
+        # the model if used.
         for j in range(len(wolves)):
             # Print below tests if current sheep is looping with all wolves!
             print(f"--> {sheep_count}-Sheep looping with {j}-Wolf.")             
@@ -158,9 +154,10 @@ def update(frame_number):
             print("-> CW FOUND.")
             print(f"--> Before {sheep_count}-Sheep ({i}) tries to run away "
                   f"from CW: ({closest_wolf}).")
-            i.y = i.y + (i.y - int((i.y + closest_wolf.y)/2))
-            i.x = i.x + (i.x - int((i.x + closest_wolf.x)/2))
-            i.boundary_conditons() # Check boundary conditions!
+            # i.y = i.y + (i.y - int((i.y + closest_wolf.y)/2))
+            # i.x = i.x + (i.x - int((i.x + closest_wolf.x)/2))
+            # i.boundary_conditons() # Check boundary conditions!
+            i.run_from_cw(closest_wolf)
             print(f"--> After {sheep_count}-Sheep ({i}) tried to run away "
                   f"from CW ({closest_wolf}).")
             print(f"___________ {sheep_count}-Sheep tried to run away "
@@ -172,7 +169,7 @@ def update(frame_number):
                   f"(if energy allows: find CS to move closer+eat "
                   f"OR breed/share) "
                   f"OR (move/eat normally if NO CS or low energy).")
-            # min_dist = proximity*0.5 # most prob not needed. will see later. #############
+            min_dist = proximity*0.5 # most prob not needed. will see later. #############
             breed = False # To check if the sheep bred successfully.
             fail_breed = False # To check if breeding failed.
             share = False # To check if resources were shared.
@@ -237,7 +234,7 @@ def update(frame_number):
                             
                             # if p>breeding_chance, breeds successfully.
                             if random.random() > breeding_chance:
-                                print(f"------>1.A. Random >{breeding_chance}."
+                                print(f"------>1.A. Random>{breeding_chance}."
                                       f" So the sheep will breed.")
                                 print(f"------> {sheep_count}-Sheep ({i}) "
                                       f"before breeding with CS "
@@ -264,8 +261,8 @@ def update(frame_number):
                             
                             # if p<breeding_chance, breeding fails.
                             else:
-                                print(f"------>1.B Random <{breeding_chance}. "
-                                      f"So the breeding will fail.")
+                                print(f"------>1.B Random <{breeding_chance}."
+                                      f" So the breeding will fail.")
                                 print(f"------> {sheep_count}-Sheep ({i}) "
                                       f"before failed breeding with "
                                       f"CS {sheep2_count}-Sheep ({j})")
@@ -400,8 +397,8 @@ def update(frame_number):
         # (i.e., 0.5 if unchanged), it tries to find closest_wolf (CW) to move
         # closer to, or if within action distance: breeds or fights. If no
         # CW found, moves randomly.
-        # 3. Else if (current wolf store >min_energy AND p<bf_e/2) (i.e., <0.25
-        # if unchanged, the current wolf moves randomly.) 
+        # 3. Else if (current wolf store >min_energy AND p<bf_e/2) (i.e., 
+        # <0.25 if bf_e unchanged, the current wolf moves randomly.) 
         
         
         # 1. If (current wolf store <=min_energy) OR (store>min_energy AND  
@@ -418,8 +415,8 @@ def update(frame_number):
                       f"store ({i}). Tries to find food (sheep).")
             else:
                 print(f"--> {wolf_count}-Wolf has >Min_energy({min_energy}) "
-                      f"store ({i}) and {bf_e/2} <= random.random() < {bf_e}. "
-                      f"Tries to find food (sheep).")
+                      f"store ({i}) and {bf_e/2} <= random.random() < {bf_e}."
+                      f" Tries to find food (sheep).")
             
             sheep_count = -1 # To assign sheep its index value.
             closest_sheep = None # To assign and track closest sheep (CS)
@@ -453,7 +450,9 @@ def update(frame_number):
                     env_rcv = (j.store*(1/5)) # Environment received 1/5
                     i.environment[i.y][i.x] += env_rcv 
                     j.store = 0 # CS store is 0
-                    print(f"----> {wolf_count}-Wolf ({i}) after eating CS {sheep_count}-Sheep ({j}). Env received ({env_rcv})")
+                    print(f"----> {wolf_count}-Wolf ({i}) after eating "
+                          f"CS {sheep_count}-Sheep ({j}). "
+                          f"Env received ({env_rcv})")
                     sheep.remove(j)
                     eaten = True # Set eat as true
                     # Eaten, so break (don't eat other CS within AD and 
@@ -625,8 +624,8 @@ def update(frame_number):
                             # The current wolf will also move after fighting
                             # based on move method.
                             i.move()
-                            print(f"------> {wolf_count}-Wolf ({i}) won+moved "
-                                  f"after fighting with "
+                            print(f"------> {wolf_count}-Wolf ({i}) won+moved"
+                                  f" after fighting with "
                                   f"CW {wolf2_count}-Wolf ({j})")
                         
                         # if p<= bf_e
@@ -666,8 +665,9 @@ def update(frame_number):
             # If CW found within min_distance but beyond action distance,
             # get close to it.
             elif closest_wolf != None:
-                print(f"->CW Found!")
-                print(f"-> {wolf_count}-Wolf ({i}) before moving closer to CW-Wolf: ({closest_wolf}).")
+                print("->CW Found!")
+                print(f"-> {wolf_count}-Wolf ({i}) before moving closer to "
+                      f"CW-Wolf: ({closest_wolf}).")
                 # This move algorithm should be improved!
                 i.y = (int((i.y + closest_wolf.y)/2))
                 i.x = (int((i.x + closest_wolf.x)/2))
@@ -692,7 +692,7 @@ def update(frame_number):
         else:
             # This area may also be made as as a rest area for wolves
             # based on probability.
-            print(f"--> if and elif not satisfied")
+            print("--> if and elif not satisfied")
             print(f"--> {wolf_count}-Wolf has > Min_energy({min_energy}) "
                   f"store ({i}) but Random < bf_e/2({bf_e/2}). "
                   "So will move normally.")
@@ -702,7 +702,6 @@ def update(frame_number):
             print(f"--->else3 begins: {wolf_count}-Wolf ({i}) after "
                   f"normal moving.")
             print(f"....e3_______ {wolf_count}-Wolf moved normally_______")
-    
     print('________________Wolf Cycle Ends_________________')
     
     # Display environment, wolves and sheep!    
@@ -719,23 +718,39 @@ def update(frame_number):
         plt.scatter(sheep[i].x, sheep[i].y, marker="p", color='white')
     for j in range(len(wolves)):
         plt.scatter(wolves[j].x, wolves[j].y, marker="v", color='black')
+
+# Set up generator
+def gen_function(b = no_iterations):
+    a = 0
+    while a < b:
+        yield a
+        a += 1
     
 # Set up run function for use with tkinter GUI
 def run():
-    animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False)
+    animation = matplotlib.animation.FuncAnimation(fig, update,\
+                frames=gen_function, interval=100, repeat=False, save_count=no_iterations)
+    # Save animation not working. ffmepg not found! had to install!
+    # Writer = matplotlib.animation.writers['ffmpeg']
+    # writer = Writer(fps=10, metadata=dict(artist='Me'), bitrate=1800)
+    # animation.save('ABM.mp4', writer=writer)
+    # writergif = matplotlib.animation.PillowWriter(fps=60) 
+    # animation.save('ABM.gif', writer=writergif)
+    
     # .show() is deprecated.
     canvas.draw()
-   
+  
 # Set up GUI
 root = tkinter.Tk()
-root.wm_title("Sheep and Wolves ABM Model")
+root.wm_iconbitmap('logo.ico')
+root.wm_title("Sheep and Wolves - Agent Based Model (ABM) by Mushtahid!")
 canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
 canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
 menu_bar = tkinter.Menu(root)
 root.config(menu=menu_bar)
 model_menu = tkinter.Menu(menu_bar)
-menu_bar.add_cascade(label="Model", menu=model_menu)
-model_menu.add_command(label="Run Model", command=run)
+menu_bar.add_cascade(label="Menu", menu=model_menu)
+model_menu.add_command(label="Run ABM Model", command=run)
 tkinter.mainloop()
 
 # Close the prinout to log file!
