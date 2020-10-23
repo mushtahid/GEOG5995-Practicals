@@ -22352,7 +22352,7 @@ ___________ 1-Wolf moved closer to CS___________
 ----->1.B. Random <0.5. So breeding will not be successful.
 ----->3-Wolf (y=68, x=16, store=975.0625) before fail breeding with CW 1-Wolf (y=65, x=16, store=781.625)
 ------> Fail Breeding = True
-_____________ 3-Wolf (y=68, x=16, store=439.171875) after fail breeding with CW 1-Wolf (y=65, x=16, store=439.171875)
+_____________ 3-Wolf (y=68, x=16, store=439.171875) after FAILED BREEDING with CW 1-Wolf (y=65, x=16, store=439.171875)
 _______ Breed=False, Failed Breed=True, Fought=False for 3-Wolf __________
 
 ---------4-Wolf initialised with (y=218, x=107, store=100) --------

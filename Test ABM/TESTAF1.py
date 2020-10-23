@@ -31,7 +31,10 @@ class Animal:
             self.store = 300
         else:
             self.store = 400
-
+            
+    def __str__(self):
+        return f"y={self.y}, x={self.x}, store={self.store}"
+    
     def dist_animals(self, animal):
         return (((self.y - animal.y)**2) + ((self.x - animal.x)**2))**0.5
 
@@ -46,7 +49,6 @@ class Animal:
             self.x = 2
 
     def move(self):
-
         fs = 10
         ms = 5
         ss = 1
@@ -82,14 +84,20 @@ class Animal:
                     
         self.boundary_conditons()
     
-    def __str__(self):
-        return f"y={self.y}, x={self.x}, store={self.store}"
-    
     def run_to_closest_animal(self, closest_animal):
-        # Works
+        # This algorithm should be improved!
+        # Here no energy is lost while running!
+        # So can add some energy loss.
         self.y = (int((self.y + closest_animal.y)/2))
         self.x = (int((self.x + closest_animal.x)/2))
         self.boundary_conditons() # Check boundary conditions.
+    
+    def breed_cost(self, animal):
+        # Breeding (successful/failed) costs energy and
+        # the new store value of both sheep will be the
+        # half of average of both sheep. This is same
+        # for wolves.
+        return ((self.store + animal.store)/2)/2
     
 class Sheep(Animal):
 
@@ -110,6 +118,8 @@ class Sheep(Animal):
 class Wolf(Animal):
     
     def eat(self, cs):
+        # Wolf eats 4/5 of the sheep as can't eat everything!
+        # The rest of the 1/5 is returned to the environment.
         self.store += (cs.store*(4/5)) # Wolf eats 4/5
         env_rcv = (cs.store*(1/5)) # Environment received 1/5
         self.environment[self.y][self.x] += env_rcv 

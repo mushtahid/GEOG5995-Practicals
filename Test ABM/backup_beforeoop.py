@@ -167,7 +167,7 @@ def update(frame_number):
                   f"(if energy allows: find CS to move closer+eat "
                   f"OR breed/share) "
                   f"OR (move/eat normally if NO CS or low energy).")
-            min_dist = proximity*0.5 # most prob not needed. will see later. #############
+            # min_dist = proximity*0.5 # most prob not needed. will see later. #############
             breed = False # To check if the sheep bred successfully.
             fail_breed = False # To check if breeding failed.
             share = False # To check if resources were shared.
@@ -589,7 +589,7 @@ def update(frame_number):
                             fail_breed = True # Set fail_breed as True
                             print(f"------> Fail Breeding = {fail_breed}")
                             print(f"_____________ {wolf_count}-Wolf ({i}) "
-                                  f"after fail breeding with "
+                                  f"after FAILED BREEDING with "
                                   f"CW {wolf2_count}-Wolf ({j})")
                         
                         # Current wolf attempted breeding (successfully or 
