@@ -19,10 +19,11 @@ random.seed(10) # Uncomment to debug the model
 import csv # To read and write data
 import requests # To scrape web data
 import bs4 # To scrape web data
+import time # To calculate time
 
 # Print out the output in a text file
 # Better for debuggin the code as it can be searched easily using keywords!
-stdoutOrigin=sys.stdout 
+stdoutOrigin = sys.stdout 
 sys.stdout = open("log2.txt", "w")
 
 # Scrape web data to find x and y values for the sheep!
@@ -35,6 +36,7 @@ td_xs = soup.find_all(attrs={"class" : "x"})
 # print(td_xs)
 
 # Set up variables
+total_time = 0 #Set initial total process time as zero.
 environment = []
 animals = []
 sheep = []
@@ -50,6 +52,12 @@ no_animals = no_sheep + no_wolves # Delete
 # Set up plot size and axes
 fig = plt.figure(figsize=(7, 7))
 ax = fig.add_axes([0, 0, 1, 1])
+
+# Store related variables
+total_sheep_store = 0.0 # For calculating the toal sheep store as float.
+t_sheep_store_list = [] # For use in writing the total sheep store in a file.
+total_wolves_store = 0.0 # For calculating the toal wovles store as float.
+t_wolves_store_list = [] # For use in writing the total wolves store in a file.
 
 # Read environment data from a text file.
 with open('in.txt', newline='') as f:
@@ -79,11 +87,13 @@ print('Initial number of  wolves:', len(wolves))
         
 # Set up update/frames for animation
 def update(frame_number):
+    # Start the timer
+    start = time.process_time()
     fig.clear() # Clear the figure from previous iteration!
     global it_no
     it_no += 1
     print('') # Add a space between two iteration printouts!
-    print(f"*************** ITERATION NUMBER {it_no} ************")
+    print(f"*************** ITERATION NUMBER {it_no} BEGINS ************")
     
     # Randomly shuffle the order of initialisation for the animals
     # at each iteration so that everyone gets a fair shot at 
@@ -640,7 +650,7 @@ def update(frame_number):
                             # The current wolf will also move after fighting
                             # based on move method.
                             i.move()
-                            print(f"------> {wolf_count}-Wolf ({i}) lost+moved"
+                            print(f"------>{wolf_count}-Wolf ({i}) lost+moved"
                                   f" after fighting with CW "
                                   f"{wolf2_count}-Wolf ({j})")
                             
@@ -702,6 +712,20 @@ def update(frame_number):
                   f"normal moving.")
             print(f"....e3_______ {wolf_count}-Wolf moved normally_______")
     print('________________Wolf Cycle Ends_________________')
+
+    print('') # Add a blank space.
+    # End timing calculation
+    end = time.process_time() 
+    # Print out the process time for each iteration:
+    print(f"Time to process iteration number: {it_no} is "
+          f"{end - start} seconds.")
+    # Calculate the total process time for the model. The print function
+    # for this is at the end.
+    global total_time
+    for i in range(no_iterations):
+            total_time += end-start
+    print('')  # Add blank space.  
+    print(f"*************** ITERATION NUMBER {it_no} ENDS ************")
     
     # Display environment, wolves and sheep!    
     plt.ylim(0, len(environment))
@@ -727,8 +751,10 @@ def gen_function(b = no_iterations):
         
 # Set up run function for use with tkinter GUI
 def run():
+    # animation = matplotlib.animation.FuncAnimation(fig, update,\
+    #frames=gen_function, interval=100, repeat=False, save_count=no_iterations)
     animation = matplotlib.animation.FuncAnimation(fig, update,\
-                frames=gen_function, interval=100, repeat=False, save_count=no_iterations)
+      frames=gen_function, repeat=False, save_count=no_iterations)
     # Save animation not working. ffmepg not found! had to install!
     # Writer = matplotlib.animation.writers['ffmpeg']
     # writer = Writer(fps=10, metadata=dict(artist='Me'), bitrate=1800)
@@ -752,6 +778,43 @@ menu_bar.add_cascade(label="Menu", menu=model_menu)
 model_menu.add_command(label="Run ABM Model", command=run)
 tkinter.mainloop()
 
+# Write finished environment to a file:
+with open('out.txt', 'w', newline='') as f2:     
+   env_writer = csv.writer(f2)     
+   for row in environment:         
+        env_writer.writerow(row)
+
+# Total store value of all sheep (https://bit.ly/3iMH5VW)
+for i in range(len(sheep)):
+        total_sheep_store += sheep[i].store
+        # print(total_sheep_store)
+# Transfer total_sheep_store to a t_sheep_store_list to be written in csv file
+t_sheep_store_list.append(total_sheep_store) 
+# print(t_sheep_store_list)
+# Write the t_sheep_store_list in a csv file
+with open('total_sheep_store.txt', 'a', newline='') as f3:     
+    store_writer = csv.writer(f3, delimiter=' ')     
+    store_writer.writerow(t_sheep_store_list)
+    
+# Total store value of all wolves
+for i in range(len(wolves)):
+        total_wolves_store += wolves[i].store
+        # print(total_wolves_store)
+# Transfer total_wolves_store to a t_wolves_store_list to be written 
+# in csv file
+t_wolves_store_list.append(total_wolves_store) 
+# print(t_wolves_store_list)
+# Write the t_wolves_store_list in a csv file
+with open('total_wolves_store.txt', 'a', newline='') as f3:     
+    store_writer = csv.writer(f3, delimiter=' ')     
+    store_writer.writerow(t_wolves_store_list)
+    
+print('') #Add a blank space    
+print(f"The model has run for {it_no} iterations,")
+print(f"With {len(sheep)} sheep (total store: {total_sheep_store}),")
+print(f"And {len(wolves)} wolves (total store: {total_wolves_store}),")
+print(f"And a total process time of {total_time} seconds.")
+
 # Close the prinout to log file!
 sys.stdout.close()
-sys.stdout=stdoutOrigin
+stdoutOrigin = sys.stdout 

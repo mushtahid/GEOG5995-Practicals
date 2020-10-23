@@ -172,7 +172,7 @@ def gen_function():
     while (a < num_of_iterations) & (carry_on):
         yield a # Returns control and waits next call
         a = a + 1
-        print(f"***Iteration no {a} \u2191 ***") # Uncomment to show iteration number
+        print(f"***Iteration no {a} above ***") # Uncomment to show iteration number
 
 def run():
     animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False)

@@ -1,7 +1,7 @@
 Initial number of  sheep:  15
 Initial number of  wolves: 5
 
-*************** ITERATION NUMBER 0 ************
+*************** ITERATION NUMBER 0 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=52, x=40, store=400) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -326,7 +326,10 @@ ___________ 1-Wolf moved closer to CS___________
 ___________ 4-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 1 ************
+
+*************** ITERATION NUMBER 0 ENDS ************
+
+*************** ITERATION NUMBER 1 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=68, x=31, store=405) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -646,7 +649,10 @@ ___________ 2-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 2 ************
+
+*************** ITERATION NUMBER 1 ENDS ************
+
+*************** ITERATION NUMBER 2 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=73, x=25, store=415) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -974,7 +980,10 @@ ___________ 2-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 3 ************
+
+*************** ITERATION NUMBER 2 ENDS ************
+
+*************** ITERATION NUMBER 3 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=6, x=60, store=425) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -1300,7 +1309,10 @@ ___________ 1-Wolf moved closer to CS___________
 ___________ 4-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 4 ************
+
+*************** ITERATION NUMBER 3 ENDS ************
+
+*************** ITERATION NUMBER 4 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=46, x=36, store=435) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -1622,7 +1634,10 @@ ___________ 2-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 5 ************
+
+*************** ITERATION NUMBER 4 ENDS ************
+
+*************** ITERATION NUMBER 5 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=23, x=29, store=150) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -1933,7 +1948,10 @@ ___________ 1-Wolf moved closer to CS___________
 ___________ Eaten=True. 4-Wolf ate CS 2-Sheep__________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 6 ************
+
+*************** ITERATION NUMBER 5 ENDS ************
+
+*************** ITERATION NUMBER 6 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=1, x=69, store=445) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -2219,7 +2237,10 @@ ___________ 3-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 7 ************
+
+*************** ITERATION NUMBER 6 ENDS ************
+
+*************** ITERATION NUMBER 7 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=70, x=5, store=245) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -2502,7 +2523,10 @@ ___________ 0-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 8 ************
+
+*************** ITERATION NUMBER 7 ENDS ************
+
+*************** ITERATION NUMBER 8 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=7, x=65, store=460) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -2786,7 +2810,10 @@ ___________ 2-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 9 ************
+
+*************** ITERATION NUMBER 8 ENDS ************
+
+*************** ITERATION NUMBER 9 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=12, x=70, store=465) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -3068,7 +3095,10 @@ ___________ 0-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 10 ************
+
+*************** ITERATION NUMBER 9 ENDS ************
+
+*************** ITERATION NUMBER 10 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=32, x=43, store=175) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -3356,7 +3386,10 @@ _______ 1-Wolf moved closer CW+_______
 ___________ 4-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 11 ************
+
+*************** ITERATION NUMBER 10 ENDS ************
+
+*************** ITERATION NUMBER 11 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=22, x=39, store=480) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -3645,7 +3678,10 @@ ___________ 3-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 12 ************
+
+*************** ITERATION NUMBER 11 ENDS ************
+
+*************** ITERATION NUMBER 12 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=98, x=67, store=490) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -3950,7 +3986,10 @@ ___________ 2-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 13 ************
+
+*************** ITERATION NUMBER 12 ENDS ************
+
+*************** ITERATION NUMBER 13 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=17, x=39, store=510) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -4247,7 +4286,10 @@ ___________ 3-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 14 ************
+
+*************** ITERATION NUMBER 13 ENDS ************
+
+*************** ITERATION NUMBER 14 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=111, x=10, store=295) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -4530,7 +4572,10 @@ ___________ 2-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 15 ************
+
+*************** ITERATION NUMBER 14 ENDS ************
+
+*************** ITERATION NUMBER 15 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=51, x=63, store=510) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -4815,7 +4860,10 @@ ___________ 2-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 16 ************
+
+*************** ITERATION NUMBER 15 ENDS ************
+
+*************** ITERATION NUMBER 16 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=67, x=41, store=520) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -5098,7 +5146,10 @@ ___________ 3-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 17 ************
+
+*************** ITERATION NUMBER 16 ENDS ************
+
+*************** ITERATION NUMBER 17 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=12, x=68, store=515) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -5391,7 +5442,10 @@ ___________ 1-Wolf moved closer to CS___________
 ___________ 4-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 18 ************
+
+*************** ITERATION NUMBER 17 ENDS ************
+
+*************** ITERATION NUMBER 18 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=65, x=2, store=325) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -5683,7 +5737,10 @@ ___________ 3-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 19 ************
+
+*************** ITERATION NUMBER 18 ENDS ************
+
+*************** ITERATION NUMBER 19 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=39, x=38, store=230) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -5974,7 +6031,10 @@ ___________ 1-Wolf moved closer to CS___________
 ___________ 4-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 20 ************
+
+*************** ITERATION NUMBER 19 ENDS ************
+
+*************** ITERATION NUMBER 20 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=42, x=68, store=555) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -6245,7 +6305,10 @@ ___________ Eaten=True. 3-Wolf ate CS 1-Sheep__________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 21 ************
+
+*************** ITERATION NUMBER 20 ENDS ************
+
+*************** ITERATION NUMBER 21 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=76, x=3, store=345) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -6519,7 +6582,10 @@ ________________Wolf Cycle Begins________________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 22 ************
+
+*************** ITERATION NUMBER 21 ENDS ************
+
+*************** ITERATION NUMBER 22 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=16, x=52, store=275) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -6775,7 +6841,10 @@ _______ 3-Wolf moved closer CW+_______
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 23 ************
+
+*************** ITERATION NUMBER 22 ENDS ************
+
+*************** ITERATION NUMBER 23 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=70, x=38, store=575) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -7023,7 +7092,10 @@ ________________Wolf Cycle Begins________________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 24 ************
+
+*************** ITERATION NUMBER 23 ENDS ************
+
+*************** ITERATION NUMBER 24 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=67, x=12, store=575) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -7289,7 +7361,10 @@ _______ 1-Wolf moved closer CW+_______
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 25 ************
+
+*************** ITERATION NUMBER 24 ENDS ************
+
+*************** ITERATION NUMBER 25 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=25, x=54, store=275) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -7540,7 +7615,10 @@ _______ 3-Wolf moved closer CW+_______
 .... el2 _______  4-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 26 ************
+
+*************** ITERATION NUMBER 25 ENDS ************
+
+*************** ITERATION NUMBER 26 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=84, x=51, store=585) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -7793,7 +7871,10 @@ ________________Wolf Cycle Begins________________
 ....e3_______ 4-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 27 ************
+
+*************** ITERATION NUMBER 26 ENDS ************
+
+*************** ITERATION NUMBER 27 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=54, x=5, store=385) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -8074,7 +8155,10 @@ ________________Wolf Cycle Begins________________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 28 ************
+
+*************** ITERATION NUMBER 27 ENDS ************
+
+*************** ITERATION NUMBER 28 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=135, x=7, store=395) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -8372,7 +8456,10 @@ ___________ 0-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 29 ************
+
+*************** ITERATION NUMBER 28 ENDS ************
+
+*************** ITERATION NUMBER 29 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=18, x=45, store=640) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -8681,7 +8768,10 @@ _______ 2-Wolf moved closer CW+_______
 .... el2 _______  4-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 30 ************
+
+*************** ITERATION NUMBER 29 ENDS ************
+
+*************** ITERATION NUMBER 30 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=22, x=54, store=492.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -8972,7 +9062,10 @@ ___________ 1-Wolf moved closer to CS___________
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 31 ************
+
+*************** ITERATION NUMBER 30 ENDS ************
+
+*************** ITERATION NUMBER 31 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=3, x=81, store=600) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -9265,7 +9358,10 @@ ___________ 1-Wolf moved closer to CS___________
 ....e3_______ 4-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 32 ************
+
+*************** ITERATION NUMBER 31 ENDS ************
+
+*************** ITERATION NUMBER 32 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=22, x=54, store=512.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -9548,7 +9644,10 @@ ___________ 2-Wolf moved closer to CS___________
 .... el2 _______  4-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 33 ************
+
+*************** ITERATION NUMBER 32 ENDS ************
+
+*************** ITERATION NUMBER 33 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=90, x=39, store=665) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -9844,7 +9943,10 @@ ___________ 1-Wolf moved closer to CS___________
 ___________ 4-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 34 ************
+
+*************** ITERATION NUMBER 33 ENDS ************
+
+*************** ITERATION NUMBER 34 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=1, x=72, store=600) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -10140,7 +10242,10 @@ ___________ 3-Wolf moved closer to CS___________
 ___________ Eaten=True. 4-Wolf ate CS 0-Sheep__________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 35 ************
+
+*************** ITERATION NUMBER 34 ENDS ************
+
+*************** ITERATION NUMBER 35 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=30, x=30, store=440) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -10395,7 +10500,10 @@ _______ 2-Wolf moved closer CW+_______
 ....el1___________ 4-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 36 ************
+
+*************** ITERATION NUMBER 35 ENDS ************
+
+*************** ITERATION NUMBER 36 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=22, x=52, store=552.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -10676,7 +10784,10 @@ _______ Breed=True, Failed Breed=False, Fought=False for 3-Wolf __________
 ___________ 4-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 37 ************
+
+*************** ITERATION NUMBER 36 ENDS ************
+
+*************** ITERATION NUMBER 37 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=99, x=50, store=342.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -11016,7 +11127,10 @@ ___________ 4-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 38 ************
+
+*************** ITERATION NUMBER 37 ENDS ************
+
+*************** ITERATION NUMBER 38 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=106, x=45, store=435) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -11331,7 +11445,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 39 ************
+
+*************** ITERATION NUMBER 38 ENDS ************
+
+*************** ITERATION NUMBER 39 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=101, x=40, store=440) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -11675,7 +11792,10 @@ ___________ 4-Wolf moved closer to CS___________
 .... el2 _______  5-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 40 ************
+
+*************** ITERATION NUMBER 39 ENDS ************
+
+*************** ITERATION NUMBER 40 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=28, x=48, store=355) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -11997,7 +12117,10 @@ ___________ 4-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 41 ************
+
+*************** ITERATION NUMBER 40 ENDS ************
+
+*************** ITERATION NUMBER 41 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=48, x=2, store=595.0) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -12319,7 +12442,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 42 ************
+
+*************** ITERATION NUMBER 41 ENDS ************
+
+*************** ITERATION NUMBER 42 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=49, x=3, store=605.0) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -12681,7 +12807,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....e3_______ 5-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 43 ************
+
+*************** ITERATION NUMBER 42 ENDS ************
+
+*************** ITERATION NUMBER 43 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=23, x=12, store=587.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -13017,7 +13146,10 @@ ___________ 4-Wolf moved closer to CS___________
 .... el2 _______  5-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 44 ************
+
+*************** ITERATION NUMBER 43 ENDS ************
+
+*************** ITERATION NUMBER 44 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=55, x=25, store=582.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -13206,7 +13338,7 @@ ________________Wolf Cycle Begins________________
 ----->2.A. CW 3-Wolf has < than 500 store
 ------>0-Wolf (y=31, x=46, store=655.25) will FIGHT CW 3-Wolf (y=33, x=46, store=100) & move
 ------>2.A.ii. Random < 0.5. So 0-Wolf will loose 50.0% store to CW 3-Wolf
-------> 0-Wolf (y=26, x=41, store=322.625) lost+moved after fighting with CW 3-Wolf (y=33, x=46, store=427.625)
+------>0-Wolf (y=26, x=41, store=322.625) lost+moved after fighting with CW 3-Wolf (y=33, x=46, store=427.625)
 ------> Fight = True
 _____________ 0-Wolf Fought-(2) with CW 3-Wolf ____________
 _______ Breed=False, Failed Breed=False, Fought=True for 0-Wolf __________
@@ -13299,7 +13431,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 45 ************
+
+*************** ITERATION NUMBER 44 ENDS ************
+
+*************** ITERATION NUMBER 45 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=90, x=19, store=525) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -13632,7 +13767,10 @@ ___________ 4-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 46 ************
+
+*************** ITERATION NUMBER 45 ENDS ************
+
+*************** ITERATION NUMBER 46 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=46, x=4, store=309.0625) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -13976,7 +14114,10 @@ ___________ 3-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 47 ************
+
+*************** ITERATION NUMBER 46 ENDS ************
+
+*************** ITERATION NUMBER 47 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=119, x=48, store=412.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -14301,7 +14442,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....e3_______ 5-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 48 ************
+
+*************** ITERATION NUMBER 47 ENDS ************
+
+*************** ITERATION NUMBER 48 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=90, x=37, store=520) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -14638,7 +14782,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 49 ************
+
+*************** ITERATION NUMBER 48 ENDS ************
+
+*************** ITERATION NUMBER 49 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=46, x=3, store=349.0625) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -14972,7 +15119,10 @@ ___________ 4-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 50 ************
+
+*************** ITERATION NUMBER 49 ENDS ************
+
+*************** ITERATION NUMBER 50 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=60, x=2, store=651.25) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -15286,7 +15436,10 @@ ___________ 4-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 51 ************
+
+*************** ITERATION NUMBER 50 ENDS ************
+
+*************** ITERATION NUMBER 51 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=37, x=1, store=354.0625) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -15579,7 +15732,10 @@ ___________ 3-Wolf moved closer to CS___________
 .... el2 _______  5-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 52 ************
+
+*************** ITERATION NUMBER 51 ENDS ************
+
+*************** ITERATION NUMBER 52 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=42, x=6, store=359.0625) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -15859,7 +16015,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 53 ************
+
+*************** ITERATION NUMBER 52 ENDS ************
+
+*************** ITERATION NUMBER 53 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=94, x=2, store=740) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -16144,7 +16303,10 @@ ___________ 1-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 54 ************
+
+*************** ITERATION NUMBER 53 ENDS ************
+
+*************** ITERATION NUMBER 54 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=161, x=1, store=585) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -16415,7 +16577,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 55 ************
+
+*************** ITERATION NUMBER 54 ENDS ************
+
+*************** ITERATION NUMBER 55 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=10, x=5, store=373.75) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -16686,7 +16851,10 @@ ___________ 4-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 56 ************
+
+*************** ITERATION NUMBER 55 ENDS ************
+
+*************** ITERATION NUMBER 56 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=115, x=14, store=585) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -16953,7 +17121,10 @@ _______ Breed=False, Failed Breed=False, Fought=True for 1-Wolf __________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 57 ************
+
+*************** ITERATION NUMBER 56 ENDS ************
+
+*************** ITERATION NUMBER 57 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=110, x=9, store=590) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -17244,7 +17415,10 @@ ___________ 2-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 58 ************
+
+*************** ITERATION NUMBER 57 ENDS ************
+
+*************** ITERATION NUMBER 58 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=132, x=57, store=487.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -17520,7 +17694,10 @@ ___________ 3-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 59 ************
+
+*************** ITERATION NUMBER 58 ENDS ************
+
+*************** ITERATION NUMBER 59 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=23, x=15, store=409.0625) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -17799,7 +17976,10 @@ ___________ 4-Wolf moved closer to CS___________
 .... el2 _______  5-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 60 ************
+
+*************** ITERATION NUMBER 59 ENDS ************
+
+*************** ITERATION NUMBER 60 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=113, x=2, store=750) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -18046,7 +18226,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....e3_______ 5-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 61 ************
+
+*************** ITERATION NUMBER 60 ENDS ************
+
+*************** ITERATION NUMBER 61 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=8, x=1, store=418.75) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -18284,7 +18467,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 62 ************
+
+*************** ITERATION NUMBER 61 ENDS ************
+
+*************** ITERATION NUMBER 62 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=142, x=1, store=440) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -18536,7 +18722,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....e3_______ 5-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 63 ************
+
+*************** ITERATION NUMBER 62 ENDS ************
+
+*************** ITERATION NUMBER 63 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=147, x=2, store=445) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -18794,7 +18983,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....e3_______ 5-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 64 ************
+
+*************** ITERATION NUMBER 63 ENDS ************
+
+*************** ITERATION NUMBER 64 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=91, x=64, store=625) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -19030,7 +19222,10 @@ _______ 0-Wolf moved closer CW+_______
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 65 ************
+
+*************** ITERATION NUMBER 64 ENDS ************
+
+*************** ITERATION NUMBER 65 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=8, x=11, store=448.75) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -19285,7 +19480,10 @@ ___________ 3-Wolf moved closer to CS___________
 ....e3_______ 5-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 66 ************
+
+*************** ITERATION NUMBER 65 ENDS ************
+
+*************** ITERATION NUMBER 66 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=131, x=55, store=537.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -19547,7 +19745,10 @@ _______ 1-Wolf moved closer CW+_______
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 67 ************
+
+*************** ITERATION NUMBER 66 ENDS ************
+
+*************** ITERATION NUMBER 67 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=135, x=13, store=327.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -19802,7 +20003,10 @@ _______ 2-Wolf moved closer CW+_______
 .... el2 _______  5-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 68 ************
+
+*************** ITERATION NUMBER 67 ENDS ************
+
+*************** ITERATION NUMBER 68 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=154, x=25, store=415) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -20044,7 +20248,10 @@ _______ 1-Wolf moved closer CW+_______
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 69 ************
+
+*************** ITERATION NUMBER 68 ENDS ************
+
+*************** ITERATION NUMBER 69 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=159, x=12, store=485) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -20301,7 +20508,10 @@ _______ 0-Wolf moved closer CW+_______
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 70 ************
+
+*************** ITERATION NUMBER 69 ENDS ************
+
+*************** ITERATION NUMBER 70 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=17, x=10, store=449.0625) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -20555,7 +20765,10 @@ _______ 2-Wolf moved closer CW+_______
 .... el2 _______  5-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 71 ************
+
+*************** ITERATION NUMBER 70 ENDS ************
+
+*************** ITERATION NUMBER 71 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=63, x=83, store=577.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -20800,7 +21013,10 @@ _______ 3-Wolf moved closer CW+_______
 ....e3_______ 5-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 72 ************
+
+*************** ITERATION NUMBER 71 ENDS ************
+
+*************** ITERATION NUMBER 72 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=174, x=17, store=500) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -21051,7 +21267,10 @@ ________________Wolf Cycle Begins________________
 ....e3_______ 5-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 73 ************
+
+*************** ITERATION NUMBER 72 ENDS ************
+
+*************** ITERATION NUMBER 73 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=7, x=20, store=504.0625) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -21292,7 +21511,10 @@ _______ 4-Wolf moved closer CW+_______
 ....e3_______ 5-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 74 ************
+
+*************** ITERATION NUMBER 73 ENDS ************
+
+*************** ITERATION NUMBER 74 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=3, x=10, store=503.75) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -21547,7 +21769,10 @@ ________________Wolf Cycle Begins________________
 ....e3_______ 5-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 75 ************
+
+*************** ITERATION NUMBER 74 ENDS ************
+
+*************** ITERATION NUMBER 75 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=136, x=70, store=592.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -21824,7 +22049,10 @@ ___________ 1-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 76 ************
+
+*************** ITERATION NUMBER 75 ENDS ************
+
+*************** ITERATION NUMBER 76 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=124, x=111, store=675) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -22107,7 +22335,10 @@ ___________ 2-Wolf moved closer to CS___________
 .... el2 _______  5-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 77 ************
+
+*************** ITERATION NUMBER 76 ENDS ************
+
+*************** ITERATION NUMBER 77 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=69, x=79, store=622.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -22392,7 +22623,10 @@ _______ Breed=False, Failed Breed=True, Fought=False for 3-Wolf __________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 78 ************
+
+*************** ITERATION NUMBER 77 ENDS ************
+
+*************** ITERATION NUMBER 78 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=135, x=69, store=622.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -22672,7 +22906,10 @@ ___________ 1-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 79 ************
+
+*************** ITERATION NUMBER 78 ENDS ************
+
+*************** ITERATION NUMBER 79 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=152, x=23, store=417.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -22953,7 +23190,10 @@ ___________ 3-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 80 ************
+
+*************** ITERATION NUMBER 79 ENDS ************
+
+*************** ITERATION NUMBER 80 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=151, x=24, store=427.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -23237,7 +23477,10 @@ ___________ 2-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 81 ************
+
+*************** ITERATION NUMBER 80 ENDS ************
+
+*************** ITERATION NUMBER 81 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=5, x=14, store=569.0625) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -23513,7 +23756,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 82 ************
+
+*************** ITERATION NUMBER 81 ENDS ************
+
+*************** ITERATION NUMBER 82 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=163, x=2, store=407.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -23789,7 +24035,10 @@ ___________ 4-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 83 ************
+
+*************** ITERATION NUMBER 82 ENDS ************
+
+*************** ITERATION NUMBER 83 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=158, x=7, store=412.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -24058,7 +24307,10 @@ ___________ 3-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 84 ************
+
+*************** ITERATION NUMBER 83 ENDS ************
+
+*************** ITERATION NUMBER 84 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=157, x=77, store=662.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -24332,7 +24584,10 @@ ___________ 3-Wolf moved closer to CS___________
 ___________ Eaten=True. 5-Wolf ate CS 3-Sheep__________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 85 ************
+
+*************** ITERATION NUMBER 84 ENDS ************
+
+*************** ITERATION NUMBER 85 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=156, x=17, store=472.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -24566,7 +24821,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 86 ************
+
+*************** ITERATION NUMBER 85 ENDS ************
+
+*************** ITERATION NUMBER 86 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=2, x=36, store=569.0625) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -24784,7 +25042,10 @@ ___________ 1-Wolf moved closer to CS___________
 ....e3_______ 5-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 87 ************
+
+*************** ITERATION NUMBER 86 ENDS ************
+
+*************** ITERATION NUMBER 87 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=2, x=43, store=569.0625) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -25016,7 +25277,10 @@ ___________ 2-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 88 ************
+
+*************** ITERATION NUMBER 87 ENDS ************
+
+*************** ITERATION NUMBER 88 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=165, x=1, store=447.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -25225,7 +25489,10 @@ ___________ 0-Wolf moved closer to CS___________
 .... el2 _______  5-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 89 ************
+
+*************** ITERATION NUMBER 88 ENDS ************
+
+*************** ITERATION NUMBER 89 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=172, x=15, store=620) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -25455,7 +25722,10 @@ ___________ 3-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 90 ************
+
+*************** ITERATION NUMBER 89 ENDS ************
+
+*************** ITERATION NUMBER 90 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=176, x=3, store=457.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -25681,7 +25951,10 @@ ___________ 4-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 91 ************
+
+*************** ITERATION NUMBER 90 ENDS ************
+
+*************** ITERATION NUMBER 91 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=2, x=52, store=588.75) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -25926,7 +26199,10 @@ ___________ 3-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 92 ************
+
+*************** ITERATION NUMBER 91 ENDS ************
+
+*************** ITERATION NUMBER 92 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=183, x=1, store=467.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -26143,7 +26419,10 @@ ___________ 2-Wolf moved closer to CS___________
 .... el2 _______  5-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 93 ************
+
+*************** ITERATION NUMBER 92 ENDS ************
+
+*************** ITERATION NUMBER 93 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=4, x=52, store=608.75) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -26365,7 +26644,10 @@ ___________ 4-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 94 ************
+
+*************** ITERATION NUMBER 93 ENDS ************
+
+*************** ITERATION NUMBER 94 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=3, x=43, store=618.75) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -26602,7 +26884,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 95 ************
+
+*************** ITERATION NUMBER 94 ENDS ************
+
+*************** ITERATION NUMBER 95 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=83, x=115, store=642.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -26808,7 +27093,10 @@ ___________ 4-Wolf moved closer to CS___________
 ....e3_______ 5-Wolf moved normally_______
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 96 ************
+
+*************** ITERATION NUMBER 95 ENDS ************
+
+*************** ITERATION NUMBER 96 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=84, x=117, store=642.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -26979,7 +27267,10 @@ ___________ 4-Wolf moved closer to CS___________
 .... el2 _______  5-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 97 ************
+
+*************** ITERATION NUMBER 96 ENDS ************
+
+*************** ITERATION NUMBER 97 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=199, x=26, store=542.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -27151,7 +27442,10 @@ ___________ 2-Wolf moved closer to CS___________
 .... el2 _______  5-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 98 ************
+
+*************** ITERATION NUMBER 97 ENDS ************
+
+*************** ITERATION NUMBER 98 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=226, x=2, store=467.5) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -27327,7 +27621,10 @@ ___________ 4-Wolf moved closer to CS___________
 .... el2 _______  5-Wolf moved normally _______ 
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 99 ************
+
+*************** ITERATION NUMBER 98 ENDS ************
+
+*************** ITERATION NUMBER 99 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=210, x=29, store=590) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -27513,7 +27810,10 @@ ___________ 3-Wolf moved closer to CS___________
 ___________ 5-Wolf moved closer to CS___________
 ________________Wolf Cycle Ends_________________
 
-*************** ITERATION NUMBER 100 ************
+
+*************** ITERATION NUMBER 99 ENDS ************
+
+*************** ITERATION NUMBER 100 BEGINS ************
 
 -> ----- 0-Sheep initialised with (y=211, x=30, store=600) ------
 --> 0-Sheep looping with 0-Wolf.
@@ -27688,3 +27988,10 @@ ___________ 1-Wolf moved closer to CS___________
 -->else1 ends: 5-Wolf (y=267, x=173, store=100) after normal moving
 ....el1___________ 5-Wolf moved normally___________
 ________________Wolf Cycle Ends_________________
+
+
+*************** ITERATION NUMBER 100 ENDS ************
+
+The model has run for 100 iterations,
+With 7 sheep (total store: 3676.40625),
+And 6 wolves (total store: 4013.40625),
