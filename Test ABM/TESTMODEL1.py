@@ -48,145 +48,179 @@ ax = fig.add_axes([0, 0, 1, 1])
 # ax.set_autoscale_on(False) 
 
 # Modifiable variables!
-# Number of sheep
-n_sh = input('Enter number of sheep. (Or press enter to use default '\
-             'value 15): ')
-try:
-    no_sheep = int(n_sh)
-except:
+# Prompt if want to modify:
+modify = input("- Do you want to change the modifiable variable? Enter "\
+               "'y' (lowercase) if YES. You can still choose to run with "\
+               "default values for individual variables. If NO, enter any "\
+               "other value to run the model with default values: ")
+correct_y = "y"
+
+if modify == correct_y:    
+    # Number of sheep
+    n_sh = input('- Enter number of sheep. (Or press enter to use default'\
+                 ' value 15): ')
+    try:
+        no_sheep = int(n_sh)
+    except:
+        no_sheep = 15
+        print('Invalid characters/No number entered! Model will run with '\
+              '15 sheep.')
+    # Number of wovles 
+    n_wl = input('Enter number of wolves. (Or press enter to use default '\
+                 'value 5): ')
+    try:
+        no_wolves = int(n_wl)
+    except:
+        no_wolves = 5
+        print('Invalid characters/No number entered! Model will run with '\
+              '5 wolves.')
+        
+    # Input number of iterations
+    n_it = input('Enter number of iterations. (Or press enter to use '\
+                 'default value 100): ')
+    try:
+        no_iterations = int(n_it)
+    except:
+        no_iterations = 100 # Number of times the animation will run
+        print('Invalid characters/No number entered! Model will run with '\
+              'default of 100 iterations.') 
+        
+    # Input proximity
+    prox = input('Enter proximity value. Proximity refers to the range of '\
+                 'vision or distance within which WOLVES can observe and '\
+                 'notice other animals and determine the closest one. '\
+                 '(Or press enter to use default value 50): ')
+    try:
+        proximity = int(prox)
+    except:
+        proximity = 50 # the range of vision of the wolves
+        print('Invalid characters/No number entered! Model will run with '\
+              'default of wolf proximity of 50.')
+            
+    # Input the denometer for sheep minimum distance.
+    smd = input('Enter the sheep proximity denominator. By default, the '\
+                'proximity of sheep is half of that of wolves. '\
+                'i.e, proxmity/2. This is because sheep is a prey! '\
+                'You can change the denominator to alter the '\
+                'sheep proximity. (Or press enter to use default '\
+                'denominator value 2): ')
+    try:
+        smd_denometer = int(smd)
+    except:
+        smd_denometer = 2
+        print('Invalid characters/No number entered! Model will run with '\
+              'default sheep proximity denominator of 2.')
+            
+    # Input action_dist
+    actd = input('Enter the action distance within which the animals will '\
+                 'interact, such as breed, fight and so on. Same for sheep '\
+                 'and wolves. (Or press enter to use default value 5): ')
+    try:
+        action_dist = int(actd)
+    except:
+        action_dist = 5 # Proximity within which animals can interact,eg breed.
+        print('Invalid characters/No number entered! Model will run with '\
+              'default action distance of 5.') 
+    
+    # Input probability
+    prob = input('Enter sheep breeding probability. Probability represents '\
+                 'the chance of breeding for sheep, e.g., '\
+                 'if the probability>0.5, the sheep will breed '\
+                 'successfully, i.e., if random value>0.5. Otherwise '\
+                 'breeding attempt will fail. Note: for breeding to be '\
+                 'successfull, randome value hasto be MORE than the '\
+                 'probability value (random value>probability). '\
+                 'You can change it. (Or press enter to use default '\
+                 'value 0.5): ')
+    try:
+        probability = float(prob) # Need conditions to make it between 0 - 1.
+    except:
+        probability = 0.50 
+        print('Invalid characters/No number entered! Model will run with '\
+              'default sheep probability value of 0.5.')
+    
+    # Input probability for wolves
+    wolf_prob = input("The probability of breeding for wolves by default "\
+                 f"is the same as that of sheep probability: {probability}. "\
+                 "For wolves, this also represents the chance of winning a "\
+                 "fight with other wolves. It also determines fraction of "\
+                 "the losing wolf's store the winning wolf will win. "\
+                 "You can change it. Note: for breeding/fight "\
+                 "to be successfull, random value has to be MORE than "\
+                 "the probability value (i.e., random>probability). "\
+                 "You can chagne it. (Or press enter to use sheep "\
+                 f"probability value ({probability}): ")
+    try:
+        bf_e = float(wolf_prob) # Need conditions to make it between 0 - 1.
+    except:
+        bf_e = probability
+        print('Invalid characters/No number entered! Model will run with '\
+              'default wolf probability that is the same as sheep '\
+              f'probability: {probability}.')
+           
+    # Input the sheep minimum energy
+    sme = input("Sheep need a minimum energy/store to breed. "\
+                 "You can change it. (Or press enter to use default store "\
+                 "value 600): ")
+    try:
+        s_min_energy = int(sme)
+    except:
+        s_min_energy = 600 # Set minimum energy value for sheep to breed.
+        print('Invalid characters/No number entered! Model will run with '\
+              'default sheep minimum energy/store needed for action of 600.')
+    
+    # Input the wolf minimum energy
+    wme = input("Wolves also need a minimum energy/store to breed. "\
+                 "You can change it. (Or press enter to use default store "\
+                 "value 500): ")
+    try:
+        min_energy = int(wme)
+    except:
+        min_energy = 500 # Set wolves minimum store value for breeding.
+        print('Invalid characters/No number entered! Model will run with '\
+              'default wolf minimum energy/store needed for action of 500.')
+    
+    # Input the wolf high store multiplier
+    hstm = input("Wolves have the extra ability to increase their proximity "\
+                 "once they have a store value above a certain threshold, "\
+                 "for example, the default is double that of minimum "\
+                 "energy, i.e., if store>min_energy*2, then proximity "\
+                 "will also be doubled!. You can change this Multiplier. "\
+                 "(Or press enter to run with default multiplier of 2): ")
+    try:
+        high_store_mp = int(hstm)
+    except:
+        # Hight store multiplier: to increase the proximity of wolves if they 
+        # have a certain amount energy more than the minimum energy
+        high_store_mp = 2
+        print('Invalid characters/No number entered! Model will run with '\
+              'default multiplier value of 2.')
+else:
+    
     no_sheep = 15
-    print('Invalid characters/No number entered! Model will run with '\
-          '15 sheep.')
-        
-# Number of wovles 
-n_wl = input('Enter number of wolves. (Or press enter to use default '\
-             'value 5): ')
-try:
-    no_wolves = int(n_wl)
-except:
     no_wolves = 5
-    print('Invalid characters/No number entered! Model will run with '\
-          '5 wolves.')
-    
-# Input number of iterations
-n_it = input('Enter number of iterations. (Or press enter to use default '\
-             'value 100): ')
-try:
-    no_iterations = int(n_it)
-except:
-    no_iterations = 100 # Number of times the animation will run
-    print('Invalid characters/No number entered! Model will run with default'\
-          ' of 100 iterations.') 
-    
-# Input proximity
-prox = input('Enter proximity value. Proximity refers to the range of '\
-             'vision or distance within which WOLVES can observe and notice '\
-             'other animals and determine the closest one. '\
-             '(Or press enter to use default value 50): ')
-try:
-    proximity = int(prox)
-except:
-    proximity = 50 # the range of vision of the wolves
-    print('Invalid characters/No number entered! Model will run with default'\
-          ' of wolf proximity of 50.')
-        
-# Input the denometer for sheep minimum distance.
-smd = input('Enter the sheep proximity denominator. By default, the '\
-            'proximity of sheep is half of that of wolves. '\
-            'i.e, proxmity/2. This is because sheep is a prey! '\
-            'You can change the denominator to alter the '\
-            'sheep proximity. (Or press enter to use default denominator '\
-            'value 2): ')
-try:
-    smd_denometer = int(smd)
-except:
+    no_iterations = 100 
+    proximity = 50
     smd_denometer = 2
-    print('Invalid characters/No number entered! Model will run with default'\
-          ' sheep proximity denominator of 2.')
-        
-# Input action_dist
-actd = input('Enter the action distance within which the animals will '\
-             'interact, such as breed, fight and so on. Same for sheep and '\
-             'wolves. (Or press enter to use default value 5): ')
-try:
-    action_dist = int(actd)
-except:
-    action_dist = 5 # Proximity within which animals can interact, eg breed.
-    print('Invalid characters/No number entered! Model will run with default'\
-          ' action distance of 5.') 
-
-# Input probability
-prob = input('Enter sheep breeding probability. Probability represents the '\
-             'chance of breeding for sheep, e.g., '\
-             'if the probability>0.5, the sheep will breed successfully, '\
-             'i.e., if random value>0.5. Otherwise breeding attempt will '\
-             'fail. Note: for breeding to be successfull, randome value has '\
-             'to be MORE than the probability value '\
-             ' (random value>probability). '\
-             'You can change it. (Or press enter to use default value 0.5): ')
-try:
-    probability = float(prob) # Need conditions to make it between 0 - 1.
-except:
-    probability = 0.50 
-    print('Invalid characters/No number entered! Model will run with default'\
-          ' sheep probability value of 0.5.')
-
-# Input probability for wolves
-wolf_prob = input("The probability of breeding for wolves by default "\
-             f"is the same as that of sheep probability: {probability}. "\
-             "For wolves, this also represents the chance of winning a "\
-             "fight with other wolves. It also determines fraction of "\
-             "the losing wolf's store the winning wolf will win. "\
-             "You can change it. Note: for breeding/fight "\
-             "to be successfull, random value has to be MORE than "\
-             "the probability value (i.e., random>probability). "\
-             "You can chagne it. (Or press enter to use sheep "\
-             f"probability value ({probability}): ")
-try:
-    bf_e = float(wolf_prob) # Need conditions to make it between 0 - 1.
-except:
+    action_dist = 5 
+    probability = 0.50
     bf_e = probability
-    print('Invalid characters/No number entered! Model will run with default'\
-          ' wolf probability that is the same as sheep probability: '\
-          f'{probability}.')
-       
-# Input the sheep minimum energy
-sme = input("Sheep need a minimum energy/store to breed. "\
-             "You can change it. (Or press enter to use default store "\
-             "value 600): ")
-try:
-    s_min_energy = int(sme)
-except:
-    s_min_energy = 600 # Set minimum energy value for sheep to breed.
-    print('Invalid characters/No number entered! Model will run with default'\
-          ' sheep minimum energy/store needed for action of 600.')
-
-# Input the wolf minimum energy
-wme = input("Wolves also need a minimum energy/store to breed. "\
-             "You can change it. (Or press enter to use default store "\
-             "value 500): ")
-try:
-    min_energy = int(wme)
-except:
-    min_energy = 500 # Set wolves minimum store value for breeding.
-    print('Invalid characters/No number entered! Model will run with default'\
-          ' wolf minimum energy/store needed for action of 500.')
-
-# Input the wolf high store multiplier
-hstm = input("Wolves have the extra ability to increase their proximity once"\
-             " they have a store value above a certain threshold, for example"\
-             ", the default is double that of minimum energy, i.e., if "\
-             " store>min_energy*2, then proximity will also be "\
-             " doubled!. You can change this Multiplier. (Or press enter "\
-             "to run with default multiplier of 2): ")
-try:
-    high_store_mp = int(hstm)
-except:
-    # Hight store multiplier: to increase the proximity of wolves if they 
-    # have a certain amount energy more than the minimum energy
+    s_min_energy = 600 
+    min_energy = 500
     high_store_mp = 2
-    print('Invalid characters/No number entered! Model will run with default'\
-          ' multiplier value of 2.')
+    print('Model will run with default variables')
+    print(f"Number of sheep: {no_sheep}")
+    print(f"Number of wolves: {no_wolves}")
+    print(f"Number of iterations: {no_iterations}")
+    print(f"Wolf proximity: {proximity}")
+    print(f"Sheep proximity denominator: {smd_denometer} and so sheep "\
+          f"proximity: {proximity/smd_denometer}")
+    print(f"Action distance: {action_dist}")
+    print(f"Sheep probability: {probability}")
+    print(f"Wolf probability: {bf_e}")
+    print(f"Sheep minimum energy: {s_min_energy}")
+    print(f"Wolf minimum energy: {min_energy}")
+    print(f"Wolf high store multiplier: {high_store_mp}")
 
 # Variables that should not be altered.
 environment = []
@@ -231,14 +265,14 @@ for i in range(no_sheep):
     y = int(td_ys[i].text) 
     x = int(td_xs[i].text)
     sheep.append(af.Sheep(wolves, sheep, environment, y, x)) 
-print('Initial number of  sheep: ', len(sheep))
+# print('Initial number of  sheep: ', len(sheep))
 
 # Initialise wolves
 for i in range(no_wolves):
     y = None #int(td_ys[-i].text)*3 #interesting!
     x = None #int(td_xs[-i].text)*3
     wolves.append(af.Wolf(wolves, sheep, environment, y, x))
-print('Initial number of  wolves:', len(wolves))
+# print('Initial number of  wolves:', len(wolves))
        
 # Set up update/frames for animation
 def update(frame_number):
@@ -958,7 +992,10 @@ def update(frame_number):
     print('')  # Add blank space.  
     print(f"*************** ITERATION NUMBER {it_no} ENDS ************")
     
-    # Display environment, wolves and sheep!    
+    # Display environment, wolves and sheep!  
+    plt.title("Sheep and Wolves ABM")
+    plt.ylabel("Y axis")
+    plt.xlabel("X axis")
     plt.ylim(0, len(environment))
     plt.xlim(0, len(environment[0])) 
     plt.imshow(environment)
