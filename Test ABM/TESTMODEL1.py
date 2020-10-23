@@ -25,8 +25,13 @@ import time # To time the process time for each iteration and total model
 # Print out the output in a text file. Better for debuggin the code as it 
 # can be searched easily using printed texts/keywords using NotePad++ or other
 # similar text editors!
-stdoutOrigin = sys.stdout 
-sys.stdout = open("log.txt", "w")
+# WARNING:
+# Recommended to enable the stdout code if you want to debug! 
+# Otherwise if the file is run from, it will not display any prompts to run 
+# the code! However, if the code is run from Spyder it will work with stdout.
+# See the end as well for closing the stdout.
+# stdoutOrigin = sys.stdout 
+# sys.stdout = open("log.txt", "w")
 
 # Scrape web data to find x and y values for the sheep!
 r = requests.get('http://bit.ly/GeogLeedsAFData')
@@ -40,45 +45,174 @@ td_xs = soup.find_all(attrs={"class" : "x"})
 # Set up plot size and axes
 fig = plt.figure(figsize=(7, 7))
 ax = fig.add_axes([0, 0, 1, 1])
+# ax.set_autoscale_on(False) 
 
-# Model related variables
+# Modifiable variables!
+# Number of sheep
+n_sh = input('Enter number of sheep. (Or press enter to use default '\
+             'value 15): ')
+try:
+    no_sheep = int(n_sh)
+except:
+    no_sheep = 15
+    print('Invalid characters/No number entered! Model will run with '\
+          '15 sheep.')
+        
+# Number of wovles 
+n_wl = input('Enter number of wolves. (Or press enter to use default '\
+             'value 5): ')
+try:
+    no_wolves = int(n_wl)
+except:
+    no_wolves = 5
+    print('Invalid characters/No number entered! Model will run with '\
+          '5 wolves.')
+    
+# Input number of iterations
+n_it = input('Enter number of iterations. (Or press enter to use default '\
+             'value 100): ')
+try:
+    no_iterations = int(n_it)
+except:
+    no_iterations = 100 # Number of times the animation will run
+    print('Invalid characters/No number entered! Model will run with default'\
+          ' of 100 iterations.') 
+    
+# Input proximity
+prox = input('Enter proximity value. Proximity refers to the range of '\
+             'vision or distance within which WOLVES can observe and notice '\
+             'other animals and determine the closest one. '\
+             '(Or press enter to use default value 50): ')
+try:
+    proximity = int(prox)
+except:
+    proximity = 50 # the range of vision of the wolves
+    print('Invalid characters/No number entered! Model will run with default'\
+          ' of wolf proximity of 50.')
+        
+# Input the denometer for sheep minimum distance.
+smd = input('Enter the sheep proximity denominator. By default, the '\
+            'proximity of sheep is half of that of wolves. '\
+            'i.e, proxmity/2. This is because sheep is a prey! '\
+            'You can change the denominator to alter the '\
+            'sheep proximity. (Or press enter to use default denominator '\
+            'value 2): ')
+try:
+    smd_denometer = int(smd)
+except:
+    smd_denometer = 2
+    print('Invalid characters/No number entered! Model will run with default'\
+          ' sheep proximity denominator of 2.')
+        
+# Input action_dist
+actd = input('Enter the action distance within which the animals will '\
+             'interact, such as breed, fight and so on. Same for sheep and '\
+             'wolves. (Or press enter to use default value 5): ')
+try:
+    action_dist = int(actd)
+except:
+    action_dist = 5 # Proximity within which animals can interact, eg breed.
+    print('Invalid characters/No number entered! Model will run with default'\
+          ' action distance of 5.') 
+
+# Input probability
+prob = input('Enter sheep breeding probability. Probability represents the '\
+             'chance of breeding for sheep, e.g., '\
+             'if the probability>0.5, the sheep will breed successfully, '\
+             'i.e., if random value>0.5. Otherwise breeding attempt will '\
+             'fail. Note: for breeding to be successfull, randome value has '\
+             'to be MORE than the probability value '\
+             ' (random value>probability). '\
+             'You can change it. (Or press enter to use default value 0.5): ')
+try:
+    probability = float(prob) # Need conditions to make it between 0 - 1.
+except:
+    probability = 0.50 
+    print('Invalid characters/No number entered! Model will run with default'\
+          ' sheep probability value of 0.5.')
+
+# Input probability for wolves
+wolf_prob = input("The probability of breeding for wolves by default "\
+             f"is the same as that of sheep probability: {probability}. "\
+             "For wolves, this also represents the chance of winning a "\
+             "fight with other wolves. It also determines fraction of "\
+             "the losing wolf's store the winning wolf will win. "\
+             "You can change it. Note: for breeding/fight "\
+             "to be successfull, random value has to be MORE than "\
+             "the probability value (i.e., random>probability). "\
+             "You can chagne it. (Or press enter to use sheep "\
+             f"probability value ({probability}): ")
+try:
+    bf_e = float(wolf_prob) # Need conditions to make it between 0 - 1.
+except:
+    bf_e = probability
+    print('Invalid characters/No number entered! Model will run with default'\
+          ' wolf probability that is the same as sheep probability: '\
+          f'{probability}.')
+       
+# Input the sheep minimum energy
+sme = input("Sheep need a minimum energy/store to breed. "\
+             "You can change it. (Or press enter to use default store "\
+             "value 600): ")
+try:
+    s_min_energy = int(sme)
+except:
+    s_min_energy = 600 # Set minimum energy value for sheep to breed.
+    print('Invalid characters/No number entered! Model will run with default'\
+          ' sheep minimum energy/store needed for action of 600.')
+
+# Input the wolf minimum energy
+wme = input("Wolves also need a minimum energy/store to breed. "\
+             "You can change it. (Or press enter to use default store "\
+             "value 500): ")
+try:
+    min_energy = int(wme)
+except:
+    min_energy = 500 # Set wolves minimum store value for breeding.
+    print('Invalid characters/No number entered! Model will run with default'\
+          ' wolf minimum energy/store needed for action of 500.')
+
+# Input the wolf high store multiplier
+hstm = input("Wolves have the extra ability to increase their proximity once"\
+             " they have a store value above a certain threshold, for example"\
+             ", the default is double that of minimum energy, i.e., if "\
+             " store>min_energy*2, then proximity will also be "\
+             " doubled!. You can change this Multiplier. (Or press enter "\
+             "to run with default multiplier of 2): ")
+try:
+    high_store_mp = int(hstm)
+except:
+    # Hight store multiplier: to increase the proximity of wolves if they 
+    # have a certain amount energy more than the minimum energy
+    high_store_mp = 2
+    print('Invalid characters/No number entered! Model will run with default'\
+          ' multiplier value of 2.')
+
+# Variables that should not be altered.
 environment = []
 sheep = []
 wolves = []
-no_sheep = 15
-no_wolves = 5
 total_time = 0 # Set initial total process time as zero.
-no_iterations = 100 # Number of times the animation will run
-it_no = -1 # No of iterations
-proximity = 50 # the range of vision of the animals
-action_dist = 5 # Proximity within which animals can interact, eg breed etc. 
-# probability (below) represents the probability of doing a certain action 
-# if animals are within action_dist (for wolves and sheep), such as breeding, 
-# sharing, eating, fighting.
-probability = 0.50 
-
-# Sheep variables
-# sheep_min_dist is the range of vision for sheep. Within this distance
-# the sheep will notice other animals and run towards closest sheep (CS)
-# or run away from closest wolf (CW).
-sheep_min_dist = proximity/2
-# s_min_energy is the minimum required energy/store for sheep to perform
-# an action (e.g. breed) if CS is within actions distance of 5.
-s_min_energy = 600 # Set minimum energy value for sheep to breed.
-
-# Wolf variables
-min_energy = 500 # Set wolves minimum store value for breeding.
-bf_e = probability # Can be altered to change probability value for wolves!
-# Hight store multiplier: to increase the proximity of wolves if they have a 
-# certain amount energy more than the minimum energy
-high_store_mp = 2
-
-# Store related variables
+sheep_min_dist = proximity/smd_denometer # Sheep minimum distance
 total_sheep_store = 0.0 # For calculating the toal sheep store as float.
 t_sheep_store_list = [] # For use in writing the total sheep store in a file.
 total_wolves_store = 0.0 # For calculating the toal wovles store as float.
 t_wolves_store_list = [] # For use in writing the total wolves store in a file.
+it_no = -1 # No counting the number of iterations.
 
+# no_sheep = 15
+# no_wolves = 5
+# proximity = 50 # the range of vision of the animals
+# no_iterations = 100 # Number of times the animation will run
+# action_dist = 5 # Proximity within which animals can interact, eg breed etc.
+# probability = 0.50 
+# s_min_energy is the minimum required energy/store for sheep to perform
+# an action (e.g. breed) if CS is within actions distance of 5.
+# s_min_energy = 600 # Set minimum energy value for sheep to breed.
+# Wolf variables
+# min_energy = 500 # Set wolves minimum store value for breeding.
+# bf_e = probability # Can be altered to change probability value for wolves!
+# high_store_mp = 2
 
 # Read environment data from a text file.
 with open('in.txt', newline='') as f:
@@ -842,9 +976,9 @@ def update(frame_number):
         plt.scatter(wolves[j].x, wolves[j].y, marker="v", color='black')
         
 # Set up generator
-def gen_function(b = no_iterations):
-    a = 0
-    while a < b:
+def gen_function():
+    a = 0 # a compares with no_iterations to stop the generator.
+    while a < no_iterations:
         yield a
         a += 1
  
@@ -918,6 +1052,6 @@ print(f"With {len(sheep)} sheep (total store: {total_sheep_store}),")
 print(f"And {len(wolves)} wolves (total store: {total_wolves_store}),")
 # print(f"And a total process time of {total_time} seconds.")
     
-# Close the prinout to log file! And return stdout to the 
-sys.stdout.close()
-sys.stdout = stdoutOrigin
+# # Close the prinout to log file! And return stdout to the 
+# sys.stdout.close()
+# sys.stdout = stdoutOrigin
