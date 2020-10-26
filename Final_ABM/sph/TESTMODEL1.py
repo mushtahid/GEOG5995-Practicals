@@ -6,7 +6,7 @@ Created on Thu Oct 15 09:26:33 2020
 email: mushtahid@gmail.com
 """
 # Import modules
-import sys # To print the output in a seperate text file
+# import sys # To print the output in a seperate text file
 import TESTAF1 as af # Import the agentframework
 import tkinter # To use for the GUI
 # For plotting and displaying environment and animals.
@@ -23,14 +23,17 @@ import time # To time the process time for each iteration and total model
 
 
 # Print out the output in a text file. Better for debuggin the code as it 
-# can be searched easily using printed texts/keywords using NotePad++ or other
-# similar text editors!
+    # can be searched easily using printed texts/keywords using NotePad++ or 
+    # other similar text editors!
 # WARNING:
-# Recommended to enable the stdout code if you want to debug! 
+# Recommended to enable the stdout code if you want to debug! Make sure to
+    # uncomment sys module and also look at the end of the code to uncomment
+    # closing stdout.
 # Otherwise if the file is run from, it will not display any prompts to run 
-# the code! However, if the code is run from Spyder it will work with stdout.
-# See the end as well for closing the stdout.
-# stdoutOrigin = sys.stdout 
+    # the code! However, if the code is run from Spyder it will work 
+    # with stdout.
+# See the end as well for closing the stdout. 
+# stdoutOrigin = sys.stdout
 # sys.stdout = open("log.txt", "w")
 
 # Scrape web data to find x and y values for the sheep!
@@ -51,10 +54,10 @@ ax = fig.add_axes([0, 0, 1, 1])
 # Prompt if want to modify:
 modify = input("- Do you want to change the modifiable variable? Enter "\
                "'y' (lowercase) if YES. You can still choose to run with "\
-               "default values for individual variables. If NO, enter any "\
-               "other value to run the model with default values: ")
+               "default values for individual variables if you chosse yes. "\
+               "If NO, enter any other value to run the model "\
+               "with default values: ")
 correct_y = "y"
-
 if modify == correct_y:    
     # Number of sheep
     n_sh = input('- Enter number of sheep. (Or press enter to use default'\
@@ -66,27 +69,25 @@ if modify == correct_y:
         print('Invalid characters/No number entered! Model will run with '\
               '15 sheep.')
     # Number of wovles 
-    n_wl = input('Enter number of wolves. (Or press enter to use default '\
+    n_wl = input('- Enter number of wolves. (Or press enter to use default '\
                  'value 5): ')
     try:
         no_wolves = int(n_wl)
     except:
         no_wolves = 5
         print('Invalid characters/No number entered! Model will run with '\
-              '5 wolves.')
-        
+              '5 wolves.')    
     # Input number of iterations
-    n_it = input('Enter number of iterations. (Or press enter to use '\
+    n_it = input('- Enter number of iterations. (Or press enter to use '\
                  'default value 100): ')
     try:
         no_iterations = int(n_it)
     except:
         no_iterations = 100 # Number of times the animation will run
         print('Invalid characters/No number entered! Model will run with '\
-              'default of 100 iterations.') 
-        
+              'default of 100 iterations.')     
     # Input proximity
-    prox = input('Enter proximity value. Proximity refers to the range of '\
+    prox = input('- Enter proximity value. Proximity refers to the range of '\
                  'vision or distance within which WOLVES can observe and '\
                  'notice other animals and determine the closest one. '\
                  '(Or press enter to use default value 50): ')
@@ -95,10 +96,9 @@ if modify == correct_y:
     except:
         proximity = 50 # the range of vision of the wolves
         print('Invalid characters/No number entered! Model will run with '\
-              'default of wolf proximity of 50.')
-            
+              'default of wolf proximity of 50.')        
     # Input the denometer for sheep minimum distance.
-    smd = input('Enter the sheep proximity denominator. By default, the '\
+    smd = input('- Enter the sheep proximity denominator. By default, the '\
                 'proximity of sheep is half of that of wolves. '\
                 'i.e, proxmity/2. This is because sheep is a prey! '\
                 'You can change the denominator to alter the '\
@@ -109,10 +109,9 @@ if modify == correct_y:
     except:
         smd_denometer = 2
         print('Invalid characters/No number entered! Model will run with '\
-              'default sheep proximity denominator of 2.')
-            
+              'default sheep proximity denominator of 2.')        
     # Input action_dist
-    actd = input('Enter the action distance within which the animals will '\
+    actd = input('- Enter the action distance within which the animals will '\
                  'interact, such as breed, fight and so on. Same for sheep '\
                  'and wolves. (Or press enter to use default value 5): ')
     try:
@@ -121,9 +120,8 @@ if modify == correct_y:
         action_dist = 5 # Proximity within which animals can interact,eg breed.
         print('Invalid characters/No number entered! Model will run with '\
               'default action distance of 5.') 
-    
     # Input probability
-    prob = input('Enter sheep breeding probability. Probability represents '\
+    prob = input('- Enter sheep breeding probability. Probability represents '\
                  'the chance of breeding for sheep, e.g., '\
                  'if the probability>0.5, the sheep will breed '\
                  'successfully, i.e., if random value>0.5. Otherwise '\
@@ -138,9 +136,8 @@ if modify == correct_y:
         probability = 0.50 
         print('Invalid characters/No number entered! Model will run with '\
               'default sheep probability value of 0.5.')
-    
     # Input probability for wolves
-    wolf_prob = input("The probability of breeding for wolves by default "\
+    wolf_prob = input("- The probability of breeding for wolves by default "\
                  f"is the same as that of sheep probability: {probability}. "\
                  "For wolves, this also represents the chance of winning a "\
                  "fight with other wolves. It also determines fraction of "\
@@ -156,10 +153,9 @@ if modify == correct_y:
         bf_e = probability
         print('Invalid characters/No number entered! Model will run with '\
               'default wolf probability that is the same as sheep '\
-              f'probability: {probability}.')
-           
+              f'probability: {probability}.')       
     # Input the sheep minimum energy
-    sme = input("Sheep need a minimum energy/store to breed. "\
+    sme = input("- Sheep need a minimum energy/store to breed. "\
                  "You can change it. (Or press enter to use default store "\
                  "value 600): ")
     try:
@@ -168,9 +164,8 @@ if modify == correct_y:
         s_min_energy = 600 # Set minimum energy value for sheep to breed.
         print('Invalid characters/No number entered! Model will run with '\
               'default sheep minimum energy/store needed for action of 600.')
-    
     # Input the wolf minimum energy
-    wme = input("Wolves also need a minimum energy/store to breed. "\
+    wme = input("- Wolves also need a minimum energy/store to breed. "\
                  "You can change it. (Or press enter to use default store "\
                  "value 500): ")
     try:
@@ -179,11 +174,11 @@ if modify == correct_y:
         min_energy = 500 # Set wolves minimum store value for breeding.
         print('Invalid characters/No number entered! Model will run with '\
               'default wolf minimum energy/store needed for action of 500.')
-    
     # Input the wolf high store multiplier
-    hstm = input("Wolves have the extra ability to increase their proximity "\
-                 "once they have a store value above a certain threshold, "\
-                 "for example, the default is double that of minimum "\
+    hstm = input("- Wolves have the extra ability to increase their "\
+                 "proximity once they have a store value above a "\
+                 "certain threshold. "\
+                 "For example, the default is double that of minimum "\
                  "energy, i.e., if store>min_energy*2, then proximity "\
                  "will also be doubled!. You can change this Multiplier. "\
                  "(Or press enter to run with default multiplier of 2): ")
@@ -208,7 +203,7 @@ else:
     s_min_energy = 600 
     min_energy = 500
     high_store_mp = 2
-    print('Model will run with default variables')
+    print('____Model will run with default variables____')
     print(f"Number of sheep: {no_sheep}")
     print(f"Number of wolves: {no_wolves}")
     print(f"Number of iterations: {no_iterations}")
@@ -221,6 +216,7 @@ else:
     print(f"Sheep minimum energy: {s_min_energy}")
     print(f"Wolf minimum energy: {min_energy}")
     print(f"Wolf high store multiplier: {high_store_mp}")
+    print('') # Add blank space
 
 # Variables that should not be altered.
 environment = []
@@ -993,9 +989,9 @@ def update(frame_number):
     print(f"*************** ITERATION NUMBER {it_no} ENDS ************")
     
     # Display environment, wolves and sheep!  
-    plt.title("Sheep and Wolves ABM")
-    plt.ylabel("Y axis")
-    plt.xlabel("X axis")
+    plt.title("Sheep and Wolves Agent Based Model")
+    plt.ylabel("Y Axis")
+    plt.xlabel("X Axis")
     plt.ylim(0, len(environment))
     plt.xlim(0, len(environment[0])) 
     plt.imshow(environment)
@@ -1014,6 +1010,7 @@ def update(frame_number):
         
 # Set up generator
 def gen_function():
+    """The generator function"""
     a = 0 # a compares with no_iterations to stop the generator.
     while a < no_iterations:
         yield a
@@ -1021,6 +1018,7 @@ def gen_function():
  
 # Set up run function for use with tkinter GUI
 def run():
+    """Runs the animation when Run button is clicked on GUI"""
     # animation = matplotlib.animation.FuncAnimation(fig, update,\
     # frames=gen_function, interval=100, repeat=False, save_count=no_iterations)
     animation = matplotlib.animation.FuncAnimation(fig, update,\
@@ -1042,7 +1040,7 @@ def run():
 # Set up GUI
 root = tkinter.Tk()
 root.wm_iconbitmap('logo.ico')
-root.wm_title("Sheep and Wolves - Agent Based Model (ABM) by Mushtahid!")
+root.wm_title("Sheep and Wolves ABM!")
 canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
 canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
 menu_bar = tkinter.Menu(root)

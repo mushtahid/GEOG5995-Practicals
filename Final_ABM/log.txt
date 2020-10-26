@@ -1,0 +1,6 @@
+Enter number of sheep. (Or press enter to use default value 15: Invalid characters/No number entered! Model will run with 10 sheep.
+Enter number of wolves. (Or press enter to use default value 5: Invalid characters/No number entered! Model will run with 5 wolves.
+Enter number of iterations (Or press enter to use default value 100): Invalid characters/No number entered! Model will run with default of 100 iterations.
+Enter proximity value. Proximity refers to the range ofvision or distance within which wolves can observe and noticeother animals and determine the closest one. (Or press enter to use default value 50): Invalid characters/No number entered! Model will run with default of proximity of 50.
+Enter the minimum distance within which the animals will interact, such as breed, fight and so on. (Or press enter to use default value 30): Invalid characters/No number entered! Model will run with default of action distance of 5
+Probability represents the probability of doing a certain action if animals are within action_dist such as breeding,sharing, eating, fighting. Suggested NOT TO CHANGE. (Or press enter to use default value 0.5.): 

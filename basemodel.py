@@ -14,7 +14,7 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot
 import matplotlib.animation
 import time
-import agentframework
+import baseaf as agentframework
 import csv
 import requests
 import bs4
