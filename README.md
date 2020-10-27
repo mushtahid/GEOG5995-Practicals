@@ -4,7 +4,7 @@ This repository contains the practicals done as part of the [Programming for Soc
 The aim of the GEOG5995 was to introduce students to the world of programming, especially with Python.
 
 ## What does the code do?
-This is a simple ABM model containing a herd of sheep and a pack of wolves! The main idea behind this project was to create a model where agents (representing the animals) can interact with each other and the environment in which they are in. The code will run the model in a GUI.
+This is a simple ABM model containing a herd of sheep and a pack of wolves! The main idea behind this project was to create a model where agents (representing the animals) can interact with each other and the environment in which they are in. The code will run the model in a GUI. It is recommended to read [this page on my website](https://mushtahid.github.io/projects/uol/pss/abm.html) as well to better understand the model.
 
 ### Core components of the ABM
 The model consists of the three following core components:
@@ -23,7 +23,7 @@ The `Animal` class also sets the intial `store` values of the animals randomly. 
 
 There are two child classes to `Animal`: `Sheep` and `Wolf`. These define the behaviours unique to each animal. The `Sheep` child class includes behaviours such as eating grass from the environment (thus altering the environment data) and running away from the closest wolf. The `Wolf` child class defines the wolves eating the sheep and gaining 4/5 of the eaten sheep's enegy. The rest of the 1/5 of the eaten sheep's energy is returned to the environment (thus again altering the environment data).
 
-The order of initialisation of each animal is randomly shuffled at each iteration so that everyone gets a fair shot at whatever their action is (eating/breeding/fighting etc.) 
+The order of initialisation of each animal is randomly shuffled at each iteration so that everyone gets a fair shot at whatever their action is (eating/breeding/running away/fighting etc.) 
 
 Detailed descriptions of each animal's behaviours can be found on my [github website](https://mushtahid.github.io/projects/uol/pss/abm.html). Moreover, the code is extensively commented so that you understand what every code does. You can also use the python `help()` function.
 
@@ -70,3 +70,6 @@ The codes to divert are commented out in the `final_model.py` because if these a
 6. `total_wolves_store.txt` - a list of total sheep store values. New values are added instead of overwriting the previous one.
 7. `final_agent_framwork.py` - agent framework module for the model.
 8. `final_model.py` - the main codes for the model.
+
+## Any issues/comments regarding the model?
+You can reach me via [my website](https://mushtahid.github.io/) or [email](mailto:mushtahid@gmail.com).
