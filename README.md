@@ -1,7 +1,7 @@
 # Agent-Based Model - GEOG5995 Assessment 1
 This repository contains the practicals done as part of the [Programming for Social Science (GEOG5995) Course](https://www.geog.leeds.ac.uk/courses/computing/study/core-python-phd) under the [MSc/PhD CDAS programme](https://datacdt.org) under the School of Geography at the University of Leeds in September 2020.
 
-The aim of the GEOG5995 was to introdue students to the world of programming, especially with Python.
+The aim of the GEOG5995 was to introduce students to the world of programming, especially with Python.
 
 ## What does the code do?
 This is a simple ABM model containing a herd of sheep and a pack of wolves! The main idea behind this project was to create a model where agents (representing the animals) can interact with each other and the environment in which they are in. The code will run the model in a GUI.
