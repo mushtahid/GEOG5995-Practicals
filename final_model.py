@@ -1041,6 +1041,7 @@ def update(frame_number):
     plt.ylim(0, len(environment))
     plt.xlim(0, len(environment[0])) 
     plt.imshow(environment)
+    
     # sheep list, not no_sheep is used as no_sheep represents the initial 
     # number of sheep which may be altered via breeding or being eated 
     # by wolves. Same for wolves, as wolves might breed new wolves. 
@@ -1050,10 +1051,12 @@ def update(frame_number):
         # If the color is removed, sheep and wolves will have different
         # colours at each iteration as their initialisation will be 
         # randomly determined by random shuffle. 
-        plt.scatter(sheep[i].x, sheep[i].y, marker="p", color='white')
+        plt.scatter(sheep[i].x, sheep[i].y, marker="p", color='white',\
+                    label='Sheep')
     for j in range(len(wolves)):
-        plt.scatter(wolves[j].x, wolves[j].y, marker="v", color='black')
-        
+        plt.scatter(wolves[j].x, wolves[j].y, marker="v", color='black',\
+                    label='Wolf')
+    # plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')    
 # Set up generator
 def gen_function():
     """The generator function"""
