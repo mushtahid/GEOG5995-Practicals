@@ -79,10 +79,10 @@ class Animal:
             It also represents resources (best to think as stored food) which
             depending on the animal can be shared or stolen. For example, 
             sheep can share their store with other sheep as their primary 
-            concern is survival from the wolves. While wolves (although in 
+            concern is surviving from the wolves. While wolves (although in 
             reality are social creatures too) are lower in number and have
             poor access to food(sheep) - unless they are spawned closer to the
-            sheep in the begining. Thus for the wolves, they also fight to 
+            sheep in the beginning. Thus for the wolves, they also fight to 
             steal food from other wolves in this model.
         """
         self.wolves = wolves
