@@ -21,7 +21,7 @@ Essentially a 300x300 Euclidean plane (Fig 1) generated from reading the raster 
 Animals consist of sheep and wolves (Fig. 2). An object-oriented approach was taken in which the `Animal` class is defined in the `final_agent_framework.py`. The `Animal` class defines the behaviours of the animals, namely: moving around the environment, checking the distance between themselves, running towards the closest animal, not going beyond the limits of the environment by checking the boundary conditions.
 
 ![The Animals in the Environment Image](https://mushtahid.github.io/projects/uol/pss/images/the_animals.gif)  
-*Fig. 1: The Animals*
+*Fig. 2: The Animals*
 
 The `Animal` class also sets the initial x and y coordinates of the animals. For the sheep, the values are obtained by [scraping web data](http://bit.ly/GeogLeedsAFData), and for the wolves they are randomly assigned.
 
@@ -63,8 +63,9 @@ Diverting the output also enabled me to compare output from an earlier stable ve
 The codes to divert are commented out in the `final_model.py` because if these are active, the model will not run from cmd. However, if you wish to enable and divert the output, please use an IDE such as Spyder, which will ensure you are presented with the prompts and run the model while diverting the output to the text file.
 
 ## Known issues
-1. When the sheep are running away from the wolves in a north/north-east direction, the wolves chasing the sheep do not seem to be able to catch up with the sheep until the sheep reaches the edge of the environment. This is not observed when the sheep flee in other directions.
-
+1. When the sheep are running away from the wolves in a north/north-east direction, the wolves chasing the sheep do not seem to be able to catch up with the sheep until the sheep reaches the edge of the environment (Fig.3 ). This is not observed when the sheep flee in other directions.
+![Wolves unable to catch the sheep!](https://mushtahid.github.io/projects/uol/pss/images/unable_to_catch.gif)  
+*Fig. 3: The Animals*
 2. The final statements such as (the final number of sheep and wolves and their total store values and the total time it took to run the model for the specified number of iterations), do not appear until the GUI is closed. Moreover, the statements appear only when the code is run from Spyder and not in cmd.
 
 ## Files/folder in the repository
