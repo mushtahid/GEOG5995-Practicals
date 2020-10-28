@@ -79,7 +79,7 @@ The codes to divert are commented out in the `final_model.py` because if these a
 8. `final_model.py` - the main codes for the model.
 
 ## Licence
-This project is licensed under the [GNU General Public License v3.0 or any later version](LICENSE)
+This project is licensed under the [GNU General Public License v3.0 or any later version](LICENSE).
 
 ## Any issues/comments regarding the model?
 You can reach me via [my website](https://mushtahid.github.io/) or [email](mailto:mushtahid@gmail.com).
