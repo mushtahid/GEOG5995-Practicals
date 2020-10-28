@@ -34,7 +34,7 @@ The order of initialisation of each animal is randomly shuffled at each iteratio
 Detailed descriptions of each animal's behaviours can be found on my [github website](https://mushtahid.github.io/projects/uol/pss/abm.html). Moreover, the code is extensively commented so that you understand what every code does. You can also use the python `help()` function.
 
 ## How to run the model?
-The model required python 3.6+ to run as f-strings are extensively used. The file `final_model.py` contains the main model while the file `final_agent_framework.py` contains the `Animal`, `Sheep`, and `Wolf` class.
+The model requires python 3.6+ to run as f-strings are extensively used. The file `final_model.py` contains the main model while the file `final_agent_framework.py` contains the `Animal`, `Sheep`, and `Wolf` class.
 
 The model can be run via command/terminal prompt by running: `python final_model.py`
 
