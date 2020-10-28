@@ -15,6 +15,7 @@ The model consists of the following core components:
 Essentially a 300x300 Euclidean plane generated from reading the raster data present in the csv file `in.txt`. Reading the data produces a 2D plane. After the model has run, the model writes the altered environment data in another csv file named `out.txt`. This file is overwritten every time the model is run.
 
 ![Image of Environment](https://mushtahid.github.io/projects/uol/pss/images/the_environment.png)
+*Fig. 1: The Environment*
 
 ### The Animals
 Animals consist of sheep and wolves. An object-oriented approach was taken in which the `Animal` class is defined in the `final_agent_framework.py`. The `Animal` class defines the behaviours of the animals, namely: moving around the environment, checking the distance between themselves, running towards the closest animal, not going beyond the limits of the environment by checking the boundary conditions. 
