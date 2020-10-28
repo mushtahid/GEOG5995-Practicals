@@ -1,5 +1,5 @@
 # Agent-Based Model - GEOG5995 Assessment 1
-This repository contains the practicals done as part of the [Programming for Social Science (GEOG5995) Course](https://www.geog.leeds.ac.uk/courses/computing/study/core-python-phd) under the [MSc/PhD CDAS programme](https://datacdt.org) under the School of Geography at the University of Leeds in September 2020.
+This repository contains the practicals done as part of the [Programming for Social Science (GEOG5995) Course](https://www.geog.leeds.ac.uk/courses/computing/study/core-python-phd) under the [MSc/PhD CDAS programme](https://datacdt.org) under the School of Geography at the University of Leeds between September and October 2020.
 
 The aim of the GEOG5995 was to introduce students to the world of programming, especially with Python.
 
@@ -13,6 +13,7 @@ The model consists of the following core components:
 
 ### The Environment
 Essentially a 300x300 Euclidean plane generated from reading the raster data present in the csv file `in.txt`. Reading the data produces a 2D plane. After the model has run, the model writes the altered environment data in another csv file named `out.txt`. This file is overwritten every time the model is run.
+![Image of Environment](https://mushtahid.github.io/projects/uol/pss/images/the_environment.png)
 
 ### The Animals
 Animals consist of sheep and wolves. An object-oriented approach was taken in which the `Animal` class is defined in the `final_agent_framework.py`. The `Animal` class defines the behaviours of the animals, namely: moving around the environment, checking the distance between themselves, running towards the closest animal, not going beyond the limits of the environment by checking the boundary conditions. 
