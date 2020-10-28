@@ -12,12 +12,16 @@ The model consists of the following core components:
 2. The Animals (Sheep and Wolves)
 
 ### The Environment
-Essentially a 300x300 Euclidean plane generated from reading the raster data present in the csv file `in.txt`. Reading the data produces a 2D plane. After the model has run, the model writes the altered environment data in another csv file named `out.txt`. This file is overwritten every time the model is run.
+Essentially a 300x300 Euclidean plane (Fig 1) generated from reading the raster data present in the csv file `in.txt`. Reading the data produces a 2D plane. After the model has run, the model writes the altered environment data in another csv file named `out.txt`. This file is overwritten every time the model is run.
 
-![The Environment Image](https://mushtahid.github.io/projects/uol/pss/images/the_environment.png)*Fig. 1: The Environment*
+![The Environment Image](https://mushtahid.github.io/projects/uol/pss/images/the_environment.png)  
+*Fig. 1: The Environment*
 
 ### The Animals
-Animals consist of sheep and wolves. An object-oriented approach was taken in which the `Animal` class is defined in the `final_agent_framework.py`. The `Animal` class defines the behaviours of the animals, namely: moving around the environment, checking the distance between themselves, running towards the closest animal, not going beyond the limits of the environment by checking the boundary conditions. 
+Animals consist of sheep and wolves (Fig. 2). An object-oriented approach was taken in which the `Animal` class is defined in the `final_agent_framework.py`. The `Animal` class defines the behaviours of the animals, namely: moving around the environment, checking the distance between themselves, running towards the closest animal, not going beyond the limits of the environment by checking the boundary conditions.
+
+![The Animals in the Environment Image](https://mushtahid.github.io/projects/uol/pss/images/the_animals.gif)  
+*Fig. 1: The Animals*
 
 The `Animal` class also sets the initial x and y coordinates of the animals. For the sheep, the values are obtained by [scraping web data](http://bit.ly/GeogLeedsAFData), and for the wolves they are randomly assigned.
 
