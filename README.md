@@ -14,7 +14,7 @@ The model consists of the following core components:
 ### The Environment
 Essentially a 300x300 Euclidean plane generated from reading the raster data present in the csv file `in.txt`. Reading the data produces a 2D plane. After the model has run, the model writes the altered environment data in another csv file named `out.txt`. This file is overwritten every time the model is run.
 
-![The Environment Image](https://mushtahid.github.io/projects/uol/pss/images/the_environment.png)
+![The Environment Image](https://mushtahid.github.io/projects/uol/pss/images/the_environment.png) 
 *Fig. 1: The Environment*
 
 ### The Animals
