@@ -21,7 +21,7 @@ Essentially a 300x300 Euclidean plane (Fig 1) generated from reading the raster 
 Animals consist of sheep and wolves (Fig. 2). An object-oriented approach was taken in which the `Animal` class is defined in the `final_agent_framework.py`. The `Animal` class defines the behaviours of the animals, namely: moving around the environment, checking the distance between themselves, running towards the closest animal, not going beyond the limits of the environment by checking the boundary conditions.
 
 ![The Animals in the Environment Image](https://mushtahid.github.io/projects/uol/pss/images/the_animals.gif)  
-*Fig. 2: The Animals*
+*Fig. 2: The Animals (White = Sheep, Black = Wolves)*
 
 The `Animal` class also sets the initial x and y coordinates of the animals. For the sheep, the values are obtained by [scraping web data](http://bit.ly/GeogLeedsAFData), and for the wolves they are randomly assigned.
 
