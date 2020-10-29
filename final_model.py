@@ -54,7 +54,7 @@ ax = fig.add_axes([0, 0, 1, 1])
 
 # Modifiable variables!
 # Prompt if want to modify:
-modify = input("- Do you want to alter the modifiable variable? Enter "\
+modify = input("- Do you want to alter the modifiable variables? Enter "\
                "'y' (lowercase and without ' ') if YES (There are 11 "\
                "variables that you can modify. You will still "\
                "be able to run with default values for "\
