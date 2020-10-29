@@ -84,3 +84,6 @@ This project is licensed under the [GNU General Public License v3.0 or any later
 
 ## Any issues/comments regarding the model?
 You can reach me via [my website](https://mushtahid.github.io/) or [email](mailto:mushtahid@gmail.com).
+
+## Acknowledgements
+Many thanks to [Andy Turner](https://github.com/agdturner) (course coordinator) for teaching the course and guiding me along the way.
