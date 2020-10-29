@@ -5,6 +5,8 @@ As part of Programming for Social Science MSc/PhD course 2020 at the
 School of Geography, University of Leeds
 @author: Md Mushtahid Salam
 email: mushtahid@gmail.com
+This project is licensed under the GNU General Public License v3.0 or any later version
+Project repository: https://github.com/mushtahid/GEOG5995-Practicals
 """
 # Import modules
 # import sys # To print the output in a seperate text file

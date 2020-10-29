@@ -2,8 +2,12 @@
 """
 Created on Thu Oct 15 11:20:41 2020
 Agent framework module.
+Created as part of Programming for Social Science MSc/PhD course 2020 at the 
+School of Geography, University of Leeds
 @author: Mushtahid
 email: mushtahid@gmail.com
+This project is licensed under the GNU General Public License v3.0 or any later version
+Project repository: https://github.com/mushtahid/GEOG5995-Practicals
 """
 import random
 # random.seed(10) # Uncomment for debugging.
