@@ -23,20 +23,19 @@ import bs4 # To scrape web data
 import time # To calculate the process time for each iteration and total model
 
 # Print out the output in a text file. 
-# stdoutOrigin = sys.stdout
-# sys.stdout = open("log.txt", "w")
 # Better for debuggin the code as it 
 # can be searched easily using printed texts/keywords using NotePad++ or 
 # other similar text editors!
 # WARNING:
-# Recommended to enable the stdout code if you want to debug! Make sure to
-# uncomment sys module and also look at the end of the code to uncomment
+# Recommended to enable the stdout code only if you want to debug! Make sure 
+# to uncomment sys module and also look at the end of the code to uncomment
 # closing stdout.
-# Otherwise if the file is run from, it will not display any prompts to run 
-# the code! However, if the code is run from Spyder it will work 
+# Otherwise if the file is run from CMD, it will not display any prompts to  
+# run the code! However, if the code is run from Spyder it will work 
 # with stdout.
 # See the end as well for closing the stdout. 
-
+# stdoutOrigin = sys.stdout
+# sys.stdout = open("log.txt", "w")
 
 # Scrape web data to find x and y values for the sheep!
 # Perhaps short url should not be used, as it may decrease efficiency?
@@ -51,14 +50,14 @@ td_xs = soup.find_all(attrs={"class" : "x"})
 # Set up plot size and axes
 fig = plt.figure(figsize=(7, 7))
 ax = fig.add_axes([0, 0, 1, 1])
-ax.set_autoscale_on(True) 
+# ax.set_autoscale_on(True) 
 
 # Modifiable variables!
 # Prompt if want to modify:
 modify = input("- Do you want to alter the modifiable variable? Enter "\
                "'y' (lowercase and without ' ') if YES (There are 11 "\
                "variables that you can modify. You will still "\
-               "be able to run with default values for"\
+               "be able to run with default values for "\
                "individual variables if you want). "\
                "If NO, enter any other value to run the model "\
                "with default values: ")
@@ -86,7 +85,7 @@ if modify == correct_y:
               '5 wolves.')    
     # Input number of iterations
     n_it = input('- Enter number of iterations. The model will stop once '\
-                 'all iterations are completed Or if all sheep have been '\
+                 'all iterations are completed OR if all sheep have been '\
                  'eaten by the wolves! You can change the number of '\
                  'iterations. REMEMBER: Python starts counting from 0! So, '\
                  'if you enter 99, it will run up to 100 iterations and if '\
@@ -99,7 +98,7 @@ if modify == correct_y:
     except:
         no_iterations = 499 # Number of times the animation will run
         print('Invalid characters/No number entered! Model will run with '\
-              'default of 500 iterations.')     
+              'default value of 499, i.e, 500 iterations.')     
     # Input proximity
     prox = input('- Enter proximity value. Proximity refers to the range of '\
                  'vision or distance within which WOLVES can observe and '\
@@ -115,7 +114,7 @@ if modify == correct_y:
     # Input the denometer for sheep minimum distance.
     smd = input('- Enter the sheep proximity denominator. By default, the '\
                 'proximity of sheep is half of that of wolves. '\
-                'i.e, proxmity/2. This is because sheep is a prey! '\
+                'i.e., proxmity/2. This is because sheep is a prey! '\
                 'You can change the denominator to alter the '\
                 'sheep proximity. (Or press enter to use default '\
                 'denominator value 2): ')
@@ -726,7 +725,7 @@ def update(frame_number):
                 if distance <= action_dist:
                     # Eats the first CS sheep at action distance. 
                     # So should not loop through the other ones.
-                    print(f"----> CS within {distance} which is "
+                    print(f"----> CS within {distance} distance which is "
                           f"<= action distance ({action_dist}).")
                     print(f"----> {wolf_count}-Wolf ({i}) before eating "
                           f"CS {sheep_count}-Sheep ({j})")
@@ -832,7 +831,7 @@ def update(frame_number):
                 # W.1.3.1.B
                 # If a wolf is within action distance: ACTION    
                 elif distance <= action_dist:
-                    print(f"----> d<=ad. breeding/fight roximity of "
+                    print(f"----> d<=ad. breeding/fight proximity of "
                           f"{distance}(<={action_dist}) entered by "
                           f"{wolf_count}-Wolf ({i}) with CW "
                           f"{wolf2_count}-Wolf ({j}).")
@@ -1035,7 +1034,7 @@ def update(frame_number):
     
     
     # Display environment, wolves and sheep!  
-    plt.title(f"Sheep and Wolves ABM Iteration No: {it_no}")
+    plt.title(f"Sheep (White) and Wolves (Black) ABM Iteration No: {it_no}")
     plt.ylabel("Y Axis")
     plt.xlabel("X Axis")
     plt.ylim(0, len(environment))
