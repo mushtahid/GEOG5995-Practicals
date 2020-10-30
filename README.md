@@ -6,7 +6,7 @@ The aim of the GEOG5995 was to introduce students to the world of programming, e
 ## What does the code do?
 This is a simple ABM model containing a herd of sheep and a pack of wolves! The main idea behind this project was to create a model where agents (representing the animals) can interact with each other and the environment in which they are in. The code will run the model in a GUI. It is recommended to read [this page on my website](https://mushtahid.github.io/projects/uol/pss/abm.html) as well to better understand the model. You can also use the python `help()` function.
 
-### Core components of the ABM
+## Core components of the ABM
 The model consists of the following core components:
 1. The Environment
 2. The Animals (Sheep and Wolves)
@@ -79,7 +79,11 @@ The codes to divert are commented out in the `final_model.py` because if these a
 8. `final_model.py` - the main codes for the model.
 
 ## Licence
+[![GNU GPL v3.0 or any later version](https://www.gnu.org/graphics/gplv3-or-later-sm.png)](LICENSE)
 This project is licensed under the [GNU General Public License v3.0 or any later version](LICENSE).
 
 ## Any issues/comments regarding the model?
 You can reach me via [my website](https://mushtahid.github.io/) or [email](mailto:mushtahid@gmail.com).
+
+## Acknowledgements
+Many thanks to [Andy Turner](https://github.com/agdturner) (course coordinator) for teaching the course and guiding me along the way.
