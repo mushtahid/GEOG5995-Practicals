@@ -305,7 +305,7 @@ class Sheep(Animal):
         if self.environment[self.y][self.x] > 10:
             self.environment[self.y][self.x] -= 10
             self.store += 10
-        elif 0 < self.environment[self.y][self.x] <= 0:
+        elif 0 < self.environment[self.y][self.x] <= 10:
             self.environment[self.y][self.x] -= self.environment[self.y]\
                                                                 [self.x]
             self.store += self.environment[self.y][self.x]
